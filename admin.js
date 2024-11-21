@@ -1,12 +1,38 @@
 
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyBKnPAKQWo6Dqr2WG9gOKjYMSlsNow6W0w",
+        authDomain: "my-demo-project-c063c.firebaseapp.com",
+        databaseURL: "https://my-demo-project-c063c-default-rtdb.firebaseio.com",
+        projectId: "my-demo-project-c063c",
+        storageBucket: "my-demo-project-c063c.firebasestorage.app",
+        messagingSenderId: "271406994028",
+        appId: "1:271406994028:web:f6ce7eda1d5b2dd4a3be49",
+        measurementId: "G-VGF9LL3P60"
+      };
+    
+        
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
+      import{getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+      import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
+      
+      const db = getFirestore()
+      let auth = getAuth()
+      const storage = getStorage()
+    
+        
+        const app = initializeApp(firebaseConfig);
+        // const analytics = getAnalytics(app);
+
+
 
 
         // FOR PRODUCT PAGE
         let productNameIn = document.getElementById('productName')
         let productPriceIn = document.getElementById('productPrice')
-        let productDescriptionIn = document.getElementById('productDescription')
         let productImageIn = document.getElementById('productImage')
-        let productContactIn = document.getElementById('productContact')
+        let productCategoryIn = document.getElementById('categoryy')
+
         let productWrite = document.getElementById('productWrite')
         let productUpdate = document.getElementById('productUpdate')
         let productRead = document.getElementById('productRead')
@@ -15,10 +41,11 @@
         async function writeForProduct() {
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
-            let productDescription = productDescriptionIn.value
-            let productContact = productContactIn.value
+            let productCategory = productCategoryIn.value
+            // let productDescription = productDescriptionIn.value
+            // let productContact = productContactIn.value
     
-            if (productName == '' || productPrice == '' || productDescription == '' || productContact == '') {
+            if (productName == '' || productPrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = productImageIn.files[0];
