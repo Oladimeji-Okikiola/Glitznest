@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Admin</title>
 
     <style>
@@ -10,6 +11,36 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        .directorate{
+            width: 20%;
+            /* border-left: 3px solid black; */
+        }
+        .productsShow{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 70%;
+        }
+        .buttonDiv{
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        input{
+            border: 2px solid black;
+            padding: 5px;
+            border-radius: 30px;
+        }
+        button{
+            background-color: black;
+            color: white;
+            border-radius: 30px;
+            padding: 5px;
+            border: 2px solid white;
+            outline: 2px solid black;
+            cursor: pointer;
         }
         ul{
             background-color: black;
@@ -28,12 +59,53 @@
             color: white;
         }
 
-        
+        .directorate{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .InputDiv{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .overAll{
+            display: flex;
+            /* justify-content: space-evenly;
+            align-items: center; */
+            /* justify-content: space-between; */
+        }
+        .navigate{
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            color: white;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 100px;
+            right: 10px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
+    <div class="navigate">
+        <a href="#">^</a>
+    </div>
     
-
+<div class="overAll">
 
     <div class="categories">
         <ul>
@@ -48,223 +120,242 @@
         </ul>
     </div>
 
+    <div class="productsShow">
 
-            <!-- PRODUCTS -->
-            <section id="jeweleries">
-                <div class="sectionName">
-                    <h3>JEWELERIES</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="productName">Product Name:</label>
-                        <input type="text" id="productName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="productPrice">Product Price:</label>
-                        <input type="text" id="productPrice" placeholder="Product Price..">
-                        <input type="number" id="productContact" placeholder="Product Contact..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="productImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="productImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="productWrite">Write</button>
-                        <button id="productUpdate">Update</button>
-                        <button id="productRead">Read</button>
-                        <button id="productDelete">Delete</button>
+        
+        
+                <!-- PRODUCTS -->
+                <section id="jeweleries" class="directorate">
+                    <div class="sectionName"> 
+                        <h3>JEWELERIES</h3>
                     </div>
-            </section>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="productName">Product Name:</label>
+                            <input type="text" id="productName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="productPrice">Product Price:</label>
+                            <input type="text" id="productPrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="productImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="productImage" placeholder="photoImage.." style="display: none;">
+                        </div>
+                        <div class="buttonDiv">
+                            <button id="productWrite">Write</button>
+                            <button id="productUpdate">Update</button>
+                            <button id="productRead">Read</button>
+                            <button id="productDelete">Delete</button>
+                        </div>
+                </section>
+                <hr>
+        
+                <!-- KITCHEN -->
+                <section id="kitchenUten" class="directorate">
+                    <div class="sectionName">
+                        <h3>KITCHEN UTENSILS</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="kitchenName">Product Name:</label>
+                            <input type="text" id="kitchenName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="kitchenPrice">Product Price:</label>
+                            <input type="text" id="kitchenPrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="kitchenImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="kitchenImage" placeholder="photoImage.." style="display: none;">
+                        </div>
+                            
+                        <div class="buttonDiv">
+                            <button id="kitchenWrite">Write</button>
+                            <button id="kitchenUpdate">Update</button>
+                            <button id="kitchenRead">Read</button>
+                            <button id="kitchenDelete">Delete</button>
+                        </div>
+                </section>
+                <hr>
+        
+                <!-- LAUNDARY -->
+                <section id="laundary" class="directorate">
+                    <div class="sectionName">
+                        <h3>LAUNDARY</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="laundaryName">Product Name:</label>
+                            <input type="text" id="laundaryName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="laundaryPrice">Product Price:</label>
+                            <input type="text" id="laundaryPrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="laundaryImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="laundaryImage" placeholder="photoImage.." style="display: none;">
+                        </div>
+                            
+                        <div class="buttonDiv">
+                            <button id="laundaryWrite">Write</button>
+                            <button id="laundaryUpdate">Update</button>
+                            <button id="laundaryRead">Read</button>
+                            <button id="laundaryDelete">Delete</button>
+                        </div>
+                </section>
+                <hr>
+        
+                <!-- CLOTHING -->
+                <section id="clothing" class="directorate">
+                    <div class="sectionName">
+                        <h3>CLOTHING</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="clothingName">Product Name:</label>
+                            <input type="text" id="clothingName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="clothingPrice">Product Price:</label>
+                            <input type="text" id="clothingPrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="clothingImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="clothingImage" placeholder="photoImage.." style="display: none;">
+                        </div>
+                        
+                        <div class="buttonDiv">
+                            <button id="clothingWrite">Write</button>
+                            <button id="clothingUpdate">Update</button>
+                            <button id="clothingRead">Read</button>
+                            <button id="clothingDelete">Delete</button>
+                        </div>
+                </section>
+                <hr>
+        
+                <!-- BATHROOM -->
+                <section id="bathroom" class="directorate">
+                    <div class="sectionName">
+                        <h3>BATHROOM</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="bathroomName">Product Name:</label>
+                            <input type="text" id="bathroomName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="bathroomPrice">Product Price:</label>
+                            <input type="text" id="bathroomPrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="bathroomImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="bathroomImage" placeholder="photoImage.." style="display: none;">
+                            </div>
+                        
+                        <div class="buttonDiv">
+                            <button id="bathroomWrite">Write</button>
+                            <button id="bathroomUpdate">Update</button>
+                            <button id="bathroomRead">Read</button>
+                            <button id="bathroomDelete">Delete</button>
+                        </div>
+                </section>
+        
+                <hr>
+                <!-- PHONE -->
+                <section id="phone" class="directorate">
+                    <div class="sectionName">
+                        <h3>PHONE ACCESSORIES</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="phoneName">Product Name:</label>
+                            <input type="text" id="phoneName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="phonePrice">Product Price:</label>
+                            <input type="text" id="phonePrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="phoneImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="phoneImage" placeholder="photoImage.." style="display: none;">
+                            </div>
+                        
+                        <div class="buttonDiv">
+                            <button id="phoneWrite">Write</button>
+                            <button id="phoneUpdate">Update</button>
+                            <button id="phoneRead">Read</button>
+                            <button id="phoneDelete">Delete</button>
+                        </div>
+                </section>
+        
+                <hr>
+                <!-- HOME -->
+                <section id="home" class="directorate">
+                    <div class="sectionName">
+                        <h3>HOME DECORATION</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="homeName">Product Name:</label>
+                            <input type="text" id="homeName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="homePrice">Product Price:</label>
+                            <input type="text" id="homePrice" placeholder="Product Price..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="homeImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="homeImage" placeholder="photoImage.." style="display: none;">
+                            </div>
+                        
+                        <div class="buttonDiv">
+                            <button id="homeWrite">Write</button>
+                            <button id="homeUpdate">Update</button>
+                            <button id="homeRead">Read</button>
+                            <button id="homeDelete">Delete</button>
+                        </div>
+                </section>
+        
+                <hr>
+                <!-- OTHERS -->
+                <section id="others" class="directorate">
+                    <div class="sectionName">
+                        <h3>OTHERS</h3>
+                    </div>
+                    <hr>
+                        <div class="InputDiv">
+                            <!-- PRODUCTS NAME -->
+                            <label for="othersName">Product Name:</label>
+                            <input type="text" id="othersName" placeholder="Product Name..">
+        
+                            <!-- PRODUCTS PRICE -->
+                            <label for="othersPrice">Product Price:</label>
+                            <input type="number" id="othersContact" placeholder="Product Contact..">
+        
+                                <!--PRODUCT IMAGE -->
+                                <label for="othersImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
+                                <input type="file" id="othersImage" placeholder="photoImage.." style="display: none;">
+                            </div>
+                        
+                        <div class="buttonDiv">
+                            <button id="othersWrite">Write</button>
+                            <button id="othersUpdate">Update</button>
+                            <button id="othersRead">Read</button>
+                            <button id="othersDelete">Delete</button>
+                        </div>
+                </section>
+    </div>
+</div>
 
-            <!-- KITCHEN -->
-            <section id="kitchenUten">
-                <div class="sectionName">
-                    <h3>KITCHEN UTENSILS</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="kitchenName">Product Name:</label>
-                        <input type="text" id="kitchenName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="kitchenPrice">Product Price:</label>
-                        <input type="text" id="kitchenPrice" placeholder="Product Price..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="kitchenImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="kitchenImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="kitchenWrite">Write</button>
-                        <button id="kitchenUpdate">Update</button>
-                        <button id="kitchenRead">Read</button>
-                        <button id="kitchenDelete">Delete</button>
-                    </div>
-            </section>
-
-            <!-- LAUNDARY -->
-            <section id="laundary">
-                <div class="sectionName">
-                    <h3>LAUNDARY</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="laundaryName">Product Name:</label>
-                        <input type="text" id="laundaryName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="laundaryPrice">Product Price:</label>
-                        <input type="text" id="laundaryPrice" placeholder="Product Price..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="laundaryImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="laundaryImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="laundaryWrite">Write</button>
-                        <button id="laundaryUpdate">Update</button>
-                        <button id="laundaryRead">Read</button>
-                        <button id="laundaryDelete">Delete</button>
-                    </div>
-            </section>
-
-            <!-- CLOTHING -->
-            <section id="clothing">
-                <div class="sectionName">
-                    <h3>CLOTHING</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="clothingName">Product Name:</label>
-                        <input type="text" id="clothingName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="clothingPrice">Product Price:</label>
-                        <input type="text" id="clothingPrice" placeholder="Product Price..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="clothingImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="clothingImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="clothingWrite">Write</button>
-                        <button id="clothingUpdate">Update</button>
-                        <button id="clothingRead">Read</button>
-                        <button id="clothingDelete">Delete</button>
-                    </div>
-            </section>
-
-            <!-- BATHROOM -->
-            <section id="bathroom">
-                <div class="sectionName">
-                    <h3>BATHROOM</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="bathroomName">Product Name:</label>
-                        <input type="text" id="bathroomName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="bathroomPrice">Product Price:</label>
-                        <input type="text" id="bathroomPrice" placeholder="Product Price..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="bathroomImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="bathroomImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="bathroomWrite">Write</button>
-                        <button id="bathroomUpdate">Update</button>
-                        <button id="bathroomRead">Read</button>
-                        <button id="bathroomDelete">Delete</button>
-                    </div>
-            </section>
-
-            <!-- PHONE -->
-            <section id="phone">
-                <div class="sectionName">
-                    <h3>PHONE ACCESSORIES</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="phoneName">Product Name:</label>
-                        <input type="text" id="phoneName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="phonePrice">Product Price:</label>
-                        <input type="text" id="phonePrice" placeholder="Product Price..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="phoneImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="phoneImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="phoneWrite">Write</button>
-                        <button id="phoneUpdate">Update</button>
-                        <button id="phoneRead">Read</button>
-                        <button id="phoneDelete">Delete</button>
-                    </div>
-            </section>
-
-            <!-- HOME -->
-            <section id="home">
-                <div class="sectionName">
-                    <h3>HOME DECORATION</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="homeName">Product Name:</label>
-                        <input type="text" id="homeName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="homePrice">Product Price:</label>
-                        <input type="text" id="homePrice" placeholder="Product Price..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="homeImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="homeImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="homeWrite">Write</button>
-                        <button id="homeUpdate">Update</button>
-                        <button id="homeRead">Read</button>
-                        <button id="homeDelete">Delete</button>
-                    </div>
-            </section>
-
-            <!-- OTHERS -->
-            <section id="others">
-                <div class="sectionName">
-                    <h3>OTHERS</h3>
-                </div>
-                <hr>
-                    <div class="InputDiv">
-                        <!-- PRODUCTS NAME -->
-                        <label for="othersName">Product Name:</label>
-                        <input type="text" id="othersName" placeholder="Product Name..">
-    
-                        <!-- PRODUCTS PRICE -->
-                        <label for="othersPrice">Product Price:</label>
-                        <input type="number" id="othersContact" placeholder="Product Contact..">
-    
-                            <!--PRODUCT IMAGE -->
-                            <label for="othersImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
-                            <input type="file" id="othersImage" placeholder="photoImage.." style="display: none;">
-                    
-                    <div class="buttonDiv">
-                        <button id="othersWrite">Write</button>
-                        <button id="othersUpdate">Update</button>
-                        <button id="othersRead">Read</button>
-                        <button id="othersDelete">Delete</button>
-                    </div>
-            </section>
 
 
 
