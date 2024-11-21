@@ -304,7 +304,7 @@
     // let displayTutorial = document.getElementById('mainDisplay');
 
     
-    const myCollection = collection(db, 'PRODUCTS');
+    const myCollection = collection(db, 'JEWELERIES');
 
 
     // THE SEARCH WITH KEYUP
@@ -335,7 +335,7 @@
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
 
-          <img src="${element.data().productImage}" alt="">
+          <img src="${element.data().productImage}" alt="${element.data().productName}">
           <h3>${element.data().productName}</h3>
           <h3>&#x20A6;${element.data().productPrice}</h3>
           <button class="buyBtn">Order</button>
@@ -344,12 +344,10 @@
         // Add event listener to the button to redirect to WhatsApp with product details
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
             const productName = element.data().productName;
-            const productDescription = element.data().productDescription;
-            const productImage = element.data().productImage;
-            const whatsappLink = element.data().productContact;
-            
+            const productPrice = element.data().productPrice;
+            const productImage = element.data().productImage;            
             // Construct the WhatsApp message
-            const message = `Product Name: ${productName}\nDescription: ${productDescription}\nImage: ${productImage}`;
+            const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
             const encodedMessage = encodeURIComponent(message);
             const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
 

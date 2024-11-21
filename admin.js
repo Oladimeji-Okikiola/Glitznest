@@ -65,8 +65,6 @@
                     await setDoc(ref, {
                         productName: productName,
                         productPrice: productPrice,
-                        productDescription: productDescription,
-                        productContact: productContact,
                         productImage: downloadURL,  
                     });
     
@@ -80,8 +78,6 @@
             // Clear form fields after successful upload
             productNameIn.value = ''
             productPriceIn.value = ''
-            productDescriptionIn.value = ''
-            productContactIn.value = ''
         }
     
         productWrite.addEventListener('click', writeForProduct);
@@ -92,15 +88,11 @@
     
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
-            let productDescription = productDescriptionIn.value
-            let productContact = productContactIn.value
     
             var ref = doc(db, "JEWELERIES", productName)
             await updateDoc(ref, {
                 productName: productName,
                 productPrice: productPrice,
-                productDescription: productDescription,
-                productContact: productContact,
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -111,8 +103,6 @@
             })
             productNameIn.value = ''
             productPriceIn.value = ''
-            productDescriptionIn.value = ''
-            productContactIn.value = ''
         }
         productUpdate.addEventListener('click', updateForProduct)
     
@@ -127,8 +117,6 @@
                 // console.log(docSnap.data())
                 productNameIn.value = docSnap.data().productName
                 productPriceIn.value = docSnap.data().productPrice
-                productDescriptionIn.value = docSnap.data().productDescription
-                productContactIn.value = docSnap.data().productContact
                 let photoSee = docSnap.data().productImage
     
                 console.log(photoSee)
@@ -141,7 +129,7 @@
         // DELETE FOR PRODUCT
             async function deleteForProduct(){
                 let productName = productNameIn.value
-                var ref = doc(db, "PRODUCTS", productName)
+                var ref = doc(db, "JEWELERIES", productName)
                 const docSnap = await getDoc(ref)
                 if(!docSnap.exists()){
                     alert('No such Document')

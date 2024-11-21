@@ -278,27 +278,33 @@
     })
 
     const firebaseConfig = {
-      apiKey: "AIzaSyBmY2XtNwXZrHeE5za2cp7sOFYOKjSvdCQ",
-      authDomain: "school-newusersign.firebaseapp.com",
-      projectId: "school-newusersign",
-      storageBucket: "school-newusersign.appspot.com",
-      messagingSenderId: "382800829354",
-      appId: "1:382800829354:web:145aeb3f8e346c016129d3"
-    };
+    apiKey: "AIzaSyBKnPAKQWo6Dqr2WG9gOKjYMSlsNow6W0w",
+    authDomain: "my-demo-project-c063c.firebaseapp.com",
+    databaseURL: "https://my-demo-project-c063c-default-rtdb.firebaseio.com",
+    projectId: "my-demo-project-c063c",
+    storageBucket: "my-demo-project-c063c.firebasestorage.app",
+    messagingSenderId: "271406994028",
+    appId: "1:271406994028:web:f6ce7eda1d5b2dd4a3be49",
+    measurementId: "G-VGF9LL3P60"
+  };
 
     
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getFirestore, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+  import { getFirestore, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
     let searchThrough = document.getElementById('searchInput')
-    let productCard = document.getElementById('mainCard')
+    // let productCard = document.getElementById('mainCard')
     let querySnapshot = [];
 
     
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     let db = getFirestore();
     // let displayTutorial = document.getElementById('mainDisplay');
-    const myCollection = collection(db, 'PRODUCTS');
+
+    
+    const myCollection = collection(db, 'CLOTHING');
 
 
     // THE SEARCH WITH KEYUP
@@ -306,7 +312,7 @@
         let searchedString = e.target.value.toLowerCase();
         // console.log(searchedString);
         let returnValue = querySnapshot.docs.filter(newEntry => {
-            return newEntry.data().productName.toLowerCase().includes(searchedString);
+            return newEntry.data().clothingName.toLowerCase().includes(searchedString);
         });
         displayDataIn(returnValue);
     });
@@ -329,21 +335,19 @@
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
 
-          <img src="${element.data().productImage}" alt="">
-          <h3>${element.data().productName}</h3>
-          <h3>&#x20A6;${element.data().productPrice}</h3>
+          <img src="${element.data().clothingImage}" alt="${element.data().clothingName}">
+          <h3>${element.data().clothingName}</h3>
+          <h3>&#x20A6;${element.data().clothingPrice}</h3>
           <button class="buyBtn">Order</button>
         `;
 
         // Add event listener to the button to redirect to WhatsApp with product details
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
-            const productName = element.data().productName;
-            const productDescription = element.data().productDescription;
-            const productImage = element.data().productImage;
-            const whatsappLink = element.data().productContact;
-            
+            const clothingName = element.data().clothingName;
+            const clothingPrice = element.data().clothingPrice;
+            const clothingImage = element.data().clothingImage;            
             // Construct the WhatsApp message
-            const message = `Product Name: ${productName}\nDescription: ${productDescription}\nImage: ${productImage}`;
+            const message = `Product Name: ${clothingName}\nDescription: ${clothingPrice}\nImage: ${clothingImage}`;
             const encodedMessage = encodeURIComponent(message);
             const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
 
