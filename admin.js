@@ -1,27 +1,27 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
 
     
-    const firebaseConfig = {
-        apiKey: "AIzaSyBKnPAKQWo6Dqr2WG9gOKjYMSlsNow6W0w",
-        authDomain: "my-demo-project-c063c.firebaseapp.com",
-        databaseURL: "https://my-demo-project-c063c-default-rtdb.firebaseio.com",
-        projectId: "my-demo-project-c063c",
-        storageBucket: "my-demo-project-c063c.firebasestorage.app",
-        messagingSenderId: "271406994028",
-        appId: "1:271406994028:web:f6ce7eda1d5b2dd4a3be49",
-        measurementId: "G-VGF9LL3P60"
-      };
+        const firebaseConfig = {
+            apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+            authDomain: "saveandget-test1.firebaseapp.com",
+            databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+            projectId: "saveandget-test1",
+            storageBucket: "saveandget-test1.appspot.com",
+            messagingSenderId: "764820232194",
+            appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
+        };
+
+        const app = initializeApp(firebaseConfig);
     
         
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
       import{getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
       import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
       
       const db = getFirestore()
-      let auth = getAuth()
+    //   let auth = getAuth()
       const storage = getStorage()
     
         
-        const app = initializeApp(firebaseConfig);
         // const analytics = getAnalytics(app);
 
 
@@ -41,9 +41,6 @@
         async function writeForProduct() {
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
-            let productCategory = productCategoryIn.value
-            // let productDescription = productDescriptionIn.value
-            // let productContact = productContactIn.value
     
             if (productName == '' || productPrice == '') {
                 alert('Please fill all empty spaces');
@@ -184,12 +181,12 @@
                     });
     
                     alert("Uploading Successful");
-                    clearFormProduct();
+                    clearFormProductF();
                 });
             }
         }
     
-        function clearFormProduct() {
+        function clearFormProductF() {
             // Clear form fields after successful upload
             kitchenNameIn.value = ''
             kitchenPriceIn.value = ''
@@ -334,7 +331,7 @@
             laundaryNameIn.value = ''
             laundaryPriceIn.value = ''
         }
-        laundaryUpdate.addEventListener('click', laundaryForProduct)
+        laundaryUpdate.addEventListener('click', updateForlaundary)
     
     
         // READ FOR LAUNDARY
