@@ -13,16 +13,68 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
         const app = initializeApp(firebaseConfig);
     
+
+                // service workers
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                      navigator.serviceWorker.register('/service-worker.js')
+                        .then((registration) => {
+                          console.log('Service Worker registered with scope:', registration.scope);
+                        })
+                        .catch((error) => {
+                          console.log('Service Worker registration failed:', error);
+                        });
+                    });
+                  }
         
       import{getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
       import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
-      
+      import {getAuth, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
       const db = getFirestore()
-    //   let auth = getAuth()
+      let auth = getAuth()
       const storage = getStorage()
     
         
         // const analytics = getAnalytics(app);
+
+        //   FUNTION TO CHECK IF USER IS LOGGED IN OR OUT
+    function stateChanged(){
+        onAuthStateChanged(auth, (user) => {
+            if(user){
+                let userId = user.uid
+                logUserDetails(userId)
+                console.log(userId)
+            }else{
+                window.location.href = 'adminFirst.html'
+            }
+        })
+    }
+    stateChanged()
+
+
+    //   FUNCTION TO GET USER DATA FROM DATABASE AND DISPLAY IT
+
+    async function logUserDetails(userId){
+        var ref = doc(db, "Admin", userId)
+        const docSnap = await getDoc(ref)
+        if(docSnap.exists()){
+        let adminName = document.getElementById('adminName')
+
+        adminName.textContent = docSnap.data().Fullname + '!'
+            console.log(docSnap.data())
+        }else{
+            alert('data does not exist')
+        }
+    }
+
+
+
+
+
+
+
 
 
 
@@ -52,6 +104,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('productProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -75,6 +130,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             productNameIn.value = ''
             productPriceIn.value = ''
+            progressDigit.value = ''
         }
     
         productWrite.addEventListener('click', writeForProduct);
@@ -167,6 +223,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('kitchenProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -190,6 +249,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             kitchenNameIn.value = ''
             kitchenPriceIn.value = ''
+            progressDigit.value = ''
         }
     
         kitchenWrite.addEventListener('click', writeForkitchen);
@@ -282,6 +342,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('laundaryProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -305,6 +368,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             laundaryNameIn.value = ''
             laundaryPriceIn.value = ''
+            progressDigit.value = ''
             }
     
             laundaryWrite.addEventListener('click', writeForlaundary);
@@ -397,6 +461,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('clothingProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -420,6 +487,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             clothingNameIn.value = ''
             clothingPriceIn.value = ''
+            progressDigit.value = ''
             }
     
             clothingWrite.addEventListener('click', writeForclothing);
@@ -513,6 +581,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('bathroomProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -536,6 +607,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             bathroomNameIn.value = ''
             bathroomPriceIn.value = ''
+            progressDigit.value = ''
             }
     
             bathroomWrite.addEventListener('click', writeForbathroom);
@@ -627,6 +699,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('phoneProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -650,6 +725,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             phoneNameIn.value = ''
             phonePriceIn.value = ''
+            progressDigit.value = ''
             }
     
             phoneWrite.addEventListener('click', writeForphone);
@@ -743,6 +819,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                    let progressDigit = document.getElementById('homeProgress')
+                    var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                    progressDigit.textContent = progress + "%"
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -766,6 +845,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             homeNameIn.value = ''
             homePriceIn.value = ''
+            progressDigit.value = ''
             }
     
             homeWrite.addEventListener('click', writeForhome);
@@ -858,6 +938,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 const uploadTask = uploadBytesResumable(storageRef, file);
     
                 uploadTask.on('state_changed', (snapshot) => {
+                let progressDigit = document.getElementById('othersProgress')
+                var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                progressDigit.textContent = progress + "%"
+
+
+
                     console.log(snapshot);
                 }, (error) => {
                     console.log(error);
@@ -881,6 +967,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             othersNameIn.value = ''
             othersPriceIn.value = ''
+            progressDigit.value = ''
             }
     
             othersWrite.addEventListener('click', writeForothers);

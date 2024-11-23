@@ -102,10 +102,24 @@
             color: white;
             font-size: 30px;
         }
-
+        .welcomeMessage{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            border: none;
+            color: white;
+            height: 50px;
+        }
+        #adminName{
+            color: rgb(162, 141, 113);
+        }
     </style>
 </head>
 <body>
+    <div class="welcomeMessage">
+        <h3>Welcome Back <span id="adminName"></span></h3>
+    </div>
     <div class="navigate">
         <a href="#">^</a>
     </div>
@@ -147,6 +161,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="productImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="productImage" placeholder="photoImage.." style="display: none;">
+                                <p id="productProgress"></p>
                         </div>
                         <div class="buttonDiv">
                             <button id="productWrite">Write</button>
@@ -175,6 +190,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="kitchenImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="kitchenImage" placeholder="photoImage.." style="display: none;">
+                                <p id="kitchenProgress"></p>
                         </div>
                             
                         <div class="buttonDiv">
@@ -204,6 +220,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="laundaryImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="laundaryImage" placeholder="photoImage.." style="display: none;">
+                                <p id="laundaryProgress"></p>
                         </div>
                             
                         <div class="buttonDiv">
@@ -233,6 +250,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="clothingImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="clothingImage" placeholder="photoImage.." style="display: none;">
+                                <p id="clothingProgress"></p>
                         </div>
                         
                         <div class="buttonDiv">
@@ -262,6 +280,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="bathroomImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="bathroomImage" placeholder="photoImage.." style="display: none;">
+                                <p id="bathroomProgress"></p>
                             </div>
                         
                         <div class="buttonDiv">
@@ -291,6 +310,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="phoneImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="phoneImage" placeholder="photoImage.." style="display: none;">
+                                <p id="phoneProgress"></p>
                             </div>
                         
                         <div class="buttonDiv">
@@ -320,6 +340,7 @@
                                 <!--PRODUCT IMAGE -->
                                 <label for="homeImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="homeImage" placeholder="photoImage.." style="display: none;">
+                                <p id="homeProgress"></p>
                             </div>
                         
                         <div class="buttonDiv">
@@ -344,11 +365,12 @@
         
                             <!-- PRODUCTS PRICE -->
                             <label for="othersPrice">Product Price:</label>
-                            <input type="number" id="othersContact" placeholder="Product Contact..">
+                            <input type="number" id="othersPrice" placeholder="Product Contact..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="othersImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
                                 <input type="file" id="othersImage" placeholder="photoImage.." style="display: none;">
+                                <p id="othersProgress"></p>
                             </div>
                         
                         <div class="buttonDiv">

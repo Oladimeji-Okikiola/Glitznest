@@ -91,6 +91,10 @@
   <!-- jeweleries -->
   <div class="mainCard" id="mainCard">
     <!-- THE PRODUCTS COMES HERE -->
+    <img src="images/home aceessories.jpeg" alt="">
+    <h3>kitchen stove</h3>
+    <h3>&#x20A6;500</h3>
+    <button class="buyBtn">Order</button>
   </div>
 
   <!-- info section -->
@@ -207,6 +211,14 @@
 
   <!-- function to fetch the products -->
   <script type="module">
+
+
+
+
+
+
+
+
     let openCat = document.getElementById('openCat')
     let closeCat = document.getElementById('closeCat')
     let catCat = document.getElementById('catCat')
@@ -218,6 +230,10 @@
         catCat.style.display = 'none'
       }
     })
+
+    
+    
+
 
     const firebaseConfig = {
     apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
@@ -254,7 +270,7 @@
         let searchedString = e.target.value.toLowerCase();
         // console.log(searchedString);
         let returnValue = querySnapshot.docs.filter(newEntry => {
-            return newEntry.data().productName.toLowerCase().includes(searchedString);
+          return newEntry.data().productName.toLowerCase().includes(searchedString);
         });
         displayDataIn(returnValue);
     });
@@ -276,32 +292,43 @@
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
-
-          <img src="${element.data().productImage}" alt="${element.data().productName}">
-          <h3>${element.data().productName}</h3>
-          <h3>&#x20A6;${element.data().productPrice}</h3>
-          <button class="buyBtn">Order</button>
+        
+        <img src="${element.data().productImage}" alt="${element.data().productName}">
+        <h3>${element.data().productName}</h3>
+        <h3>&#x20A6;${element.data().productPrice}</h3>
+        <button class="buyBtn">Order</button>
         `;
-
+        
         // Add event listener to the button to redirect to WhatsApp with product details
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
-            const productName = element.data().productName;
-            const productPrice = element.data().productPrice;
-            const productImage = element.data().productImage;            
-            // Construct the WhatsApp message
-            const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
-            const encodedMessage = encodeURIComponent(message);
-            const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
-
-            // Redirect to the constructed WhatsApp link
-            window.location.href = fullWhatsappLink;
+          const productName = element.data().productName;
+          const productPrice = element.data().productPrice;
+          const productImage = element.data().productImage;            
+          // Construct the WhatsApp message
+          const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
+          const encodedMessage = encodeURIComponent(message);
+          const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
+          
+          // Redirect to the constructed WhatsApp link
+          window.location.href = fullWhatsappLink;
         });
-
+        
         productCard.appendChild(newDiv);
-    });
-}
-
-  </script>
+      });
+    }
+    
+//     if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js')
+//       .then((registration) => {
+//         console.log('Service Worker registered with scope:', registration.scope);
+//       })
+//       .catch((error) => {
+//         console.log('Service Worker registration failed:', error);
+//       });
+//   });
+// }
+    </script>
 
 </body>
 

@@ -229,6 +229,19 @@
     appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
   };
 
+          // service workers
+          if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('../service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+}
+
 
     
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
