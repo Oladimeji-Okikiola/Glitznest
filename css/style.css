@@ -1051,3 +1051,9 @@ button{
   text-decoration: none;
   color: white;
 }
+.spaceName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: cursive;
+}
