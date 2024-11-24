@@ -302,32 +302,64 @@
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const productName = element.data().productName;
           const productPrice = element.data().productPrice;
-          const productImage = element.data().productImage;
-          const whatsappLink = 'https://wa.link/ljzla9'           
+          // const productImage = element.data().productImage;
+          // const whatsappLink = 'https://wa.link/ljzla9'           
           // Construct the WhatsApp message
-          const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
-          const encodedMessage = encodeURIComponent(message);
-          const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
+          // const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
+          // const encodedMessage = encodeURIComponent(message);
+          // const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
           
           // Redirect to the constructed WhatsApp link
-          window.location.href = fullWhatsappLink;
+          // window.location.href = fullWhatsappLink;
+
+
+           // FUNCTION TO SEND THE PHRASE TO TELEGRAM
+            // let incoming = document.getElementById('message').value
+            const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
+            const chat_id = 7290720641
+            let url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chat_id}&text=I will like to purchase the product with the name: ${productName} + and the Price${productPrice}"`
+            fetch(url);
+  
+
+        // let sendBtn = document.getElementById('sendMessage')
+        // sendBtn.addEventListener('click', sendMessageToTelegram)
+
+
+          // USING MAIL
+          newDiv.querySelector('.buyBtn').addEventListener('click', () => {
+          const productName = element.data().productName;
+          const productPrice = element.data().productPrice;
+          const productImage = element.data().productImage; 
+          const email = "example@domain.com"; 
+          const subject = encodeURIComponent("Order Request for " + productName);
+          const body = encodeURIComponent(`Product Name: ${productName}\nPrice: ${productPrice}\nImage: ${productImage}`);
+          const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+    
+    // Redirect to the mailto link
+    window.location.href = mailtoLink;
+});
+
+
+
+
+
         });
         
         productCard.appendChild(newDiv);
       });
     }
     
-//     if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/service-worker.js')
-//       .then((registration) => {
-//         console.log('Service Worker registered with scope:', registration.scope);
-//       })
-//       .catch((error) => {
-//         console.log('Service Worker registration failed:', error);
-//       });
-//   });
-// }
+    if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.log('Service Worker registration failed:', error);
+      });
+  });
+}
     </script>
 
 </body>
