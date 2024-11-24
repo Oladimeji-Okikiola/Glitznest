@@ -351,7 +351,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 }, async () => {
                     const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
     
-                    const ref = doc(db, "LAUNDARY", productName);
+                    const ref = doc(db, "LAUNDARY", laundaryName);
                     await setDoc(ref, {
                         laundaryName: laundaryName,
                         laundaryPrice: laundaryPrice,
@@ -807,7 +807,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForhome() {
             let homeName = homeNameIn.value
             let homePrice = homePriceIn.value
-            let productCategory = productCategoryIn.value
             
             if (homeName == '' || homePrice == '') {
                 alert('Please fill all empty spaces');

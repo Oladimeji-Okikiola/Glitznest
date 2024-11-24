@@ -302,7 +302,8 @@
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const productName = element.data().productName;
           const productPrice = element.data().productPrice;
-          const productImage = element.data().productImage;            
+          const productImage = element.data().productImage;
+          const whatsappLink = 'https://wa.link/ljzla9'           
           // Construct the WhatsApp message
           const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
           const encodedMessage = encodeURIComponent(message);

