@@ -313,13 +313,13 @@
               const newCustomerDetails = {phoneNumber, email, fullName}
               localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
               setTimeout(() => {
-                sendToTelegram(customerDetails, productName, productPrice, fullName)
+                sendToTelegram(customerDetails, productName, productPrice)
               },1500)
             }else{
               alert('Both Phone Number and Email are required for delivery')
             }
           }else{
-            sendToTelegram(customerDetails, productName, productPrice, fullName)
+            sendToTelegram(customerDetails, productName, productPrice)
           }
 
 
@@ -344,7 +344,7 @@
 
 
     // sending to telegram
-    function sendToTelegram(customerDetails, productName, productPrice, fullName){
+    function sendToTelegram(customerDetails, productName, productPrice){
             const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
             const chat_id = 7290720641
 
