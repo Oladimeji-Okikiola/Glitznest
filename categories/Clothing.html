@@ -308,11 +308,12 @@
           // check local storage for customer's info, if it exists, send, if it doesnt, collect their phone number and email.
           const customerDetails = JSON.parse(localStorage.getItem('customerDetails'))
           if(!customerDetails){
+            const fullName = prompt('Enter Full Name')
             const phoneNumber = prompt('Enter Phone Number')
             const email = prompt('Enter Email')
 
-            if(phoneNumber && email){
-              const newCustomerDetails = {phoneNumber, email}
+            if(phoneNumber && email && fullName){
+              const newCustomerDetails = {phoneNumber, email, fullName}
               localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
               setTimeout(() => {
                 sendToTelegram(customerDetails, clothingName, clothingPrice)
@@ -340,6 +341,7 @@
                 New Order:
                 Product: ${clothingName}
                 Price: ${clothingPrice}
+                Customer Name: ${customerDetails.fullName}
                 Customer Phone: ${customerDetails.phoneNumber}
                 Customer Email: ${customerDetails.email}
                `
@@ -354,7 +356,12 @@
           }),
       })
       .then(response => response.json())
-      .then(data => console.log('Message sent:', data))
+      .then(data =>  {
+      console.log('Message sent:', data)
+      if(data.ok){
+        alert(`Order of ${productName} placed`)
+      }
+    })
       .catch(error => console.error('Error sending message:', error));
   }
 
