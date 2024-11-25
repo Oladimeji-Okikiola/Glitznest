@@ -367,7 +367,12 @@
         }),
     })
     .then(response => response.json())
-    .then(data =>  console.log('Message sent:', data))
+    .then(data =>  {
+      console.log('Message sent:', data)
+      if(data.ok){
+        alert(`Order of ${productName} placed`)
+      }
+    })
     .catch(error => console.error('Error sending message:', error));
 }
     
