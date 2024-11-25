@@ -1037,6 +1037,254 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
 
 
+        // FOR LATEST PAGE
+        let latestNameIn = document.getElementById('latestName')
+        let latestPriceIn = document.getElementById('latestPrice')
+        let latestImageIn = document.getElementById('latestImage')
+        
+        let latestWrite = document.getElementById('latestWrite')
+        let latestUpdate = document.getElementById('latestUpdate')
+        let latestRead = document.getElementById('latestRead')
+        let latestDelete = document.getElementById('latestDelete')
+    
+        async function writeForlatest() {
+            let latestName = latestNameIn.value
+            let latestPrice = latestPriceIn.value
+            
+            if (latestName == '' || latestPrice == '') {
+                alert('Please fill all empty spaces');
+            } else {
+                let file = latestImageIn.files[0];
+                var fileName = file.name;
+    
+                const storageRef = ref(storage, 'LATEST/' + fileName);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+    
+                uploadTask.on('state_changed', (snapshot) => {
+                let progressDigit = document.getElementById('latestProgress')
+                var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                progressDigit.textContent = progress + "%"
+
+
+
+                    console.log(snapshot);
+                }, (error) => {
+                    console.log(error);
+                }, async () => {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+    
+                    const ref = doc(db, "LATEST", latestName);
+                    await setDoc(ref, {
+                        latestName: latestName,
+                        latestPrice: latestPrice,
+                        latestImage: downloadURL,  
+                    });
+    
+                    alert("Uploading Successful");
+                    clearFormlatest();
+                });
+            }
+        }
+    
+        function clearFormlatest() {
+            // Clear form fields after successful upload
+            latestNameIn.value = ''
+            latestPriceIn.value = ''
+            latestDigit.value = ''
+            }
+    
+            latestWrite.addEventListener('click', writeForlatest);
+    
+    
+        // UPDATE FOR LATEST
+        async function updateForlatest(){
+    
+            let latestName = latestNameIn.value
+            let latestPrice = latestPriceIn.value
+            
+            var ref = doc(db, "LATEST", latestName)
+            await updateDoc(ref, {
+                latestName: latestName,
+                latestPrice: latestPrice,
+                // productImage: downloadURL,
+            })
+            .then(() => {
+                alert('Updated Successfully')
+            })
+            .catch(error => {
+                alert(error.message)
+            })
+            latestNameIn.value = ''
+            latestPriceIn.value = ''
+            }
+            latestUpdate.addEventListener('click', updateForlatest)
+    
+    
+        // READ FOR LATEST
+        async function readForlatest(){
+    
+            let latestName = latestNameIn.value
+            var ref = doc(db, "LATEST", latestName)
+            const docSnap = await getDoc(ref)
+            if(docSnap.exists()){
+                // console.log(docSnap.data())
+                latestNameIn.value = docSnap.data().latestName
+                latestPriceIn.value = docSnap.data().latestPrice
+                let photoSee = docSnap.data().latestImage
+    
+                console.log(photoSee)
+            }else{
+                alert('Product does not exist')
+            }
+        }
+        latestRead.addEventListener('click', readForlatest)
+    
+        // DELETE FOR LATEST
+            async function deleteForlatest(){
+                let latestName = latestNameIn.value
+                var ref = doc(db, "LATEST", latestName)
+                const docSnap = await getDoc(ref)
+                if(!docSnap.exists()){
+                    alert('No such Document')
+                }
+                await deleteDoc(ref)
+                .then(() => {
+                    alert('Product Deleted')
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+            }
+    
+            latestDelete.addEventListener('click', deleteForlatest)
+
+
+
+
+        // FOR LATEST PAGE
+        let blogNameIn = document.getElementById('blogTitle')
+        let blogPriceIn = document.getElementById('blogText')
+        let blogImageIn = document.getElementById('blogImage')
+        
+        let blogWrite = document.getElementById('blogWrite')
+        let blogUpdate = document.getElementById('blogUpdate')
+        let blogRead = document.getElementById('blogRead')
+        let blogDelete = document.getElementById('blogDelete')
+    
+        async function writeForblog() {
+            let blogName = blogNameIn.value
+            let blogPrice = blogPriceIn.value
+            
+            if (blogName == '' || blogPrice == '') {
+                alert('Please fill all empty spaces');
+            } else {
+                let file = blogImageIn.files[0];
+                var fileName = file.name;
+    
+                const storageRef = ref(storage, 'BLOG/' + fileName);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+    
+                uploadTask.on('state_changed', (snapshot) => {
+                let progressDigit = document.getElementById('blogProgress')
+                var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                progressDigit.textContent = progress + "%"
+
+
+
+                    console.log(snapshot);
+                }, (error) => {
+                    console.log(error);
+                }, async () => {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+    
+                    const ref = doc(db, "BLOG", blogName);
+                    await setDoc(ref, {
+                        blogName: blogName,
+                        blogPrice: blogPrice,
+                        blogImage: downloadURL,  
+                    });
+    
+                    alert("Uploading Successful");
+                    clearFormblog();
+                });
+            }
+        }
+    
+        function clearFormblog() {
+            // Clear form fields after successful upload
+            blogNameIn.value = ''
+            blogPriceIn.value = ''
+            blogDigit.value = ''
+            }
+    
+            blogWrite.addEventListener('click', writeForblog);
+    
+    
+        // UPDATE FOR BLOG
+        async function updateForblog(){
+    
+            let blogName = blogNameIn.value
+            let blogPrice = blogPriceIn.value
+            
+            var ref = doc(db, "BLOG", blogName)
+            await updateDoc(ref, {
+                blogName: blogName,
+                blogPrice: blogPrice,
+                // productImage: downloadURL,
+            })
+            .then(() => {
+                alert('Updated Successfully')
+            })
+            .catch(error => {
+                alert(error.message)
+            })
+            blogNameIn.value = ''
+            blogPriceIn.value = ''
+            }
+            blogUpdate.addEventListener('click', updateForblog)
+    
+    
+        // READ FOR BLOG
+        async function readForblog(){
+    
+            let blogName = blogNameIn.value
+            var ref = doc(db, "BLOG", blogName)
+            const docSnap = await getDoc(ref)
+            if(docSnap.exists()){
+                // console.log(docSnap.data())
+                blogNameIn.value = docSnap.data().blogName
+                blogPriceIn.value = docSnap.data().blogPrice
+                let photoSee = docSnap.data().blogImage
+    
+                console.log(photoSee)
+            }else{
+                alert('Product does not exist')
+            }
+        }
+        blogRead.addEventListener('click', readForblog)
+    
+        // DELETE FOR BLOG
+            async function deleteForblog(){
+                let blogName = blogNameIn.value
+                var ref = doc(db, "BLOG", blogName)
+                const docSnap = await getDoc(ref)
+                if(!docSnap.exists()){
+                    alert('No such Document')
+                }
+                await deleteDoc(ref)
+                .then(() => {
+                    alert('Product Deleted')
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+            }
+    
+            blogDelete.addEventListener('click', deleteForblog)
+
+
+
+
 
 
 

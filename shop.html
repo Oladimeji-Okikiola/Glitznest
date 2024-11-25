@@ -286,7 +286,7 @@
     readAllDocuments();
 
     function displayDataIn(querySnapshot) {
-    productCard.innerHTML = ''; // Clear previous content
+    productCard.innerHTML = ''; 
     querySnapshot.forEach((element) => {
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
@@ -298,56 +298,78 @@
         <button class="buyBtn">Order</button>
         `;
         
-        // Add event listener to the button to redirect to WhatsApp with product details
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const productName = element.data().productName;
           const productPrice = element.data().productPrice;
-          // const productImage = element.data().productImage;
-          // const whatsappLink = 'https://wa.link/ljzla9'           
-          // Construct the WhatsApp message
-          // const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
-          // const encodedMessage = encodeURIComponent(message);
-          // const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
-          
-          // Redirect to the constructed WhatsApp link
-          // window.location.href = fullWhatsappLink;
+         
+          // check local storage for customer's info, if it exists, send, if it doesnt, collect their phone number and email.
+          const customerDetails = JSON.parse(localStorage.getItem('customerDetails'))
+          if(!customerDetails){
+            const fullName = prompt('Enter Full name')
+            const phoneNumber = prompt('Enter Phone Number')
+            const email = prompt('Enter Email')
+
+            if(phoneNumber && email && fullName){
+              const newCustomerDetails = {phoneNumber, email, fullName}
+              localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
+              setTimeout(() => {
+                sendToTelegram(customerDetails, productName, productPrice, fullName)
+              },1500)
+            }else{
+              alert('Both Phone Number and Email are required for delivery')
+            }
+          }else{
+            sendToTelegram(customerDetails, productName, productPrice, fullName)
+          }
 
 
            // FUNCTION TO SEND THE PHRASE TO TELEGRAM
             // let incoming = document.getElementById('message').value
-            const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
-            const chat_id = 7290720641
-            let url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chat_id}&text=I will like to purchase the product with the name: ${productName} + and the Price${productPrice}"`
-            fetch(url);
+            // const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
+            // const chat_id = 7290720641
+            // let url = `https://api.telegram.org/bot${API_KEY}/sendMessage?chat_id=${chat_id}&text=I will like to purchase the product with the name: ${productName} + and the Price${productPrice}"`
+            // fetch(url);
+
+            // alert(`order of: ${productName} placed.`)
   
 
         // let sendBtn = document.getElementById('sendMessage')
         // sendBtn.addEventListener('click', sendMessageToTelegram)
-
-
-          // USING MAIL
-          newDiv.querySelector('.buyBtn').addEventListener('click', () => {
-          const productName = element.data().productName;
-          const productPrice = element.data().productPrice;
-          const productImage = element.data().productImage; 
-          const email = "example@domain.com"; 
-          const subject = encodeURIComponent("Order Request for " + productName);
-          const body = encodeURIComponent(`Product Name: ${productName}\nPrice: ${productPrice}\nImage: ${productImage}`);
-          const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
-    
-    // Redirect to the mailto link
-    window.location.href = mailtoLink;
-});
-
-
-
-
 
         });
         
         productCard.appendChild(newDiv);
       });
     }
+
+
+    // sending to telegram
+    function sendToTelegram(customerDetails, productName, productPrice, fullName){
+            const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
+            const chat_id = 7290720641
+
+            const message = `
+              New Order:
+              Product: ${productName}
+              Price: ${productPrice}
+              Customer Name: ${customerDetails.fullName}
+              Customer Phone: ${customerDetails.phoneNumber}
+              Customer Email: ${customerDetails.email}
+             `
+          ;
+
+    fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: `${chat_id}`,
+            text: message,
+        }),
+    })
+    .then(response => response.json())
+    .then(data =>  console.log('Message sent:', data))
+    .catch(error => console.error('Error sending message:', error));
+}
     
     if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

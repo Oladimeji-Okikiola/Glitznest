@@ -302,20 +302,57 @@
 
         // Add event listener to the button to redirect to WhatsApp with product details
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
-            const productName = element.data().kitchenName;
-            const productPrice = element.data().kitchenPrice;
-            const productImage = element.data().kitchenImage;            
-            // Construct the WhatsApp message
-            const message = `Product Name: ${productName}\nDescription: ${productPrice}\nImage: ${productImage}`;
-            const encodedMessage = encodeURIComponent(message);
-            const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
+            const kitchenName = element.data().kitchenName;
+            const kitchenPrice = element.data().kitchenPrice;
+          // check local storage for customer's info, if it exists, send, if it doesnt, collect their phone number and email.
+          const customerDetails = JSON.parse(localStorage.getItem('customerDetails'))
+          if(!customerDetails){
+            const phoneNumber = prompt('Enter Phone Number')
+            const email = prompt('Enter Email')
 
-            // Redirect to the constructed WhatsApp link
-            window.location.href = fullWhatsappLink;
+            if(phoneNumber && email){
+              const newCustomerDetails = {phoneNumber, email}
+              localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
+              setTimeout(() => {
+                sendToTelegram(customerDetails, kitchenName, kitchenPrice)
+              },1500)
+            }else{
+              alert('Both Phone Number and Email are required for delivery')
+            }
+          }else{
+            sendToTelegram(customerDetails, kitchenName, kitchenPrice)
+          }
         });
 
         productCard.appendChild(newDiv);
     });
+
+  }
+  // sending to telegram
+  function sendToTelegram(customerDetails, kitchenName, kitchenPrice){
+      const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
+      const chat_id = 7290720641
+
+      const message = `
+        New Order:
+        Product: ${kitchenName}
+        Price: ${kitchenPrice}
+        Customer Phone: ${customerDetails.phoneNumber}
+        Customer Email: ${customerDetails.email}
+       `
+    ;
+
+fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+      chat_id: `${chat_id}`,
+      text: message,
+  }),
+})
+.then(response => response.json())
+.then(data => console.log('Message sent:', data))
+.catch(error => console.error('Error sending message:', error));
 }
 
   </script>

@@ -304,20 +304,57 @@
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
             const phoneName = element.data().phoneName;
             const phonePrice = element.data().phonePrice;
-            const phoneImage = element.data().phoneImage;            
-            // Construct the WhatsApp message
-            const message = `Product Name: ${phoneName}\nDescription: ${phonePrice}\nImage: ${phoneImage}`;
-            const encodedMessage = encodeURIComponent(message);
-            const fullWhatsappLink = `${whatsappLink}?text=${encodedMessage}`;
+          // check local storage for customer's info, if it exists, send, if it doesnt, collect their phone number and email.
+          const customerDetails = JSON.parse(localStorage.getItem('customerDetails'))
+          if(!customerDetails){
+            const phoneNumber = prompt('Enter Phone Number')
+            const email = prompt('Enter Email')
 
-            // Redirect to the constructed WhatsApp link
-            window.location.href = fullWhatsappLink;
+            if(phoneNumber && email){
+              const newCustomerDetails = {phoneNumber, email}
+              localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
+              setTimeout(() => {
+                sendToTelegram(customerDetails, phoneName, phonePrice)
+              },1500)
+            }else{
+              alert('Both Phone Number and Email are required for delivery')
+            }
+          }else{
+            sendToTelegram(customerDetails, phoneName, phonePrice)
+          }
         });
 
         productCard.appendChild(newDiv);
     });
 }
 
+
+    // sending to telegram
+    function sendToTelegram(customerDetails, phoneName, phonePrice){
+            const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8'
+            const chat_id = 7290720641
+
+            const message = `
+              New Order:
+              Product: ${phoneName}
+              Price: ${phonePrice}
+              Customer Phone: ${customerDetails.phoneNumber}
+              Customer Email: ${customerDetails.email}
+             `
+          ;
+
+    fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: `${chat_id}`,
+            text: message,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => console.log('Message sent:', data))
+    .catch(error => console.error('Error sending message:', error));
+}
   </script>
 
 </body>
