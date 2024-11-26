@@ -70,92 +70,8 @@
           Latest From Blog
         </h2>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/b1.jpg" alt="">
-              <h4 class="blog_date">
-                14 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                The Art of Jewelry Layering: Tips for a Stylish Look
-              </h5>
-              <p>
-                Layering jewelry is a fantastic way to express your style and create unique looks. Start with a focal piece like a statement necklace and build around it with complementary items, mixing metals for depth. When layering necklaces, begin with shorter chains and add longer ones, while bracelets can be combined with bangles and charms for a playful vibe. Explore our exquisite collection of delicate chains and statement rings, and remember to have fun experimenting until you find your signature style!
-              </p>
-              <!-- <a href="blog.html">
-                Read More
-              </a> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/home aceessories.jpeg" alt="">
-              <h4 class="blog_date">
-                15 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Home Accessories That Transform Your Space
-              </h5>
-              <p>Home accessories can dramatically change the feel of any room, making them essential for expressing personal style. Key elements like wall art, throw pillows, and decorative objects add texture and color, creating a curated look. Our store offers a range of accessories from contemporary to bohemian styles, allowing you to mix patterns and colors for a unique vibe. With the right accessories, you can truly reflect your character and make your home a place you love to be.</p>
-              <!-- <a href="blog.html">
-                Read More
-              </a> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/bathroom access.jpeg" alt="">
-              <h4 class="blog_date">
-                10 <br>
-                November
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Creating a Relaxing Bathroom Oasis
-              </h5>
-              <p>
-                Transform your bathroom into a relaxing oasis with the right accessories that enhance your self-care routine. Start with essentials like plush towels and stylish mats, and add personal touches like candles and plants to create a spa-like ambiance. Our store features beautiful bathroom accessories designed to elevate your space and encourage tranquility. Invest in the elements that help you unwind, and explore our collection to craft your dream bathroom sanctuary today!
-
-              </p>
-              <!-- <a href="blog.html">
-                Read More
-              </a> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/kitchen new.jpg" alt="">
-              <h4 class="blog_date">
-                22 <br>
-                November
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                Kitchen Utensils Every Home Chef Needs
-              </h5>
-              <p>The right kitchen utensils are essential for any home chef aiming to create delicious meals. Start with staples like a chef’s knife, cutting boards, and measuring tools to ensure efficiency in the kitchen. Our store features innovative gadgets that simplify cooking, from multi-functional peelers to handy food choppers. Keep your kitchen organized with utensil holders and drawer organizers, and explore our collection to find the perfect tools that will elevate your culinary adventures!</p>
-              <!-- <a href="blog.html">
-                Read More
-              </a> -->
-            </div>
-          </div>
-        </div>
+      <div class="row" id="blogContainer">
+        <!-- the data fetched from the backed for blog goes in here -->
       </div>
     </div>
   </section>
@@ -266,6 +182,74 @@
   <script src="js/bootstrap.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
+
+  <script type="module">
+    // FUNCTION TO UPDATE THE LATEST PRODUCTS
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+      authDomain: "saveandget-test1.firebaseapp.com",
+      databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+      projectId: "saveandget-test1",
+      storageBucket: "saveandget-test1.appspot.com",
+      messagingSenderId: "764820232194",
+      appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
+    };
+
+      
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getFirestore, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+    const app = initializeApp(firebaseConfig);
+    let db = getFirestore();
+
+    
+
+  // FUNCTION TO DISPLAY BLOG
+const myBlog = collection(db, 'BLOG');
+const blogContainer = document.getElementById('blogContainer')
+
+async function readAllBlogs() {
+  try {
+    let querySnapshot = await getDocs(myBlog);
+    displayBlog(querySnapshot);
+  } catch (error) {
+    console.error('Error reading documents: ', error);
+  }
+}
+
+readAllBlogs()
+
+  function displayBlog(querySnapshot){
+    querySnapshot.forEach(element => {
+      let newDiv = document.createElement('div')
+      newDiv.setAttribute('class', 'col-md-6')
+
+      newDiv.innerHTML = `
+
+        <div class="box">
+            <div class="img-box">
+              <img src="${element.data().blogImage}" alt="">
+              <h4 class="blog_date">
+                14 <br>
+                July
+              </h4>
+            </div>
+            <div class="detail-box">
+              <h5>
+                ${element.data().blogName}
+              </h5>
+              <p>${element.data().blogPrice}</p>
+              <a href="blog.html">
+                Read More
+              </a>
+            </div>
+          </div>
+      `
+      blogContainer.appendChild(newDiv)
+    });
+  }
+  </script>
 
 </body>
 
