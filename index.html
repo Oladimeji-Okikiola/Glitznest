@@ -143,44 +143,8 @@
 
   <section class="offer_section layout_padding">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-7 px-0">
-          <div class="box offer-box1">
-            <img src="images/o1.jpg" alt="">
-            <div class="detail-box">
-              <h2>
-                Upto 15% Off
-              </h2>
-              <a href="shop.html">
-                Shop Now
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 px-0">
-          <div class="box offer-box2">
-            <img src="images/o2.jpg" alt="">
-            <div class="detail-box">
-              <h2>
-                Upto 10% Off
-              </h2>
-              <a href="shop.html">
-                Shop Now
-              </a>
-            </div>
-          </div>
-          <div class="box offer-box3">
-            <img src="images/o3.jpg" alt="">
-            <div class="detail-box">
-              <h2>
-                Upto 20% Off
-              </h2>
-              <a href="shop.html">
-                Shop Now
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="row" id="discountContainer">
+      <!-- space for discount products -->
       </div>
     </div>
   </section>
@@ -527,6 +491,46 @@ readAllBlogs()
           </div>
       `
       blogContainer.appendChild(newDiv)
+    });
+  }
+
+
+
+  // FUNCTION TO DISPLAY DISCOUNT PRODUCTS
+const discount = collection(db, 'DISCOUNT');
+const discountContainer = document.getElementById('discountContainer')
+
+async function readAllBlogs() {
+  try {
+    let querySnapshot = await getDocs(discount);
+    displayBlog(querySnapshot);
+  } catch (error) {
+    console.error('Error reading documents: ', error);
+  }
+}
+
+readAllBlogs()
+
+  function displayBlog(querySnapshot){
+    querySnapshot.forEach(element => {
+      let newDiv = document.createElement('div')
+      newDiv.setAttribute('class', 'col-md-7 px-0')
+
+      newDiv.innerHTML = `
+
+        <div class="box offer-box1">
+            <img src="${element.data().discountImage}" alt="">
+            <div class="detail-box">
+              <h2>
+                Upto ${element.data().discountPrice}% Off
+              </h2>
+              <a href="shop.html">
+                Shop Now
+              </a>
+            </div>
+          </div>
+      `
+      discountContainer.appendChild(newDiv)
     });
   }
 

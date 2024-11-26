@@ -1287,6 +1287,130 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
 
 
+        // FOR LATEST PAGE
+        let discountNameIn = document.getElementById('discountName')
+        let discountPriceIn = document.getElementById('discountPrice')
+        let discountImageIn = document.getElementById('discountImage')
+        
+        let discountWrite = document.getElementById('discountWrite')
+        let discountUpdate = document.getElementById('discountUpdate')
+        let discountRead = document.getElementById('discountRead')
+        let discountDelete = document.getElementById('discountDelete')
+    
+        async function writeFordiscount() {
+            let discountName = discountNameIn.value
+            let discountPrice = discountPriceIn.value
+            
+            if (discountName == '' || discountPrice == '') {
+                alert('Please fill all empty spaces');
+            } else {
+                let file = discountImageIn.files[0];
+                var fileName = file.name;
+    
+                const storageRef = ref(storage, 'DISCOUNT/' + fileName);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+    
+                uploadTask.on('state_changed', (snapshot) => {
+                let progressDigit = document.getElementById('discountProgress')
+                var progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+                progressDigit.textContent = progress + "%"
+
+
+
+                    console.log(snapshot);
+                }, (error) => {
+                    console.log(error);
+                }, async () => {
+                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+    
+                    const ref = doc(db, "DISCOUNT", discountName);
+                    await setDoc(ref, {
+                        discountName: discountName,
+                        discountPrice: discountPrice,
+                        discountImage: downloadURL,  
+                    });
+    
+                    alert("Uploading Successful");
+                    clearFormdiscount();
+                });
+            }
+        }
+    
+        function clearFormdiscount() {
+            // Clear form fields after successful upload
+            discountNameIn.value = ''
+            discountPriceIn.value = ''
+            discountDigit.value = ''
+            }
+    
+            discountWrite.addEventListener('click', writeFordiscount);
+    
+    
+        // UPDATE FOR LATEST
+        async function updateFordiscount(){
+    
+            let discountName = discountNameIn.value
+            let discountPrice = discountPriceIn.value
+            
+            var ref = doc(db, "DISCOUNT", discountName)
+            await updateDoc(ref, {
+                discountName: discountName,
+                discountPrice: discountPrice,
+                // productImage: downloadURL,
+            })
+            .then(() => {
+                alert('Updated Successfully')
+            })
+            .catch(error => {
+                alert(error.message)
+            })
+            discountNameIn.value = ''
+            discountPriceIn.value = ''
+            }
+            discountUpdate.addEventListener('click', updateFordiscount)
+    
+    
+        // READ FOR LATEST
+        async function readFordiscount(){
+    
+            let discountName = discountNameIn.value
+            var ref = doc(db, "DISCOUNT", discountName)
+            const docSnap = await getDoc(ref)
+            if(docSnap.exists()){
+                // console.log(docSnap.data())
+                discountNameIn.value = docSnap.data().discountName
+                discountPriceIn.value = docSnap.data().discountPrice
+                let photoSee = docSnap.data().discountImage
+    
+                console.log(photoSee)
+            }else{
+                alert('Product does not exist')
+            }
+        }
+        discountRead.addEventListener('click', readFordiscount)
+    
+        // DELETE FOR LATEST
+            async function deleteFordiscount(){
+                let discountName = discountNameIn.value
+                var ref = doc(db, "DISCOUNT", discountName)
+                const docSnap = await getDoc(ref)
+                if(!docSnap.exists()){
+                    alert('No such Document')
+                }
+                await deleteDoc(ref)
+                .then(() => {
+                    alert('Product Deleted')
+                })
+                .catch(error => {
+                    alert(error.message)
+                })
+            }
+    
+            discountDelete.addEventListener('click', deleteFordiscount)
+
+
+
+
 
 
 
