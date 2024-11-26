@@ -316,7 +316,7 @@
               localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
               setTimeout(() => {
                 sendToTelegram(customerDetails, phoneName, phonePrice)
-              },1500)
+              },2000)
             }else{
               alert('Both Phone Number and Email are required for delivery')
             }
@@ -357,7 +357,7 @@
     .then(data =>  {
       console.log('Message sent:', data)
       if(data.ok){
-        alert(`Order of ${productName} placed`)
+        alert(`Order of ${phoneName} placed`)
       }
     })
     .catch(error => console.error('Error sending message:', error));
