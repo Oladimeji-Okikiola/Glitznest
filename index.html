@@ -500,18 +500,18 @@ readAllBlogs()
 const discount = collection(db, 'DISCOUNT');
 const discountContainer = document.getElementById('discountContainer')
 
-async function readAllBlogs() {
+async function readAllDiscount() {
   try {
     let querySnapshot = await getDocs(discount);
-    displayBlog(querySnapshot);
+    displayDiscount(querySnapshot);
   } catch (error) {
     console.error('Error reading documents: ', error);
   }
 }
 
-readAllBlogs()
+readAllDiscount()
 
-  function displayBlog(querySnapshot){
+  function displayDiscount(querySnapshot){
     querySnapshot.forEach(element => {
       let newDiv = document.createElement('div')
       newDiv.setAttribute('class', 'col-md-7 px-0')
