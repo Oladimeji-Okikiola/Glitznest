@@ -1,28 +1,28 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
 
     
-const env = require('env.js')
-env.load('.env')
+// const env = require('env.js')
+// env.load('.env')
 
 
+//         const firebaseConfig = {
+//             apiKey: env.API_KEY,
+//             authDomain: env.AUTH_DOMAIN,
+//             databaseURL: env.DATABASE_URL,
+//             projectId: env.ROJECT_ID,
+//             storageBucket: env.TORAGE_BUCKET,
+//             messagingSenderId: env.MESSAGING_SENDER_ID,
+//             appId: env.PP_ID
+//         };
         const firebaseConfig = {
-            apiKey: env.API_KEY,
-            authDomain: env.AUTH_DOMAIN,
-            databaseURL: env.DATABASE_URL,
-            projectId: env.ROJECT_ID,
-            storageBucket: env.TORAGE_BUCKET,
-            messagingSenderId: env.MESSAGING_SENDER_ID,
-            appId: env.PP_ID
+            apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+            authDomain: "saveandget-test1.firebaseapp.com",
+            databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+            projectId: "saveandget-test1",
+            storageBucket: "saveandget-test1.appspot.com",
+            messagingSenderId: "764820232194",
+            appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
         };
-        // const firebaseConfig = {
-        //     apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
-        //     authDomain: "saveandget-test1.firebaseapp.com",
-        //     databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
-        //     projectId: "saveandget-test1",
-        //     storageBucket: "saveandget-test1.appspot.com",
-        //     messagingSenderId: "764820232194",
-        //     appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
-        // };
 
         const app = initializeApp(firebaseConfig);
     
