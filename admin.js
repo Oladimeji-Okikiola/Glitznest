@@ -110,7 +110,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
                 // SLUGIFY THE TITLE
             function stringify(productName){
-                return blogTitle.toLowerCase()
+                return productName.toLowerCase()
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
                 .split('')
@@ -171,7 +171,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
             // SLUGIFY THE TITLE
             function stringify(productName){
-                return blogTitle.toLowerCase()
+                return productName.toLowerCase()
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
                 .split('')
