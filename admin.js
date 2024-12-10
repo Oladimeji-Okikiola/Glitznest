@@ -1,15 +1,28 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
 
     
+const env = require('env.js')
+env.load('.env')
+
+
         const firebaseConfig = {
-            apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
-            authDomain: "saveandget-test1.firebaseapp.com",
-            databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
-            projectId: "saveandget-test1",
-            storageBucket: "saveandget-test1.appspot.com",
-            messagingSenderId: "764820232194",
-            appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
+            apiKey: env.API_KEY,
+            authDomain: env.AUTH_DOMAIN,
+            databaseURL: env.DATABASE_URL,
+            projectId: env.ROJECT_ID,
+            storageBucket: env.TORAGE_BUCKET,
+            messagingSenderId: env.MESSAGING_SENDER_ID,
+            appId: env.PP_ID
         };
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+        //     authDomain: "saveandget-test1.firebaseapp.com",
+        //     databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+        //     projectId: "saveandget-test1",
+        //     storageBucket: "saveandget-test1.appspot.com",
+        //     messagingSenderId: "764820232194",
+        //     appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
+        // };
 
         const app = initializeApp(firebaseConfig);
     
@@ -116,7 +129,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "JEWELERIES", productName);
                     await setDoc(ref, {
                         productName: productName,
-                        productPrice: productPrice,
+                        productPrice: parseFloat(productPrice),
                         productImage: downloadURL,  
                     });
     
@@ -145,7 +158,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "JEWELERIES", productName)
             await updateDoc(ref, {
                 productName: productName,
-                productPrice: productPrice,
+                productPrice: parseFloat(productPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -235,7 +248,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "KITCHEN", kitchenName);
                     await setDoc(ref, {
                         kitchenName: kitchenName,
-                        kitchenPrice: kitchenPrice,
+                        kitchenPrice: parseFloat(kitchenPrice),
                         kitchenImage: downloadURL,  
                     });
     
@@ -264,7 +277,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "KITCHEN", kitchenName)
             await updateDoc(ref, {
                 kitchenName: kitchenName,
-                kitchenPrice: kitchenPrice,
+                kitchenPrice: parseFloat(kitchenPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -354,7 +367,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "LAUNDARY", laundaryName);
                     await setDoc(ref, {
                         laundaryName: laundaryName,
-                        laundaryPrice: laundaryPrice,
+                        laundaryPrice: parseFloat(laundaryPrice),
                         laundaryImage: downloadURL,  
                     });
     
@@ -383,7 +396,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "LAUNDARY", laundaryName)
             await updateDoc(ref, {
                 laundaryName: laundaryName,
-                laundaryPrice: laundaryPrice,
+                laundaryPrice: parseFloat(laundaryPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -473,7 +486,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "CLOTHING", clothingName);
                     await setDoc(ref, {
                         clothingName: clothingName,
-                        clothingPrice: clothingPrice,
+                        clothingPrice: parseFloat(clothingPrice),
                         productImage: downloadURL,  
                     });
     
@@ -502,7 +515,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "CLOTHING", clothingName)
             await updateDoc(ref, {
                 clothingName: clothingName,
-                clothingPrice: clothingPrice,
+                clothingPrice: parseFloat(clothingPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -593,7 +606,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "BATHROOM", bathroomName);
                     await setDoc(ref, {
                         bathroomName: bathroomName,
-                        bathroomPrice: bathroomPrice,
+                        bathroomPrice: parseFloat(bathroomPrice),
                         bathroomImage: downloadURL,  
                     });
     
@@ -622,7 +635,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "BATHROOM", bathroomName)
             await updateDoc(ref, {
                 bathroomName: bathroomName,
-                bathroomPrice: bathroomPrice,
+                bathroomPrice: parseFloat(bathroomPrice),
                 })
             .then(() => {
                 alert('Updated Successfully')
@@ -711,7 +724,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "PHONE", phoneName);
                     await setDoc(ref, {
                         phoneName: phoneName,
-                        phonePrice: phonePrice,
+                        phonePrice: parseFloat(phonePrice),
                         phoneImage: downloadURL,  
                     });
     
@@ -740,7 +753,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "PHONE", phoneName)
             await updateDoc(ref, {
                 phoneName: phoneName,
-                phonePrice: phonePrice,
+                phonePrice: parseFloat(phonePrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -830,7 +843,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "HOME", homeName);
                     await setDoc(ref, {
                         homeName: homeName,
-                        homePrice: homePrice,
+                        homePrice: parseFloat(homePrice),
                         homeImage: downloadURL,  
                     });
     
@@ -859,7 +872,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "HOME", homeName)
             await updateDoc(ref, {
                 homeName: homeName,
-                homePrice: homePrice,
+                homePrice: parseFloat(homePrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -952,7 +965,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "OTHERS", othersName);
                     await setDoc(ref, {
                         othersName: othersName,
-                        othersPrice: othersPrice,
+                        othersPrice: parseFloat(othersPrice),
                         othersImage: downloadURL,  
                     });
     
@@ -981,7 +994,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "OTHERS", othersName)
             await updateDoc(ref, {
                 othersName: othersName,
-                othersPrice: othersPrice,
+                othersPrice: parseFloat(othersPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -1076,7 +1089,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "LATEST", latestName);
                     await setDoc(ref, {
                         latestName: latestName,
-                        latestPrice: latestPrice,
+                        latestPrice: parseFloat(latestPrice),
                         latestImage: downloadURL,  
                     });
     
@@ -1105,7 +1118,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "LATEST", latestName)
             await updateDoc(ref, {
                 latestName: latestName,
-                latestPrice: latestPrice,
+                latestPrice: parseFloat(latestPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -1326,7 +1339,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "DISCOUNT", discountName);
                     await setDoc(ref, {
                         discountName: discountName,
-                        discountPrice: discountPrice,
+                        discountPrice: parseFloat(discountPrice),
                         discountImage: downloadURL,  
                     });
     
@@ -1355,7 +1368,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "DISCOUNT", discountName)
             await updateDoc(ref, {
                 discountName: discountName,
-                discountPrice: discountPrice,
+                discountPrice: parseFloat(discountPrice),
                 // productImage: downloadURL,
             })
             .then(() => {
