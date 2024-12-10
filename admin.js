@@ -14,6 +14,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 //             messagingSenderId: env.MESSAGING_SENDER_ID,
 //             appId: env.PP_ID
 //         };
+
         const firebaseConfig = {
             apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
             authDomain: "saveandget-test1.firebaseapp.com",
@@ -106,6 +107,18 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForProduct() {
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
+
+                // SLUGIFY THE TITLE
+            function stringify(productName){
+                return blogTitle.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
     
             if (productName == '' || productPrice == '') {
                 alert('Please fill all empty spaces');
@@ -130,6 +143,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     await setDoc(ref, {
                         productName: productName,
                         productPrice: parseFloat(productPrice),
+                        slug : stringify(productName),
                         productImage: downloadURL,  
                     });
     
@@ -154,11 +168,24 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
+
+            // SLUGIFY THE TITLE
+            function stringify(productName){
+                return blogTitle.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
     
             var ref = doc(db, "JEWELERIES", productName)
             await updateDoc(ref, {
                 productName: productName,
                 productPrice: parseFloat(productPrice),
+                slug : stringify(productName)
                 // productImage: downloadURL,
             })
             .then(() => {
