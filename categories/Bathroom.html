@@ -291,13 +291,19 @@
     function displayDataIn(querySnapshot) {
     productCard.innerHTML = ''; 
     querySnapshot.forEach((element) => {
+
+      let formattedPrice = new Intl.NumberFormat('en-NG', {
+          style : 'currency',
+          currency : 'NGN'
+        }).format(`${element.data().bathroomPrice}`)
+
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
 
           <img src="${element.data().bathroomImage}" alt="${element.data().bathroomName}">
           <h3>${element.data().bathroomName}</h3>
-          <h3>&#x20A6;${element.data().bathroomPrice}</h3>
+          <h3>${formattedPrice}</h3>
           <button class="buyBtn">Order</button>
         `;
 

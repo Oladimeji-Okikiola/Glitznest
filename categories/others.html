@@ -290,13 +290,19 @@
     function displayDataIn(querySnapshot) {
     productCard.innerHTML = ''; 
     querySnapshot.forEach((element) => {
+
+      let formattedPrice = new Intl.NumberFormat('en-NG', {
+          style : 'currency',
+          currency : 'NGN'
+        }).format(`${element.data().othersPrice}`)
+
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
 
           <img src="${element.data().othersImage}" alt="${element.data().othersName}">
           <h3>${element.data().othersName}</h3>
-          <h3>&#x20A6;${element.data().othersPrice}</h3>
+          <h3>${formattedPrice}</h3>
           <button class="buyBtn">Order</button>
         `;
 
