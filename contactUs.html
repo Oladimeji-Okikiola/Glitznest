@@ -24,6 +24,25 @@
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
 
+  <style>
+    .row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 7px;
+    }
+    input{
+        width: 300px;
+        height: 30px;
+        padding: 7px;
+    }
+    textarea{
+        width: 300px;
+        height: 100px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -67,12 +86,17 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Latest From Blog
+          Send us a message
         </h2>
       </div>
-      <div class="row" id="blogContainer">
-        <!-- the data fetched from the backed for blog goes in here -->
-      </div>
+
+            <form action="https://formspree.io/f/xeoqyaad" method="POST" class="row">
+                <input type="text" name="From" id="senderName" placeholder="Your Name">
+                <input type="email" name="email" placeholder="Your Email">
+                <textarea name="message" id="mailContent"></textarea>
+                <button type="submit">Send</button>
+            </form>
+
     </div>
   </section>
 
@@ -190,71 +214,7 @@
   <script src="js/custom.js"></script>
 
   <script type="module">
-    // FUNCTION TO UPDATE THE LATEST PRODUCTS
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
-      authDomain: "saveandget-test1.firebaseapp.com",
-      databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
-      projectId: "saveandget-test1",
-      storageBucket: "saveandget-test1.appspot.com",
-      messagingSenderId: "764820232194",
-      appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
-    };
-
-      
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getFirestore, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-    const app = initializeApp(firebaseConfig);
-    let db = getFirestore();
-
-    
-
-  // FUNCTION TO DISPLAY BLOG
-const myBlog = collection(db, 'BLOG');
-const blogContainer = document.getElementById('blogContainer')
-
-async function readAllBlogs() {
-  try {
-    let querySnapshot = await getDocs(myBlog);
-    displayBlog(querySnapshot);
-  } catch (error) {
-    console.error('Error reading documents: ', error);
-  }
-}
-
-readAllBlogs()
-
-  function displayBlog(querySnapshot){
-    querySnapshot.forEach(element => {
-      let newDiv = document.createElement('div')
-      newDiv.setAttribute('class', 'col-md-6')
-
-      newDiv.innerHTML = `
-
-        <div class="box">
-            <div class="img-box">
-              <img src="${element.data().blogImage}" alt="">
-              <h4 class="blog_date">
-                14 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                ${element.data().blogName}
-              </h5>
-              <p>${element.data().blogPrice}</p>
-              <a href="blog.html">
-                Read More
-              </a>
-            </div>
-          </div>
-      `
-      blogContainer.appendChild(newDiv)
-    });
-  }
   </script>
 
 </body>

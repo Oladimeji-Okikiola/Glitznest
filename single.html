@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <!-- Site Metas -->
   <link rel="icon" href="images/favicon.png" type="image/gif" />
-  <meta name="keywords" content="electronics, phone, accessories, kitchen, laptop, earpods, bathroom, toilet, beads, wigs, cloth, jeweleries, chain, pendant, ring, band" />
-  <meta name="description" content="GlitzNest, Home of Varieties" />
+  <meta name="keywords" content="jeweleries, home, Decoration, phone, accessories, chain, pendant, kitchen, bathroom, pot, kettle, utensils" />
+  <meta name="description" content="A store for your everyday needs" />
   <meta name="author" content="ABTech" />
 
-  <title>GlitzNest | Blogs</title>
+  <title>GlitzNest</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -23,7 +23,8 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-
+     <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -48,9 +49,10 @@
             <div id="myNav" class="overlay">
               <div class="overlay-content">
                 <a href="index.html">Home</a>
-                <a href="about.html">About</a>
+                <a href="profile.html">Profile</a>
                 <a href="shop.html">Shop</a>
-                <a href="blog.html">Blog</a>
+                <a href="orders.html">Orders</a>
+                <a href="cart.html">Cart</a>
               </div>
             </div>
           </div>
@@ -61,25 +63,33 @@
   </header>
   <!-- end header section -->
 
-  <!-- blog section -->
 
-  <section class="blog_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Latest From Blog
-        </h2>
-      </div>
-      <div class="row" id="blogContainer">
-        <!-- the data fetched from the backed for blog goes in here -->
-      </div>
-    </div>
-  </section>
+  <div class="popNotifier" style="display: none;">
+    <p><span class="productNAmee"></span> Added to cart!</p>
+  </div>
 
-  <!-- end blog section -->
 
-   <!-- info section -->
-   <section class="info_section layout_padding2">
+  <div class="mainCard" id="mainCard">
+    <!-- THE PRODUCTS COMES HERE -->
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- info section -->
+  <section class="info_section layout_padding2">
     <div class="container">
   
   
@@ -90,10 +100,6 @@
             <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
           </p>
       </div>
-  
-  
-  
-  
   
       <div class="row info_form_social_row">
         <div class="col-md-4 col-lg-3">
@@ -163,11 +169,8 @@
       </div>
     </div>
   </section>
-  
+
   <!-- end info_section -->
-
-<!-- end info_section -->
-
 
 
   <!-- footer section -->
@@ -189,73 +192,19 @@
   <!-- custom js -->
   <script src="js/custom.js"></script>
 
+
+
+
+
+
+
+
+
+  <!-- function to fetch the products -->
+   <script type="module" src="./js/share.js"></script>
   <script type="module">
-    // FUNCTION TO UPDATE THE LATEST PRODUCTS
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
-      authDomain: "saveandget-test1.firebaseapp.com",
-      databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
-      projectId: "saveandget-test1",
-      storageBucket: "saveandget-test1.appspot.com",
-      messagingSenderId: "764820232194",
-      appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
-    };
-
-      
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getFirestore, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-    const app = initializeApp(firebaseConfig);
-    let db = getFirestore();
-
-    
-
-  // FUNCTION TO DISPLAY BLOG
-const myBlog = collection(db, 'BLOG');
-const blogContainer = document.getElementById('blogContainer')
-
-async function readAllBlogs() {
-  try {
-    let querySnapshot = await getDocs(myBlog);
-    displayBlog(querySnapshot);
-  } catch (error) {
-    console.error('Error reading documents: ', error);
-  }
-}
-
-readAllBlogs()
-
-  function displayBlog(querySnapshot){
-    querySnapshot.forEach(element => {
-      let newDiv = document.createElement('div')
-      newDiv.setAttribute('class', 'col-md-6')
-
-      newDiv.innerHTML = `
-
-        <div class="box">
-            <div class="img-box">
-              <img src="${element.data().blogImage}" alt="">
-              <h4 class="blog_date">
-                14 <br>
-                July
-              </h4>
-            </div>
-            <div class="detail-box">
-              <h5>
-                ${element.data().blogName}
-              </h5>
-              <p>${element.data().blogPrice}</p>
-              <a href="blog.html">
-                Read More
-              </a>
-            </div>
-          </div>
-      `
-      blogContainer.appendChild(newDiv)
-    });
-  }
-  </script>
+    </script>
 
 </body>
 

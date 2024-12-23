@@ -116,4 +116,15 @@
   .container {
     max-width: 1170px;
   }
+  .mainCard{
+    display: grid;
+    grid-template-columns: 33.33fr 33.33fr 33.33fr;
+    align-items: center;
+    gap: 10px;
+  }
+  .swiper-wrapper{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 33.33fr 33.33fr 33.33fr;
+  }
 }

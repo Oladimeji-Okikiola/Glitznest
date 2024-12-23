@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <link rel="icon" href="images/favicon.png" type="image/gif" />
+    <meta
+      name="keywords"
+      content="jeweleries, home, Decoration, phone, accessories, chain, pendant, kitchen, bathroom, pot, kettle, utensils"
+    />
+    <meta name="description" content="A store for your everyday needs" />
+    <meta name="author" content="ABTech" />
+    <style>
+      .cartContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .cartContainer button {
+        display: flex;
+        justify-content: left;
+        background-color: white;
+        color: red;
+        border: none;
+        border-radius: 0%;
+        font-size: 20px;
+        font-weight: bolder;
+      }
+      .cartContainer button:hover {
+        border: none;
+      }
+      .imgAndOthers {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+      }
+      .imgAndOthers img {
+        width: 150px;
+        height: 120px;
+      }
+      .imgAndOthers h3 {
+        font-size: 22px;
+      }
+      .checkOutBtn {
+        /* display: flex; */
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        border: none;
+        border-radius: 0%;
+        background-color: red;
+      }
+      #emptyCart{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #emptyCart a{
+        color: white;
+        background-color: red;
+        border-radius: 30px;
+        padding: 7px;
+        border: 2px solid white;
+        text-decoration: none;
+        border: 2px solid black;
+      }
+      #totalPrice{
+        padding-left: 5px;
+      }
+    </style>
+
+    <title>GlitzNest</title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+       <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+
+  <body>
+    <!-- header section strats -->
+    <header class="header_section innerpage_header">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span> GlitzNest </span>
+          </a>
+          <div class="" id="">
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1"> </span>
+                <span class="s-2"> </span>
+                <span class="s-3"> </span>
+              </button>
+              <div id="myNav" class="overlay">
+                <div class="overlay-content">
+                  <a href="index.html">Home</a>
+                  <a href="shop.html">Shop</a>
+                  <a href="orders.html">Orders</a>
+                  <a href="profile.html">Profile</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <!-- Page name -->
+    <div class="spaceName">
+      <h3>Cart</h3>
+    </div>
+
+    <div class="popNotifier" style="display: none;">
+      <p><span class="productNAmee"></span> Deleted from cart!</p>
+    </div>
+
+    <!-- CART ITEMS -->
+    <div class="outerBox">
+      <div class="mainCard" id="mainCard">
+        <!-- THE PRODUCTS COMES HERE -->
+        <div id="emptyCart">
+          <h3>Cart is Empty</h3>
+          <a href="shop.html">Shop Products!</a>
+        </div>
+      </div>
+
+      <div class="checkOut">
+        <button class="checkOutBtn" id="checkOutBtn" style="display: none;">Checkout <span id="totalPrice"></span></button>
+      </div>
+    </div>
+
+    <!-- info section -->
+    <section class="info_section layout_padding2">
+      <div class="container">
+    
+    
+    
+        <div class="sellPartner">
+            <h3>Partner with Us?</h3>
+            <p>
+              <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+            </p>
+        </div>
+    
+    
+    
+    
+    
+        <div class="row info_form_social_row">
+          <div class="col-md-4 col-lg-3">
+    
+            <div class="social_box">
+              <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row info_main_row">
+          <div class="col-md-6 col-lg-3">
+            <div class="info_links">
+              <h4>
+                Menu
+              </h4>
+              <div class="info_links_menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_detail">
+              <h4>
+                About Us
+              </h4>
+              <p class="mb-0">
+                Glitznest is the home for varieties.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h4>
+              <a href="contactUs.html">Contact Us</a>
+            </h4>
+            <div class="info_contact">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +234 8088363852
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope"></i>
+                <span>
+                  edidioluwat@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- end info_section -->
+
+    <!-- end info_section -->
+
+    <!-- footer section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved
+          <a href="https://abtech-two.vercel.app">ABTech</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+
+    <!-- function to fetch the products -->
+    <script type="module">
+      const firebaseConfig = {
+        apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+        authDomain: "saveandget-test1.firebaseapp.com",
+        databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+        projectId: "saveandget-test1",
+        storageBucket: "saveandget-test1.appspot.com",
+        messagingSenderId: "764820232194",
+        appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b",
+      };
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+      import {
+        getFirestore,
+        onSnapshot,
+        doc,
+        getDoc,
+        getDocs,
+        setDoc,
+        collection,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        deleteField,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+      import {
+        getAuth,
+        signOut,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+      let productCard = document.getElementById("mainCard");
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      let db = getFirestore();
+      const auth = getAuth();
+
+      let mainCard = document.getElementById("mainCard");
+      let emptyCart = document.getElementById("emptyCart");
+      let checkOutBtn = document.getElementById("checkOutBtn");
+
+      let popNotifier = document.querySelector('.popNotifier')
+    let productNAmee = document.querySelector('.productNAmee')
+
+      let currentUser = null;
+      let unsubscribe = null;
+
+      //   CHECK USER'S AUTHENTICATION
+      function stateChanged() {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            currentUser = user.uid;
+            startListeningForCarts();
+          } else {
+            stopListeningForCarts()
+            window.location.href = "account.html";
+          }
+        });
+      }
+      stateChanged();
+
+      // LISTENING FOR NEW CART ITEMS
+
+      let total = 0;
+      function startListeningForCarts() {
+        if (!currentUser) {
+          alert("Please sign in to view your cart");
+          return;
+        }
+
+        const cartRef = collection(db, "CARTS", currentUser, "carts");
+        unsubscribe = onSnapshot(cartRef, (querySnapshot) => {
+          mainCard.innerHTML = "";
+        checkOutBtn.style.display = 'flex'
+
+
+
+        checkOutBtn.style.display = 'flex'
+
+        let newTotal = 0;
+          querySnapshot.forEach((comingCart) => {
+            const cartProp = comingCart.data();
+
+            let comingPrice = new Intl.NumberFormat('en-NG', {
+                style: 'currency',
+                currency: 'NGN'
+            }).format(cartProp.productPrice)
+
+
+            // const productPrice = parseFloat(cartProp.productPrice.replace(/,/g, ''));
+            const productPrice = parseFloat(cartProp.productPrice);
+            newTotal += productPrice;
+            // console.log('line 308', newTotal.toLocaleString());
+
+            
+            let newDiv = document.createElement("div");
+            newDiv.setAttribute("class", "cartContainer");
+            newDiv.innerHTML = `
+                
+                        <div class="imgAndOthers">
+                        <img src="${cartProp.productImage} alt="${cartProp.productName}">
+                        <div class="namedPrice">
+                            <h3>${cartProp.productName}</h3>
+                            <h3>${comingPrice}</h3>
+                        </div>
+                        </div>
+                        <button data-doc-id="${comingCart.id}" class="deleteBtn">Remove</button>
+                
+                `;
+            mainCard.appendChild(newDiv);
+
+            newDiv.querySelector(".deleteBtn").addEventListener("click", async (event) => {
+                const cartId = event.target.dataset.docId;
+                console.log(cartId)
+
+                try {
+                    const productPrice = parseFloat(cartProp.productPrice);
+                  
+                    // Create a reference to the specific note document
+                  const carrtRef = doc(db, "CARTS", currentUser, "carts", cartId);
+                  await deleteDoc(carrtRef);
+                  productNAmee.textContent = cartProp.productName
+                  popNotifier.style.display = 'flex'
+                  setTimeout(() => {
+                    popNotifier.style.display = 'none'
+                  }, 1500)
+
+                  // Subtract the product price from the total and update the total in HTML
+                  newTotal -= productPrice;
+                    totalPrice.textContent = newTotal.toLocaleString();
+                } catch (error) {
+                  console.error("Error deleting note:", error);
+                  alert("Error Removing Product!");
+                }
+              });
+          });
+
+          // Update the total price in the HTML
+            total = newTotal;
+            totalPrice.textContent = new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN'
+            }).format(total);
+
+        });
+      }
+
+    function stopListeningForCarts() {
+        if (unsubscribe) {
+        unsubscribe(); 
+        unsubscribe = null;
+        }
+    }
+
+
+    checkOutBtn.addEventListener('click', event => {
+        window.location.href = 'checkout.html';
+    })
+
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              // console.log(
+              //   "Service Worker registered with scope:",
+              //   registration.scope
+              // );
+            })
+            .catch((error) => {
+              console.log("Service Worker registration failed:", error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
