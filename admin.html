@@ -49,6 +49,9 @@
             gap: 10px;
             padding: 5px;
         }
+        .categories{
+            margin-top: 50px;
+        }
 
         ul li a{
             text-decoration: none;
@@ -103,6 +106,9 @@
             border: none;
             color: white;
             height: 50px;
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
         #adminName{
             color: rgb(162, 141, 113);
@@ -113,6 +119,44 @@
             padding: 5px 7px;
             border-radius: 30px;
             border: 2px solid black;
+        }
+        #proStatus{
+            width: 150px;
+            height: 30px;
+            border-radius: 30px;
+        }
+        .productDetails img{
+            width: 150px;
+        }
+        .productDetails{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 7px;
+        }
+        #proAppend{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .statusLooker{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(47, 39, 39);
+            padding: 10px;
+            font-size: 20px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 50px;
+        }
+        .statusUpdate{
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -139,6 +183,7 @@
             <li><a href="#latest">Latest Products</a></li>
             <li><a href="#blog">Blogs</a></li>
             <li><a href="#discount">Discount</a></li>
+            <li><a href="#trackProduct">Track Product</a></li>
         </ul>
     </div>
 
@@ -500,9 +545,37 @@
                             <button id="discountDelete">Delete</button>
                         </div>
                 </section>
+
+                <hr>
+
+                <!-- TRACKING PRODUCT -->
+                <section id="trackProduct" class="directorate">
+                    <div class="sectionName">
+                        <h3>TRACK PRODUCTS</h3>
+                    </div>
+                    <input type="text" id="userId" placeholder="Enter User's Id">
+                    <input type="text" id="proId" placeholder="Enter Product's Id">
+
+                    <div id="proAppend">
+                    </div>
+
+
+                    <select id="proStatus">
+                        <option>Ordered</option>
+                        <option>Shipped</option>
+                        <option>Delivered</option>
+                    </select>
+                    <div class="buttonDiv">
+                        <button id="fetchPro">Fetch</button>
+                        <button id="updatePro">Update</button>
+                    </div>
+                </section>
     </div>
 </div>
 
+        <div class="statusLooker" style="display: none;">
+            <p>Status Changed to :<span class="statusUpdate"></span></p>
+        </div>
 
 
 

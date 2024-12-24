@@ -1136,6 +1136,7 @@ body {
 
 .old{
   text-decoration: line-through;
+  color: rgb(143, 123, 123);
 }
 
 .orderContents{

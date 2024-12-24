@@ -19,7 +19,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     window.addEventListener('load', () => {
                       navigator.serviceWorker.register('/service-worker.js')
                         .then((registration) => {
-                          console.log('Service Worker registered with scope:', registration.scope);
+                        //   console.log('Service Worker registered with scope:', registration.scope);
                         })
                         .catch((error) => {
                           console.log('Service Worker registration failed:', error);
@@ -45,7 +45,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             if(user){
                 let userId = user.uid
                 logUserDetails(userId)
-                console.log(userId)
             }else{
                 window.location.href = 'adminFirst.html'
             }
@@ -62,15 +61,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         if(docSnap.exists()){
         let adminName = document.getElementById('adminName')
 
-        adminName.textContent = docSnap.data().Fullname + '!'
-            console.log(docSnap.data())
+        adminName.textContent = docSnap.data().Fullname + '!!!'
+            // console.log(docSnap.data())
         }else{
             alert('data does not exist')
         }
     }
-
-
-
 
 
 
@@ -1675,3 +1671,95 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             discountDelete.addEventListener('click', deleteFordiscount)
 
+
+
+
+    let proAppend = document.getElementById('proAppend')
+    let fetchPro = document.getElementById('fetchPro')
+    let updatePro = document.getElementById('updatePro')
+    let statusLooker = document.querySelector('.statusLooker')
+    let statusUpdate = document.querySelector('.statusUpdate')
+
+            // FETCH PRODUCT
+    async function fetcher() {
+        let userId = document.getElementById('userId').value
+        let proId = document.getElementById('proId').value
+
+        const ordersRef = collection(db, "CARTS", userId, "orders");
+        const q = query(ordersRef, where("id", "==", proId))
+
+        getDocs(q)
+        .then((snapshot) => {
+            proAppend.innerHTML = ''
+            if (!snapshot.empty) {
+            snapshot.forEach((docSnap) => {
+
+                const orderData = docSnap.data();
+                let formattedPrice = new Intl.NumberFormat('en-NG', {
+                    style : 'currency',
+                    currency : 'NGN'
+                }).format(`${orderData.price}`)
+
+                let newDiv = document.createElement('div')
+                newDiv.setAttribute('class', 'productDetails')
+                newDiv.innerHTML = `
+                    <img src="${orderData.image}" alt="">
+                    <p id="proName">${orderData.name}</p>
+                    <p id="proPrice">${formattedPrice}</p>
+                    <p id="proStatus">${orderData.status}</p>                
+                `
+                proAppend.appendChild(newDiv)
+            });
+            } else {
+            console.log("No matching product found in orders.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching product from orders:", error);
+        });
+
+    }
+
+// UPDATE THE PRODUCT STATUS
+let proStatus = document.getElementById('proStatus')
+    async function updater(){
+        try {
+            
+            let proStatuss = proStatus.value
+            let userId = document.getElementById('userId').value
+            let proId = document.getElementById('proId').value
+            
+            const updateValue = {
+                status : proStatuss
+            }
+            const ordersRef = collection(db, "CARTS", userId, "orders");
+            const q = query(ordersRef, where("id", "==", proId))
+            const snapshot = await getDocs(q);
+
+
+            if (!snapshot.empty) {
+                snapshot.forEach(async (docSnap) => {
+                  const orderRef = doc(db, "CARTS", userId, "orders", docSnap.id);
+                  await updateDoc(orderRef, updateValue);
+
+                  statusLooker.style.display = 'flex'
+                  statusUpdate.textContent = proStatuss
+                  setTimeout(() => {
+                    statusLooker.style.display = 'none'
+                  }, 3000);
+
+                //   console.log("Cart updated successfully.");
+                  proAppend.innerHTML = ''
+                  document.getElementById('userId').value = ''
+                  document.getElementById('proId').value = ''
+                });
+              } else {
+                // console.log("No matching product found in the cart.");
+              }
+        } catch (error) {
+            console.error("Error updating the cart:", error)
+        }
+    }
+
+fetchPro.addEventListener('click', fetcher)
+updatePro.addEventListener('click', updater)

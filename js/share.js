@@ -47,6 +47,12 @@ const firebaseConfig = {
                 alert('Slug does not exist');
                 } else {
                     querySnapshot.forEach(element => {
+                        fetchProductDetails(element)
+                        document.title = element.data().productName
+                        let newMeta = document.createElement('meta');
+                        newMeta.name = "description";
+                        newMeta.content = "This is a dynamically updated description.";
+                        document.head.appendChild(newMeta);
 
                         let formattedPrice = new Intl.NumberFormat('en-NG', {
                         style : 'currency',
@@ -375,171 +381,6 @@ const firebaseConfig = {
 
 
 
-
-
-
-
-
-        
-        // CHECK THROUGH THE DATABASE
-        // async function fetchSlugData() {
-        // try {
-        //     const querySnapshot = await getDocs(query(myCollection, where("slug", "==", slug)));
-            
-        //     if (querySnapshot.empty) {
-        //     alert('Slug does not exist');
-        //     } else {
-        //     querySnapshot.forEach(element => {
-
-        //             let formattedPrice = new Intl.NumberFormat('en-NG', {
-        //             style : 'currency',
-        //             currency : 'NGN'
-        //             }).format(`${element.data().productPrice}`)
-
-
-        //         let newDiv = document.createElement('div')
-        //         newDiv.setAttribute('class', 'card')
-        //         newDiv.innerHTML = `
-         
-        //             <img src="${element.data().productImage}" alt="${element.data().productName}">
-        //             <h3>${element.data().productName}</h3>
-
-        //             <div class="otherDet">
-        //             <div class="buttonss">
-        //                 <button class="buyBtn">Add to Cart</button>
-        //                 <button class="share"><i class="fa-solid fa-share"></i></button>
-        //             </div>
-        //             <div class="newOldPrice">
-        //                 <h3 class="pricing old">${formattedPrice}</h3>
-        //                 <h3 class="pricing">${formattedPrice}</h3>
-        //             </div>
-        //             </div>
-        //         `
-        //         newDiv.querySelector('.share').addEventListener('click', () => {
-        //           alert('i am clicked')
-        //         })
-        //         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
-
-                    
-        //             const productName = element.data().productName;
-        //             const productPrice = element.data().productPrice;
-        //             const productImage = element.data().productImage;
-        //             checkAuth(productName, productPrice, productImage)
-        //         })
-        //         productCard.appendChild(newDiv)
-        //         console.log(doc.id, " => ", element.data());
-        //     });
-        //     }
-        // } catch (error) {
-        //     console.error("Error fetching data:", error);
-        // }
-        // }
-
-        // fetchSlugData();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // CHECKING THE AUTHENTICATION 
     function checkAuth(productName, productPrice, productImage){
       let productNameComing = productName
@@ -589,3 +430,21 @@ const firebaseConfig = {
       });
   });
 }
+
+
+
+    // Function to Fetch Product Details and Update Meta Tags
+    async function fetchProductDetails(element) {
+
+        document.title = element.data().productName
+        
+        document.querySelector('meta[property="og:title"]').setAttribute("content", element.data().productName);
+        document.querySelector('meta[property="og:description"]').setAttribute("content", element.data().productDescription);
+        document.querySelector('meta[property="og:image"]').setAttribute("content", element.data().productImage);
+        document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
+
+        document.querySelector('meta[name="twitter:title"]').setAttribute("content", element.data().productName);
+        document.querySelector('meta[name="twitter:description"]').setAttribute("content", element.data().productDescription);
+        document.querySelector('meta[name="twitter:image"]').setAttribute("content", element.data().productImage);
+        document.querySelector('meta[name="twitter:url"]').setAttribute("content", window.location.href);
+      }

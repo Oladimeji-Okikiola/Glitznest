@@ -108,7 +108,7 @@
                   <a href="index.html">Home</a>
                   <a href="shop.html">Shop</a>
                   <a href="orders.html">Orders</a>
-                  <a href="cart.html">Cart</a>
+                  <a href="cart.html">Cart <i class="fa-solid fa-cart-plus"></i></a>
                 </div>
               </div>
             </div>
@@ -399,6 +399,7 @@
                     name: cartProp.productName,
                     price: parseFloat(cartProp.productPrice),
                     image: cartProp.productImage,
+                    status : 'Ordered'
                 };
 
                 // Add product to the array
@@ -481,17 +482,6 @@
             });
         });
       }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

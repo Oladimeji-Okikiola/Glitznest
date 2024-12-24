@@ -46,6 +46,8 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+       <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </head>
 
   <body>
@@ -298,6 +300,7 @@
       New Order:
       Products:\n${formattedProducts}
       Total Price: ${authorizedAmount}
+      Customer Id: ${currentUser}
       Customer Name: ${deliveryName}
       Customer Phone: ${deliveryPhone}
       Customer Email: ${deliveryEmail}
@@ -317,6 +320,7 @@
 
         const data = await response.json();
         console.log('Message sent:', data);
+        console.log('User:', currentUser);
 
         if (data.ok) {
             console.log('Message sent successfully');

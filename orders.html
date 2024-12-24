@@ -31,6 +31,8 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+       <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </head>
 
   <body>
@@ -53,7 +55,7 @@
                   <a href="index.html">Home</a>
                   <a href="shop.html">Shop</a>
                   <a href="profile.html">Profile</a>
-                  <a href="cart.html">Cart</a>
+                  <a href="cart.html">Cart <i class="fa-solid fa-cart-plus"></i></a>
                 </div>
               </div>
             </div>
@@ -260,7 +262,7 @@
                   <div class="othersss">
                     <h3>${element.data().name}</h3>
                     <h3>${comingPrice}</h3>
-                    <h3>Delivered</h3>
+                    <h3>${element.data().status}</h3>
                   </div>
           
           `
