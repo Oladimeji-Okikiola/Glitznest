@@ -1,20 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
 
     
-// const env = require('env.js')
-// env.load('.env')
-
-
-//         const firebaseConfig = {
-//             apiKey: env.API_KEY,
-//             authDomain: env.AUTH_DOMAIN,
-//             databaseURL: env.DATABASE_URL,
-//             projectId: env.ROJECT_ID,
-//             storageBucket: env.TORAGE_BUCKET,
-//             messagingSenderId: env.MESSAGING_SENDER_ID,
-//             appId: env.PP_ID
-//         };
-
         const firebaseConfig = {
             apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
             authDomain: "saveandget-test1.firebaseapp.com",
@@ -33,7 +19,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     window.addEventListener('load', () => {
                       navigator.serviceWorker.register('/service-worker.js')
                         .then((registration) => {
-                          console.log('Service Worker registered with scope:', registration.scope);
+                        //   console.log('Service Worker registered with scope:', registration.scope);
                         })
                         .catch((error) => {
                           console.log('Service Worker registration failed:', error);
@@ -59,7 +45,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             if(user){
                 let userId = user.uid
                 logUserDetails(userId)
-                console.log(userId)
             }else{
                 window.location.href = 'adminFirst.html'
             }
@@ -76,8 +61,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         if(docSnap.exists()){
         let adminName = document.getElementById('adminName')
 
-        adminName.textContent = docSnap.data().Fullname + '!'
-            console.log(docSnap.data())
+        adminName.textContent = docSnap.data().Fullname + '!!!'
+            // console.log(docSnap.data())
         }else{
             alert('data does not exist')
         }
@@ -90,14 +75,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
 
 
-
-
-
         // FOR JEWELERIES PAGE
         let productNameIn = document.getElementById('productName')
         let productPriceIn = document.getElementById('productPrice')
         let productImageIn = document.getElementById('productImage')
-        let productCategoryIn = document.getElementById('categoryy')
+        let NewproductPriceIn = document.getElementById('NewproductPrice')
 
         let productWrite = document.getElementById('productWrite')
         let productUpdate = document.getElementById('productUpdate')
@@ -107,8 +89,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForProduct() {
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
+            let newProductPrice = NewproductPriceIn.value
 
-                // SLUGIFY THE TITLE
+            // SLUGIFY THE TITLE
             function stringify(productName){
                 return productName.toLowerCase()
                 .normalize('NFD')
@@ -120,7 +103,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                 .replace(/^- |- $/g, '')
             }
     
-            if (productName == '' || productPrice == '') {
+            if (productName == '' || productPrice == '' || newProductPrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = productImageIn.files[0];
@@ -142,7 +125,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "JEWELERIES", productName);
                     await setDoc(ref, {
                         productName: productName,
-                        productPrice: parseFloat(productPrice),
+                        productPrice: productPrice,
+                        newProductPrice: newProductPrice,
                         slug : stringify(productName),
                         productImage: downloadURL,  
                     });
@@ -158,6 +142,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             productNameIn.value = ''
             productPriceIn.value = ''
             progressDigit.value = ''
+            NewproductPriceIn.value = ''
         }
     
         productWrite.addEventListener('click', writeForProduct);
@@ -168,24 +153,26 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let productName = productNameIn.value
             let productPrice = productPriceIn.value
+            let newproductPrice = NewproductPriceIn.value
 
-            // SLUGIFY THE TITLE
-            function stringify(productName){
-                return productName.toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .split('')
-                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
-                .join('')
-                .replace(/-+/g, '-')
-                .replace(/^- |- $/g, '')
-            }
+                        // SLUGIFY THE TITLE
+                        function stringify(productName){
+                            return productName.toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, '')
+                            .split('')
+                            .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                            .join('')
+                            .replace(/-+/g, '-')
+                            .replace(/^- |- $/g, '')
+                        }
     
             var ref = doc(db, "JEWELERIES", productName)
             await updateDoc(ref, {
                 productName: productName,
-                productPrice: parseFloat(productPrice),
-                slug : stringify(productName)
+                productPrice: productPrice,
+                slug : stringify(productName),
+                newProductPrice: newproductPrice,
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -243,6 +230,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let kitchenNameIn = document.getElementById('kitchenName')
         let kitchenPriceIn = document.getElementById('kitchenPrice')
         let kitchenImageIn = document.getElementById('kitchenImage')
+        let newkitchenPriceIn = document.getElementById('newkitchenPrice')
 
         let kitchenWrite = document.getElementById('kitchenWrite')
         let kitchenUpdate = document.getElementById('kitchenUpdate')
@@ -252,8 +240,21 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForkitchen() {
             let kitchenName = kitchenNameIn.value
             let kitchenPrice = kitchenPriceIn.value
+            let newkitchenPrice = newkitchenPriceIn.value
+
+                        // SLUGIFY THE TITLE
+                        function stringify(kitchenName){
+                            return kitchenName.toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, '')
+                            .split('')
+                            .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                            .join('')
+                            .replace(/-+/g, '-')
+                            .replace(/^- |- $/g, '')
+                        }
     
-            if (kitchenName == '' || kitchenPrice == '') {
+            if (kitchenName == '' || kitchenPrice == '' || newkitchenPrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = kitchenImageIn.files[0];
@@ -275,7 +276,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "KITCHEN", kitchenName);
                     await setDoc(ref, {
                         kitchenName: kitchenName,
-                        kitchenPrice: parseFloat(kitchenPrice),
+                        kitchenPrice: kitchenPrice,
+                        newkitchenPrice: newkitchenPrice,
+                        slug : stringify(kitchenName),
                         kitchenImage: downloadURL,  
                     });
     
@@ -290,6 +293,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             kitchenNameIn.value = ''
             kitchenPriceIn.value = ''
             progressDigit.value = ''
+            newkitchenPriceIn.value = ''
         }
     
         kitchenWrite.addEventListener('click', writeForkitchen);
@@ -300,11 +304,27 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let kitchenName = kitchenNameIn.value
             let kitchenPrice = kitchenPriceIn.value
+            let newkitchenPrice = newkitchenPriceIn.value
+
+            
+                        // SLUGIFY THE TITLE
+                        function stringify(kitchenName){
+                            return kitchenName.toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, '')
+                            .split('')
+                            .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                            .join('')
+                            .replace(/-+/g, '-')
+                            .replace(/^- |- $/g, '')
+                        }
             
             var ref = doc(db, "KITCHEN", kitchenName)
             await updateDoc(ref, {
                 kitchenName: kitchenName,
-                kitchenPrice: parseFloat(kitchenPrice),
+                kitchenPrice: kitchenPrice,
+                newkitchenPrice: newkitchenPrice,
+                slug : stringify(kitchenName),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -362,6 +382,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let laundaryNameIn = document.getElementById('laundaryName')
         let laundaryPriceIn = document.getElementById('laundaryPrice')
         let laundaryImageIn = document.getElementById('laundaryImage')
+        let newlaundaryPriceIn = document.getElementById('newlaundaryPrice')
       
         let laundaryWrite = document.getElementById('laundaryWrite')
         let laundaryUpdate = document.getElementById('laundaryUpdate')
@@ -371,8 +392,20 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForlaundary() {
             let laundaryName = laundaryNameIn.value
             let laundaryPrice = laundaryPriceIn.value
+            let newlaundaryPrice = newlaundaryPriceIn.value
+                        // SLUGIFY THE TITLE
+                        function stringify(laundaryName){
+                            return laundaryName.toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, '')
+                            .split('')
+                            .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                            .join('')
+                            .replace(/-+/g, '-')
+                            .replace(/^- |- $/g, '')
+                        }
     
-            if (laundaryName == '' || laundaryPrice == '') {
+            if (laundaryName == '' || laundaryPrice == '' || newlaundaryPrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = laundaryImageIn.files[0];
@@ -394,7 +427,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "LAUNDARY", laundaryName);
                     await setDoc(ref, {
                         laundaryName: laundaryName,
-                        laundaryPrice: parseFloat(laundaryPrice),
+                        laundaryPrice: laundaryPrice,
+                        newlaundaryPrice: newlaundaryPrice,
+                        slug : stringify(laundaryName),
                         laundaryImage: downloadURL,  
                     });
     
@@ -408,6 +443,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             laundaryNameIn.value = ''
             laundaryPriceIn.value = ''
+            newlaundaryPriceIn.value = ''
             progressDigit.value = ''
             }
     
@@ -419,11 +455,26 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let laundaryName = laundaryNameIn.value
             let laundaryPrice = laundaryPriceIn.value
+            let newlaundaryPrice = newlaundaryPriceIn.value
     
+            // SLUGIFY THE TITLE
+            function stringify(laundaryName){
+                return laundaryName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
             var ref = doc(db, "LAUNDARY", laundaryName)
             await updateDoc(ref, {
                 laundaryName: laundaryName,
-                laundaryPrice: parseFloat(laundaryPrice),
+                laundaryPrice: laundaryPrice,
+                newlaundaryPrice: newlaundaryPrice,
+                slug : stringify(laundaryName),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -434,6 +485,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             })
             laundaryNameIn.value = ''
             laundaryPriceIn.value = ''
+            newlaundaryPriceIn.value = ''
         }
         laundaryUpdate.addEventListener('click', updateForlaundary)
     
@@ -481,6 +533,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let clothingNameIn = document.getElementById('clothingName')
         let clothingPriceIn = document.getElementById('clothingPrice')
         let clothingImageIn = document.getElementById('clothingImage')
+        let newclothingPriceIn = document.getElementById('newclothingPrice')
 
         let clothingWrite = document.getElementById('clothingWrite')
         let clothingUpdate = document.getElementById('clothingUpdate')
@@ -490,6 +543,19 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForclothing() {
             let clothingName = clothingNameIn.value
             let clothingPrice = clothingPriceIn.value
+            let newclothingPrice = newclothingPriceIn.value
+
+            // SLUGIFY THE TITLE
+            function stringify(clothingName){
+                return clothingName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
     
             if (clothingName == '' || clothingPrice == '') {
                 alert('Please fill all empty spaces');
@@ -513,7 +579,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "CLOTHING", clothingName);
                     await setDoc(ref, {
                         clothingName: clothingName,
-                        clothingPrice: parseFloat(clothingPrice),
+                        clothingPrice: clothingPrice,
+                        newclothingPrice: newclothingPrice,
+                        slug : stringify(clothingName),
                         productImage: downloadURL,  
                     });
     
@@ -527,6 +595,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             clothingNameIn.value = ''
             clothingPriceIn.value = ''
+            newclothingPriceIn.value = ''
             progressDigit.value = ''
             }
     
@@ -538,11 +607,27 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let clothingName = clothingNameIn.value
             let clothingPrice = productPriceIn.value
+            let newclothingPrice = newclothingPriceIn.value
             
+
+            // SLUGIFY THE TITLE
+            function stringify(clothingName){
+                return clothingName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
             var ref = doc(db, "CLOTHING", clothingName)
             await updateDoc(ref, {
                 clothingName: clothingName,
-                clothingPrice: parseFloat(clothingPrice),
+                clothingPrice: clothingPrice,
+                newclothingPrice: newclothingPrice,
+                slug : stringify(clothingName),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -553,6 +638,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             })
             clothingNameIn.value = ''
             clothingPriceIn.value = ''
+            newclothingPriceIn.value = ''
             }
             clothingUpdate.addEventListener('click', updateForclothing)
     
@@ -600,6 +686,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let bathroomNameIn = document.getElementById('bathroomName')
         let bathroomPriceIn = document.getElementById('bathroomPrice')
         let bathroomImageIn = document.getElementById('bathroomImage')
+        let newbathroomPriceIn = document.getElementById('newbathroomPrice')
 
 
         let bathroomWrite = document.getElementById('bathroomWrite')
@@ -610,8 +697,21 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForbathroom() {
             let bathroomName = bathroomNameIn.value
             let bathroomPrice = bathroomPriceIn.value
+            let newbathroomPrice = newbathroomPriceIn.value
             
-            if (bathroomName == '' || bathroomPrice == '') {
+            // SLUGIFY THE TITLE
+            function stringify(bathroomName){
+                return bathroomName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
+            if (bathroomName == '' || bathroomPrice == '' || newbathroomPrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = bathroomImageIn.files[0];
@@ -633,7 +733,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "BATHROOM", bathroomName);
                     await setDoc(ref, {
                         bathroomName: bathroomName,
-                        bathroomPrice: parseFloat(bathroomPrice),
+                        bathroomPrice: bathroomPrice,
+                        newbathroomPrice: newbathroomPrice,
+                        slug : stringify(bathroomName),
                         bathroomImage: downloadURL,  
                     });
     
@@ -647,6 +749,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             bathroomNameIn.value = ''
             bathroomPriceIn.value = ''
+            newbathroomPriceIn.value = ''
             progressDigit.value = ''
             }
     
@@ -658,11 +761,29 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let bathroomName = bathroomNameIn.value
             let bathroomPrice = bathroomPriceIn.value
+            let newbathroomPrice = newbathroomPriceIn.value
             
+
+            
+            // SLUGIFY THE TITLE
+            function stringify(bathroomName){
+                return bathroomName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
+
             var ref = doc(db, "BATHROOM", bathroomName)
             await updateDoc(ref, {
                 bathroomName: bathroomName,
-                bathroomPrice: parseFloat(bathroomPrice),
+                bathroomPrice: bathroomPrice,
+                newbathroomPrice: newbathroomPrice,
+                slug: stringify(bathroomName),
                 })
             .then(() => {
                 alert('Updated Successfully')
@@ -672,6 +793,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             })
             bathroomNameIn.value = ''
             bathroomPriceIn.value = ''
+            newbathroomPriceIn.value = ''
             }
             bathroomUpdate.addEventListener('click', updateForbathroom)
     
@@ -719,6 +841,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let phoneNameIn = document.getElementById('phoneName')
         let phonePriceIn = document.getElementById('phonePrice')
         let phoneImageIn = document.getElementById('phoneImage')
+        let newphonePriceIn = document.getElementById('newphonePrice')
         
         let phoneWrite = document.getElementById('phoneWrite')
         let phoneUpdate = document.getElementById('phoneUpdate')
@@ -728,8 +851,24 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForphone() {
             let phoneName = phoneNameIn.value
             let phonePrice = phonePriceIn.value
+            let newphonePrice = newphonePriceIn.value
             
-            if (phoneName == '' || phonePrice == '') {
+
+            
+            // SLUGIFY THE TITLE
+            function stringify(phoneName){
+                return phoneName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
+
+            if (phoneName == '' || phonePrice == '' || newphonePrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = phoneImageIn.files[0];
@@ -751,7 +890,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "PHONE", phoneName);
                     await setDoc(ref, {
                         phoneName: phoneName,
-                        phonePrice: parseFloat(phonePrice),
+                        phonePrice: phonePrice,
+                        newphonePrice: newphonePrice,
+                        slug : stringify(phoneName),
                         phoneImage: downloadURL,  
                     });
     
@@ -765,6 +906,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             phoneNameIn.value = ''
             phonePriceIn.value = ''
+            newphonePriceIn.value = ''
             progressDigit.value = ''
             }
     
@@ -776,11 +918,29 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let phoneName = phoneNameIn.value
             let phonePrice = phonePriceIn.value
+            let newphonePrice = newphonePriceIn.value
             
+
+
+            
+            // SLUGIFY THE TITLE
+            function stringify(phoneName){
+                return phoneName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
             var ref = doc(db, "PHONE", phoneName)
             await updateDoc(ref, {
                 phoneName: phoneName,
-                phonePrice: parseFloat(phonePrice),
+                phonePrice: phonePrice,
+                newphonePrice: newphonePrice,
+                slug : stringify(phoneName),
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -791,6 +951,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             })
             phoneNameIn.value = ''
             phonePriceIn.value = ''
+            newphonePriceIn.value = ''
             }
             phoneUpdate.addEventListener('click', updateForphone)
     
@@ -802,7 +963,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "PHONE", phoneName)
             const docSnap = await getDoc(ref)
             if(docSnap.exists()){
-                // console.log(docSnap.data())
                 phoneNameIn.value = docSnap.data().phoneName
                 phonePriceIn.value = docSnap.data().phonePrice
                 let photoSee = docSnap.data().phoneImage
@@ -838,6 +998,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let homeNameIn = document.getElementById('homeName')
         let homePriceIn = document.getElementById('homePrice')
         let homeImageIn = document.getElementById('homeImage')
+        let newhomePriceIn = document.getElementById('newhomePrice')
         
         let homeWrite = document.getElementById('homeWrite')
         let homeUpdate = document.getElementById('homeUpdate')
@@ -847,8 +1008,23 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForhome() {
             let homeName = homeNameIn.value
             let homePrice = homePriceIn.value
+            let newhomePrice = newhomePriceIn.value
             
-            if (homeName == '' || homePrice == '') {
+
+            
+            // SLUGIFY THE TITLE
+            function stringify(homeName){
+                return homeName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
+            if (homeName == '' || homePrice == '' || newhomePrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = homeImageIn.files[0];
@@ -870,7 +1046,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "HOME", homeName);
                     await setDoc(ref, {
                         homeName: homeName,
-                        homePrice: parseFloat(homePrice),
+                        homePrice: homePrice,
+                        newhomePrice: newhomePrice,
+                        slug : stringify(homeName),
                         homeImage: downloadURL,  
                     });
     
@@ -884,6 +1062,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             homeNameIn.value = ''
             homePriceIn.value = ''
+            newhomePriceIn.value = ''
             progressDigit.value = ''
             }
     
@@ -895,11 +1074,28 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let homeName = homeNameIn.value
             let homePrice = homePriceIn.value
+            let newhomePrice = newhomePriceIn.value
             
+                        
+            // SLUGIFY THE TITLE
+            function stringify(homeName){
+                return homeName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
+
             var ref = doc(db, "HOME", homeName)
             await updateDoc(ref, {
                 homeName: homeName,
-                homePrice: parseFloat(homePrice),
+                homePrice: homePrice,
+                newhomePrice: newhomePrice,
+                slug : stringify(homeName)
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -910,6 +1106,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             })
             homeNameIn.value = ''
             homePriceIn.value = ''
+            newhomePriceIn.value = ''
             }
             homeUpdate.addEventListener('click', updateForhome)
     
@@ -921,7 +1118,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "HOME", homeName)
             const docSnap = await getDoc(ref)
             if(docSnap.exists()){
-                // console.log(docSnap.data())
                 homeNameIn.value = docSnap.data().homeName
                 homePriceIn.value = docSnap.data().homePrice
                 let photoSee = docSnap.data().homeImage
@@ -957,6 +1153,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         let othersNameIn = document.getElementById('othersName')
         let othersPriceIn = document.getElementById('othersPrice')
         let othersImageIn = document.getElementById('othersImage')
+        let newothersPriceIn = document.getElementById('newothersPrice')
         
         let othersWrite = document.getElementById('othersWrite')
         let othersUpdate = document.getElementById('othersUpdate')
@@ -966,8 +1163,22 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
         async function writeForothers() {
             let othersName = othersNameIn.value
             let othersPrice = othersPriceIn.value
+            let newothersPrice = newothersPriceIn.value
+
+            // SLUGIFY THE TITLE
+            function stringify(othersName){
+                return othersName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+        
             
-            if (othersName == '' || othersPrice == '') {
+            if (othersName == '' || othersPrice == '' || newothersPrice == '') {
                 alert('Please fill all empty spaces');
             } else {
                 let file = othersImageIn.files[0];
@@ -992,7 +1203,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "OTHERS", othersName);
                     await setDoc(ref, {
                         othersName: othersName,
-                        othersPrice: parseFloat(othersPrice),
+                        othersPrice: othersPrice,
+                        newothersPrice: newothersPrice,
+                        slug : stringify(othersName),
                         othersImage: downloadURL,  
                     });
     
@@ -1006,6 +1219,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             // Clear form fields after successful upload
             othersNameIn.value = ''
             othersPriceIn.value = ''
+            newothersPriceIn.value = ''
             progressDigit.value = ''
             }
     
@@ -1017,11 +1231,27 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
     
             let othersName = othersNameIn.value
             let othersPrice = othersPriceIn.value
+            let newothersPrice = newothersPriceIn.value
             
+            // SLUGIFY THE TITLE
+            function stringify(othersName){
+                return othersName.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .split('')
+                .map(character => (/[a-z0-9]/.test(character) ? character : '-'))
+                .join('')
+                .replace(/-+/g, '-')
+                .replace(/^- |- $/g, '')
+            }
+
+
             var ref = doc(db, "OTHERS", othersName)
             await updateDoc(ref, {
                 othersName: othersName,
-                othersPrice: parseFloat(othersPrice),
+                othersPrice: othersPrice,
+                newothersPrice: newothersPrice,
+                slug : stringify(othersName)
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -1032,6 +1262,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             })
             othersNameIn.value = ''
             othersPriceIn.value = ''
+            newothersPriceIn.value = ''
             }
             othersUpdate.addEventListener('click', updateForothers)
     
@@ -1043,7 +1274,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "OTHERS", othersName)
             const docSnap = await getDoc(ref)
             if(docSnap.exists()){
-                // console.log(docSnap.data())
                 othersNameIn.value = docSnap.data().othersName
                 othersPriceIn.value = docSnap.data().othersPrice
                 let photoSee = docSnap.data().othersImage
@@ -1116,7 +1346,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "LATEST", latestName);
                     await setDoc(ref, {
                         latestName: latestName,
-                        latestPrice: parseFloat(latestPrice),
+                        latestPrice: latestPrice,
                         latestImage: downloadURL,  
                     });
     
@@ -1145,7 +1375,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "LATEST", latestName)
             await updateDoc(ref, {
                 latestName: latestName,
-                latestPrice: parseFloat(latestPrice),
+                latestPrice: latestPrice,
                 // productImage: downloadURL,
             })
             .then(() => {
@@ -1167,7 +1397,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "LATEST", latestName)
             const docSnap = await getDoc(ref)
             if(docSnap.exists()){
-                // console.log(docSnap.data())
                 latestNameIn.value = docSnap.data().latestName
                 latestPriceIn.value = docSnap.data().latestPrice
                 let photoSee = docSnap.data().latestImage
@@ -1291,7 +1520,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "BLOG", blogName)
             const docSnap = await getDoc(ref)
             if(docSnap.exists()){
-                // console.log(docSnap.data())
                 blogNameIn.value = docSnap.data().blogName
                 blogPriceIn.value = docSnap.data().blogPrice
                 let photoSee = docSnap.data().blogImage
@@ -1321,9 +1549,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             }
     
             blogDelete.addEventListener('click', deleteForblog)
-
-
-
 
 
 
@@ -1366,7 +1591,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
                     const ref = doc(db, "DISCOUNT", discountName);
                     await setDoc(ref, {
                         discountName: discountName,
-                        discountPrice: parseFloat(discountPrice),
+                        discountPrice: discountPrice,
                         discountImage: downloadURL,  
                     });
     
@@ -1395,8 +1620,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "DISCOUNT", discountName)
             await updateDoc(ref, {
                 discountName: discountName,
-                discountPrice: parseFloat(discountPrice),
-                // productImage: downloadURL,
+                discountPrice: discountPrice,
             })
             .then(() => {
                 alert('Updated Successfully')
@@ -1417,7 +1641,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
             var ref = doc(db, "DISCOUNT", discountName)
             const docSnap = await getDoc(ref)
             if(docSnap.exists()){
-                // console.log(docSnap.data())
                 discountNameIn.value = docSnap.data().discountName
                 discountPriceIn.value = docSnap.data().discountPrice
                 let photoSee = docSnap.data().discountImage
@@ -1451,19 +1674,92 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
 
 
+    let proAppend = document.getElementById('proAppend')
+    let fetchPro = document.getElementById('fetchPro')
+    let updatePro = document.getElementById('updatePro')
+    let statusLooker = document.querySelector('.statusLooker')
+    let statusUpdate = document.querySelector('.statusUpdate')
+
+            // FETCH PRODUCT
+    async function fetcher() {
+        let userId = document.getElementById('userId').value
+        let proId = document.getElementById('proId').value
+
+        const ordersRef = collection(db, "CARTS", userId, "orders");
+        const q = query(ordersRef, where("id", "==", proId))
+
+        getDocs(q)
+        .then((snapshot) => {
+            proAppend.innerHTML = ''
+            if (!snapshot.empty) {
+            snapshot.forEach((docSnap) => {
+
+                const orderData = docSnap.data();
+                let formattedPrice = new Intl.NumberFormat('en-NG', {
+                    style : 'currency',
+                    currency : 'NGN'
+                }).format(`${orderData.price}`)
+
+                let newDiv = document.createElement('div')
+                newDiv.setAttribute('class', 'productDetails')
+                newDiv.innerHTML = `
+                    <img src="${orderData.image}" alt="">
+                    <p id="proName">${orderData.name}</p>
+                    <p id="proPrice">${formattedPrice}</p>
+                    <p id="proStatus">${orderData.status}</p>                
+                `
+                proAppend.appendChild(newDiv)
+            });
+            } else {
+            console.log("No matching product found in orders.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching product from orders:", error);
+        });
+
+    }
+
+// UPDATE THE PRODUCT STATUS
+let proStatus = document.getElementById('proStatus')
+    async function updater(){
+        try {
+            
+            let proStatuss = proStatus.value
+            let userId = document.getElementById('userId').value
+            let proId = document.getElementById('proId').value
+            
+            const updateValue = {
+                status : proStatuss
+            }
+            const ordersRef = collection(db, "CARTS", userId, "orders");
+            const q = query(ordersRef, where("id", "==", proId))
+            const snapshot = await getDocs(q);
 
 
+            if (!snapshot.empty) {
+                snapshot.forEach(async (docSnap) => {
+                  const orderRef = doc(db, "CARTS", userId, "orders", docSnap.id);
+                  await updateDoc(orderRef, updateValue);
 
+                  statusLooker.style.display = 'flex'
+                  statusUpdate.textContent = proStatuss
+                  setTimeout(() => {
+                    statusLooker.style.display = 'none'
+                  }, 3000);
 
+                //   console.log("Cart updated successfully.");
+                  proAppend.innerHTML = ''
+                  document.getElementById('userId').value = ''
+                  document.getElementById('proId').value = ''
+                });
+              } else {
+                // console.log("No matching product found in the cart.");
+              }
+        } catch (error) {
+            console.error("Error updating the cart:", error)
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+fetchPro.addEventListener('click', fetcher)
+updatePro.addEventListener('click', updater)

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <link rel="icon" href="images/favicon.png" type="image/gif" />
+    <meta
+      name="keywords"
+      content="jeweleries, home, Decoration, phone, accessories, chain, pendant, kitchen, bathroom, pot, kettle, utensils"
+    />
+    <meta name="description" content="A store for your everyday needs" />
+    <meta name="author" content="ABTech" />
+     <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>GlitzNest</title>
+
+    <style>
+      .customerInternal{
+        /* display: flex; */
+        /* justify-content: center; */
+        display: grid;
+        grid-template-columns: 100fr;
+        align-items: center;
+        gap: 7px;
+        flex-direction: column;
+      }
+      .mainDetails{
+        font-size: 17px;
+      }
+      .editProfile{
+        background-color: blue;
+      }
+      .logout{
+        background-color: red;
+      }
+      .editProfile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+      }
+      input{
+        width: 300px;
+      }
+    </style>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- header section strats -->
+    <header class="header_section innerpage_header">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span> GlitzNest </span>
+          </a>
+          <div class="" id="">
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1"> </span>
+                <span class="s-2"> </span>
+                <span class="s-3"> </span>
+              </button>
+              <div id="myNav" class="overlay">
+                <div class="overlay-content">
+                  <a href="index.html">Home</a>
+                  <a href="shop.html">Shop</a>
+                  <a href="orders.html">Orders</a>
+                  <a href="cart.html">Cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+
+    <!-- PROFILE DETAILS -->
+
+    <div class="customerDetails"></div>
+    <div id="editProfileDiv" class="editProfileDiv" style="display: none;"></div>
+
+      <div class="editProfile" style="display: none;">
+        <input type="text" id="fullname" placeholder="Full Name">
+        <input type="text" id="addresss" placeholder="Address">
+        <input type="text" id="State" placeholder="State">
+        <input type="text" id="phone" placeholder="Phone Number">
+        <button class="updateBtn">Update</button>
+      </div>
+
+    <!-- info section -->
+    <section class="info_section layout_padding2">
+      <div class="container">
+    
+    
+    
+        <div class="sellPartner">
+            <h3>Partner with Us?</h3>
+            <p>
+              <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+            </p>
+        </div>
+    
+    
+    
+    
+    
+        <div class="row info_form_social_row">
+          <div class="col-md-4 col-lg-3">
+    
+            <div class="social_box">
+              <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row info_main_row">
+          <div class="col-md-6 col-lg-3">
+            <div class="info_links">
+              <h4>
+                Menu
+              </h4>
+              <div class="info_links_menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_detail">
+              <h4>
+                About Us
+              </h4>
+              <p class="mb-0">
+                Glitznest is the home for varieties.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h4>
+              <a href="contactUs.html">Contact Us</a>
+            </h4>
+            <div class="info_contact">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +234 8088363852
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope"></i>
+                <span>
+                  edidioluwat@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- end info_section -->
+
+    <!-- end info_section -->
+
+    <!-- footer section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved
+          <a href="https://abtech-two.vercel.app">ABTech</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    <!-- For Payment Gateway -->
+    <script src="https://js.paystack.co/v1/inline.js"></script> 
+    <!-- function to fetch the products -->
+    <script type="module">
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+        authDomain: "saveandget-test1.firebaseapp.com",
+        databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+        projectId: "saveandget-test1",
+        storageBucket: "saveandget-test1.appspot.com",
+        messagingSenderId: "764820232194",
+        appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b",
+      };
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+      import {
+        getFirestore,
+        onSnapshot,
+        doc,
+        getDoc,
+        getDocs,
+        setDoc,
+        collection,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        deleteField,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+      import {
+        getAuth,
+        signOut,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+      let editProfileDiv = document.getElementById("editProfileDiv");
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      let db = getFirestore();
+      const auth = getAuth();
+
+
+      let currentUser = null;
+      let customerDetails = document.querySelector('.customerDetails')
+      let editProfile = document.querySelector('.editProfile')
+
+      //   CHECK USER'S AUTHENTICATION
+      function stateChanged() {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            currentUser = user.uid;
+            displayCustomerDetails(currentUser)
+          } else {
+            window.location.href = "account.html";
+          }
+        });
+      }
+      stateChanged();
+
+
+
+      // DISPLAY CUSTOMER'S INFORMATION
+      async function displayCustomerDetails(currentUser){
+        var ref = doc(db, "CUSTOMERS", currentUser)
+        const docSnap = await getDoc(ref)
+
+        if(docSnap.exists()){
+          let email = docSnap.data().Email
+          let newDiv = document.createElement('div')
+          newDiv.setAttribute('class', 'customerInternal')
+          newDiv.innerHTML = `
+            <h3 class="mainDetails">Fullname: ${docSnap.data().Fullname}</h3>
+            <h3 class="mainDetails">State: ${docSnap.data().State}</h3>
+            <h3 class="mainDetails">Email: ${docSnap.data().Email}</h3>
+            <h3 class="mainDetails">Address: ${docSnap.data().Address}</h3>
+            <h3 class="mainDetails">Phone Number: ${docSnap.data().Phone_Number}</h3>
+            <div class='otherButtons'>
+              <button class='editProfile'> Edit </button>
+              <button class='logout'> Logout </button>
+            </div>
+          `
+          newDiv.querySelector('.logout').addEventListener('click', () => {
+            logutUser()
+          })
+          newDiv.querySelector('.editProfile').addEventListener('click', () => {
+            customerDetails.style.display = 'none'
+            editProfile.style.display = 'flex'
+            readProfile()
+            // editProfileFunc(currentUser, email)
+          })
+          customerDetails.appendChild(newDiv)
+
+    
+            // console.log(docSnap.data())
+        }else{
+            alert('data does not exist')
+        }
+      }
+
+
+
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              // console.log(
+              //   "Service Worker registered with scope:",
+              //   registration.scope
+              // );
+            })
+            .catch((error) => {
+              console.log("Service Worker registration failed:", error);
+            });
+        });
+      }
+
+
+        let fullname = document.getElementById('fullname')
+        let addresss = document.getElementById('addresss')
+        let State = document.getElementById('State')
+        let phone = document.getElementById('phone')
+
+      // READ THE PROFILE
+      async function readProfile(){
+        let profileRef = doc(db, "CUSTOMERS", currentUser)
+        const docSnap = await getDoc(profileRef)
+        if(docSnap.exists()){
+          fullname.value = docSnap.data().Fullname
+          addresss.value = docSnap.data().Address
+          State.value = docSnap.data().State
+          phone.value = docSnap.data().Phone_Number
+        }else{
+          alert("Sorry, You don't have a profile with us")
+        }
+      }
+
+
+      // UPDATING THE PROFILE
+
+      let updateBtn = document.querySelector('.updateBtn')
+
+      async function updateDocProfile(){
+        let fullnameIn = fullname.value
+        let addresssIn = addresss.value
+        let StateIn = State.value
+        let phoneIn = phone.value
+
+
+        var ref = doc(db, "CUSTOMERS", currentUser)
+        await updateDoc(ref, {
+            Fullname: fullnameIn,
+            Address: addresssIn,
+            State: StateIn,
+            Phone_Number: phoneIn,
+        })
+        .then(() => {
+          alert('Updated Successfully')
+          setTimeout(() => {  
+            customerDetails.style.display = 'flex'
+            editProfile.style.display = 'none'
+          }, 1000);
+        })
+        .catch(error => {
+            alert(error.message)
+        })
+      } 
+
+      updateBtn.addEventListener('click', updateDocProfile)
+
+
+
+
+
+
+    //   signOut
+    async function logutUser(){
+      signOut(auth)
+        .then(() => {
+            window.location.href = 'account.html'
+        })
+        .catch(err => {
+            console.error(err);
+        })
+    }
+    </script>
+  </body>
+</html>
