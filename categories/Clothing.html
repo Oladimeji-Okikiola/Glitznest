@@ -350,10 +350,10 @@
                 
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const clothingName = element.data().clothingName;
-          const clothingPrice = element.data().clothingPrice;
+          const newclothingPrice = element.data().newclothingPrice;
           const productImage = element.data().productImage;
 
-          checkAuth(clothingName, clothingPrice, productImage)
+          checkAuth(clothingName, newclothingPrice, productImage)
 
         });
 
@@ -382,12 +382,12 @@
   
   
      // CHECKING THE AUTHENTICATION 
-    function checkAuth(clothingName, clothingPrice, productImage){
+    function checkAuth(clothingName, newclothingPrice, productImage){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
-            addToCart(clothingName, productImage, clothingPrice, userId)
+            addToCart(clothingName, productImage, newclothingPrice, userId)
           }else{
             window.location.href = 'account.html'
           }
@@ -395,12 +395,12 @@
   }
 
   // ADDING TO CART
-  async function addToCart(clothingName, productImage, clothingPrice, userId){
+  async function addToCart(clothingName, productImage, newclothingPrice, userId){
     const cartRef = collection(db, "CARTS", userId, "carts");
 
     await addDoc(cartRef, {
-      clothingName: clothingName,
-      clothingPrice: clothingPrice,
+      productName: clothingName,
+      productPrice: newclothingPrice,
       productImage: productImage,
     })
     .then(() => {

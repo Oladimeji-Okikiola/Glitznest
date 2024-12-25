@@ -341,10 +341,10 @@
 
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const othersName = element.data().othersName;
-          const othersPrice = element.data().othersPrice;
+          const newothersPrice = element.data().newothersPrice;
           const othersImage = element.data().othersImage;
 
-          checkAuth(othersName, othersPrice, othersImage)
+          checkAuth(othersName, newothersPrice, othersImage)
 
         });
 
@@ -376,13 +376,13 @@
     // CHECKING THE AUTHENTICATION 
     function checkAuth(othersName, othersPrice, othersImage){
       let productNameComing = othersName
-      let productPriceComing = othersPrice
+      let newothersPrice = newothersPrice
       let productImageComing = othersImage
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
-            addToCart(othersName, othersPrice, othersImage, userId)
+            addToCart(othersName, newothersPrice, othersImage, userId)
           }else{
             window.location.href = 'account.html'
           }
@@ -390,12 +390,12 @@
   }
 
   // ADDING TO CART
-  async function addToCart(othersName, othersPrice, othersImage, userId){
+  async function addToCart(othersName, newothersPrice, othersImage, userId){
     const cartRef = collection(db, "CARTS", userId, "carts");
 
     await addDoc(cartRef, {
       productName: othersName,
-      productPrice: othersPrice,
+      productPrice: newothersPrice,
       productImage: othersImage,
     })
     .then(() => {
