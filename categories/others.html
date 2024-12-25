@@ -94,6 +94,10 @@
   <p><span class="productNAmee"></span> Added to cart!</p>
 </div>
 
+<div class="shareNotifier" style="display: none;">
+  <p> Link Copied</p>
+</div>
+
   <!-- PRODUCTS BY SECTIONS -->
   <!-- OTHERS -->
   <div class="mainCard" id="mainCard">
@@ -302,6 +306,13 @@
           currency : 'NGN'
         }).format(`${element.data().othersPrice}`)
 
+        
+        let newPrice = Intl.NumberFormat('en-NG', {
+          style : 'currency',
+          currency : 'NGN'
+        }).format(`${element.data().newothersPrice}`)
+
+
 
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
@@ -314,11 +325,11 @@
         <div class="otherDet">
           <div class="buttonss">
             <button class="buyBtn">Add to Cart</button>
-            <button class="share">Share</button>
+            <button class="share"><i class="fa-solid fa-share"></button>
           </div>
           <div class="newOldPrice">
             <h3 class="pricing old">${formattedPrice}</h3>
-            <h3 class="pricing">${formattedPrice}</h3>
+            <h3 class="pricing">${newPrice}</h3>
           </div>
         </div>
         `;
@@ -342,7 +353,7 @@
 
   }
 
-    
+  let shareNotifier = document.querySelector('.shareNotifier')
 
       // GENERATE SHARABLE LINKS
       function generateSlug(slug){
@@ -350,9 +361,10 @@
       const redirectUrl = `${window.location.origin}/single.html?slug=${slug}&road=${favValue}`
         navigator.clipboard.writeText(redirectUrl)
         .then(() => {
-          console.log(redirectUrl);
-          
-            alert('Blog link Copied')
+          shareNotifier.style.display = 'flex'
+          setTimeout(() => {
+            shareNotifier.style.display = 'none'
+          }, 1500)
         })
         .catch(error => {
             console.error(error)

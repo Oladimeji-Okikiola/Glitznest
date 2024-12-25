@@ -81,6 +81,40 @@
     .doNot, .doot{
       cursor: pointer;
     }
+    #state{
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+    }
+    #localGvt{
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+    }
+
+    select {
+      padding: 5px;
+      overflow: hidden; 
+      appearance: none; 
+      -webkit-appearance: none; 
+      -moz-appearance: none; 
+        }
+
+        select::-webkit-scrollbar {
+            display: none; 
+        }
+        .allP{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          color: red;
+          border: none;
+          font-size: 14px;
+        }
+        li{
+          list-style-type: none;
+        }
 </style>
 
   <title>GlitzNest</title>
@@ -132,7 +166,7 @@
 
   <!-- notifier -->
   <div class="popNotifier" style="display: none;">
-    <p> You Registered with the email <span class="productNAmee"></span> Redirecting...</p>
+    <p class="overIn"> You Registered with the email <span class="productNAmee"></span> Redirecting...</p>
   </div>
 
 
@@ -140,13 +174,35 @@
 
     <div class="registerUser register" >
         <h3>Register if you don't have an account</h3>
+
         <input type="text" id="username" placeholder="Full name" >
+        <h4 class="fullnameNoti allP" style="display: none;">Full name should contain First and Last name</h4>
+
         <input type="email" id="email" placeholder="Email" >
+        <h4 class="emailNoti allP" style="display: none;">Please enter a correct email</h4>
+
         <input type="text" id="phoneNumberIn" placeholder="Phone Number" >
-        <input type="text" id="stateIn" placeholder="State" >
+        <h4 class="phoneNoti allP" style="display: none;">Phone Number should contain only Numbers</h4>
+
+        <select id="state"></select>
+        <h4 class="stateNoti allP" style="display: none;">Please Select a State</h4>
+
+        <select id="localGvt"><option value="local Gvt"> Local Government</option></select>
+        <h4 class="localNoti allP" style="display: none;">Please Select a Local Government</h4>
+
         <input type="text" id="addressIn" placeholder="Full Address" >
+        <h4 class="addressNoti allP" style="display: none;">Please enter a correct Address</h4>
+
         <input type="password" id="password" placeholder="Enter your password" >
-        
+        <div class="passNoti allP" style="display: none;">
+          <ul>
+            <li>An Upper Case Letter</li>
+            <li>A Special Character</li>
+            <li>Lower Case Letters</li>
+            <li>Must not be less than 9 values</li>
+          </ul>
+        </div>
+        <h4 class="passNoti allP" style="display: none;">Password must contain  at least an upper</h4>
         <p id="showHidePass" style="border: none;">show password</p>
         <button id="signUp">Register</button>
   
@@ -159,8 +215,6 @@
   </div>
 
 
-
-  
   <div class="overAll" style="display: none;">
 
     <div class="registerUser signINN">
@@ -181,19 +235,14 @@
   <!-- info section -->
   <section class="info_section layout_padding2">
     <div class="container">
-  
-  
-  
+
       <div class="sellPartner">
           <h3>Partner with Us?</h3>
           <p>
             <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
           </p>
       </div>
-  
-  
-  
-  
+
   
       <div class="row info_form_social_row">
         <div class="col-md-4 col-lg-3">
@@ -281,192 +330,7 @@
 
   <!-- function to fetch the products -->
   
-  <script type="module">
-
-    let overAll = document.querySelector('.overAll')
-    let doNot = document.querySelector('.doNot')
-    let register = document.querySelector('.register')
-    let overAllReg = document.querySelector('.overAllReg')
-    let doot = document.querySelector('.doot')
-
-    doNot.addEventListener('click', () => {
-      overAll.style.display = 'none'
-      overAllReg.style.display = 'flex'
-    })
-
-    doot.addEventListener('click', () => {
-      overAllReg.style.display = 'none'
-      overAll.style.display = 'flex'
-    })
-
-
-
-
-
-    let passwordIn = document.getElementById('password')
-    let usernameIn = document.getElementById('username')
-    let emailIn = document.getElementById('email')
-    let stateIn = document.getElementById('stateIn')
-    let phoneNumberIn = document.getElementById('phoneNumberIn')
-    let addressIn = document.getElementById('addressIn')
-    let showHidePass = document.getElementById('showHidePass')
-
-    let popNotifier = document.querySelector('.popNotifier')
-    let productNAmee = document.querySelector('.productNAmee')
-
-    showHidePass.addEventListener('click', () => {
-        if(passwordIn.type = 'password'){
-            passwordIn.type = 'text'
-            showHidePass.textContent = 'hide password'
-        }else{
-            passwordIn.type === 'password'
-            showHidePass.textContent = 'show password'
-        }
-    })
-
-
-
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
-
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
-        authDomain: "saveandget-test1.firebaseapp.com",
-        databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
-        projectId: "saveandget-test1",
-        storageBucket: "saveandget-test1.appspot.com",
-        messagingSenderId: "764820232194",
-        appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
-    };
-
-    const app = initializeApp(firebaseConfig);
-
-
-    import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-    import{getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-    const db = getFirestore()
-    const auth = getAuth()
-
-
-
-        let Fullname = document.getElementById('username')
-        let email = document.getElementById('email')
-        let password = document.getElementById('password')
-        let address = document.getElementById('addressIn')
-        let state = document.getElementById('stateIn')
-        let phoneNumber = document.getElementById('phoneNumberIn')
-
-
-    // validate user input
-    function validationUser(){
-      let nameregex = /^[a-zA-Z]+\s+[a-zA-Z]+$/
-      let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/
-      let uerregex = /^[a-zA-Z0-9]{5,}$/
-      let addressregex = /\s+/;  
-      let stateregex = /\s+/;
-      let phoneNumberregex = /^[0-9]+$/
-
-      if(!nameregex.test(Fullname.value)){
-        alert('Full name should contain at least a first and last name, with only alphabets');
-        return false;
-    }
-    // Validate email format
-    if(!emailregex.test(email.value)){
-        alert('Please enter a correct email address');
-        return false;
-    }
-    if (!addressregex.test(address.value)) {
-        alert('Address should contain more than one word');
-        return false;
-    }
-      if(Fullname.value == '' || email.value == '' || address.value == '' || state.value == '' || phoneNumber.value == ''){
-          alert('Please fill every details')
-          return false
-      }
-      if (!phoneNumberregex.test(phoneNumber.value)) {
-        alert('Phone number should contain only numbers');
-        return false;
-    }
-
-      return true
-  }
-
-
-    function createNewCustomer(){
-
-        let Fullname = document.getElementById('username').value
-        let email = document.getElementById('email').value
-        let password = document.getElementById('password').value
-        let address = document.getElementById('addressIn').value
-        let state = document.getElementById('stateIn').value
-        let phoneNumber = document.getElementById('phoneNumberIn').value
-
-        if(!validationUser()){
-          return
-        }
-
-        createUserWithEmailAndPassword(auth, email, password)
-                .then((credentials) => {
-
-                  productNAmee.textContent = email
-                  popNotifier.style.display = 'flex'
-                  setTimeout(() => {
-                    popNotifier.style.display = 'none'
-                  }, 1500)
-                    let userId = credentials.user.uid;
-    
-                    // Saving the user credentials to the Firestore database
-                    var ref = doc(db, "CUSTOMERS", userId);
-    
-                    setDoc(ref, {
-                        Fullname: Fullname,
-                        Email: email,
-                        Address : address,
-                        State : state,
-                        Phone_Number : phoneNumber
-
-                    })
-                        .then((response) => {
-                            console.log(response);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                        });
-    
-                    // Redirecting the new user to the profile
-                    setTimeout(() => {
-                        window.location.href =  'index.html'
-                    }, 3000);
-    
-                })
-                .catch((error) => {
-                    alert(error.message);
-                });
-    }
-
-
-    function signInUser(){
-        let email = document.getElementById('signEmail').value
-        let password = document.getElementById('signPassword').value
-
-        signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            // alert('login Successfully')
-            setTimeout(() => {
-                    window.location.href =  'index.html'
-                }, 3000);
-        })
-        .catch((error) => {
-                alert(error.message);
-            });
-    }
-
-    let signUp = document.getElementById('signUp')
-    signUp.addEventListener('click', createNewCustomer)
-
-    let signIn = document.getElementById('signIn')
-    signIn.addEventListener('click', signInUser)
-</script>
+  <script type="module" src="account.js"></script>
 
 </body>
 

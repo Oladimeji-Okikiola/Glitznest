@@ -9,13 +9,14 @@ const firebaseConfig = {
     projectId: "saveandget-test1",
     storageBucket: "saveandget-test1.appspot.com",
     messagingSenderId: "764820232194",
-    appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
+    appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b",
+    measurementId: "G-2JC8HYT8ZK"
   };
 
 
     
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+  import { getAnalytics, logEvent  } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
   import {getAuth, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
   import { getFirestore, doc, collection, getDocs, addDoc, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 

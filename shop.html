@@ -13,6 +13,19 @@
   <meta name="description" content="A store for your everyday needs" />
   <meta name="author" content="ABTech" />
 
+  <!-- OG Meta Tags for Social Media -->
+  <meta property="og:title" content="" /> 
+  <meta property="og:description" content="" /> 
+  <meta property="og:image" content="backdrop.jpg" /> 
+  <meta property="og:url" content="" /> 
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="">
+  <meta name="twitter:title" content="" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="backdrop.jpg" /> 
+  <meta name="twitter:url" content="" />
+
   <title>GlitzNest</title>
 
   <!-- bootstrap core css -->
@@ -96,6 +109,10 @@
 
   <div class="popNotifier" style="display: none;">
     <p><span class="productNAmee"></span> Added to cart!</p>
+  </div>
+
+  <div class="shareNotifier" style="display: none;">
+    <p> Link Copied</p>
   </div>
 
   <!-- PRODUCTS BY SECTIONS -->
@@ -309,6 +326,14 @@
         }).format(`${element.data().productPrice}`)
 
 
+      let newPrice = Intl.NumberFormat('en-NG', {
+          style : 'currency',
+          currency : 'NGN'
+        }).format(`${element.data().newProductPrice}`)
+
+        console.log(element.data());
+        
+
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
@@ -323,7 +348,7 @@
           </div>
           <div class="newOldPrice">
             <h3 class="pricing old">${formattedPrice}</h3>
-            <h3 class="pricing">${formattedPrice}</h3>
+            <h3 class="pricing">${newPrice}</h3>
           </div>
         </div>
         `;
@@ -384,6 +409,7 @@
     })
   }
 
+  let shareNotifier = document.querySelector('.shareNotifier')
 
 
   // GENERATE SHARABLE LINKS
@@ -392,9 +418,10 @@
       const redirectUrl = `${window.location.origin}/single.html?slug=${slug}&road=${favValue}`
         navigator.clipboard.writeText(redirectUrl)
         .then(() => {
-          console.log(redirectUrl);
-          
-            alert('Blog link Copied')
+          shareNotifier.style.display = 'flex'
+          setTimeout(() => {
+            shareNotifier.style.display = 'none'
+          }, 1500)
         })
         .catch(error => {
             console.error(error)

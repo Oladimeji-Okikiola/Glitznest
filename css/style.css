@@ -1183,6 +1183,26 @@ body {
   align-items: center;
   font-size: 20px;
 }
+.shareNotifier{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(47, 39, 39);
+  height: 70px;
+  position: fixed;
+  top: 160px;
+  color: white;
+  z-index: 1;
+}
+.shareNotifier p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+
 .productNAmee{
   padding: 0 5px;
 }
