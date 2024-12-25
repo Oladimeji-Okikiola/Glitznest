@@ -348,7 +348,7 @@
 
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const laundaryName = element.data().laundaryName;
-          const laundaryPrice = element.data().laundaryPrice;
+          const newlaundaryPrice = element.data().newlaundaryPrice;
           const laundaryImage = element.data().laundaryImage;
 
           checkAuth(laundaryName, laundaryPrice, laundaryImage)
@@ -360,15 +360,15 @@
   }
   
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(laundaryName, laundaryPrice, laundaryImage){
+    function checkAuth(laundaryName, newlaundaryPrice, laundaryImage){
       let productNameComing = laundaryName
-      let productPriceComing = laundaryPrice
+      let newlaundaryPrice = newlaundaryPrice
       let productImageComing = laundaryImage
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
-            addToCart(laundaryName, laundaryPrice, laundaryImage, userId)
+            addToCart(laundaryName, newlaundaryPrice, laundaryImage, userId)
           }else{
             window.location.href = 'account.html'
           }
@@ -395,12 +395,12 @@
     }
 
   // ADDING TO CART
-  async function addToCart(laundaryName, laundaryPrice, laundaryImage, userId){
+  async function addToCart(laundaryName, newlaundaryPrice, laundaryImage, userId){
     const cartRef = collection(db, "CARTS", userId, "carts");
 
     await addDoc(cartRef, {
       productName: laundaryName,
-      productPrice: laundaryPrice,
+      productPrice: newlaundaryPrice,
       productImage: laundaryImage,
     })
     .then(() => {

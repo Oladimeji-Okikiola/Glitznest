@@ -86,6 +86,8 @@
     <link href="css/style.css" rel="stylesheet" />
     <!-- responsive style -->
     <link href="css/responsive.css" rel="stylesheet" />
+       <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </head>
 
   <body>
@@ -369,6 +371,12 @@
       // LISTENING FOR NEW CART ITEMS
 
       let total = 0;
+
+
+      const deliveryCostPerProduct = 800;
+      let deliveryCost = 0;
+
+
       function startListeningForCarts() {
         if (!currentUser) {
           alert("Please sign in to view your cart");
@@ -385,9 +393,14 @@
         checkOutBtn.style.display = 'flex'
 
         let newTotal = 0;
+
+        let totalDeliveryCost = 0;
+
+
           querySnapshot.forEach((comingCart) => {
             const cartProp = comingCart.data();
 
+            // console.log(cartProp)
             let comingPrice = new Intl.NumberFormat('en-NG', {
                 style: 'currency',
                 currency: 'NGN'
@@ -407,6 +420,8 @@
 
             const productPrice = parseFloat(cartProp.productPrice);
             newTotal += productPrice;
+
+            totalDeliveryCost = cartProducts.length * deliveryCostPerProduct;
 
             
             let newDiv = document.createElement("div");
@@ -439,7 +454,13 @@
 
                   // Subtract the product price from the total and update the total
                   newTotal -= productPrice;
-                    totalPrice.textContent = newTotal.toLocaleString();
+                    // totalPrice.textContent = newTotal.toLocaleString();
+                    totalDeliveryCost = cartProducts.length * deliveryCostPerProduct;
+                    const finalTotal = newTotal + totalDeliveryCost;
+          totalPrice.textContent = new Intl.NumberFormat('en-NG', {
+            style: 'currency',
+            currency: 'NGN'
+          }).format(finalTotal);
                 } catch (error) {
                   console.error("Error deleting note:", error);
                   alert("Error Removing Product!");
@@ -448,7 +469,7 @@
           });
 
           // Update the total price
-            total = newTotal;
+            total = newTotal + totalDeliveryCost;
             totalPrice.textContent = new Intl.NumberFormat('en-NG', {
             style: 'currency',
             currency: 'NGN'

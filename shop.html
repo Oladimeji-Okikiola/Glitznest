@@ -331,7 +331,7 @@
           currency : 'NGN'
         }).format(`${element.data().newProductPrice}`)
 
-        console.log(element.data());
+        // console.log(element.data());
         
 
         let newDiv = document.createElement('div');
@@ -359,10 +359,10 @@
         
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const productName = element.data().productName;
-          const productPrice = element.data().productPrice;
+          const newProductPrice = element.data().newProductPrice;
           const productImage = element.data().productImage;
 
-          checkAuth(productName, productPrice, productImage)
+          checkAuth(productName, newProductPrice, productImage)
 
         });
         
@@ -371,9 +371,9 @@
     }
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(productName, productPrice, productImage){
+    function checkAuth(productName, newProductPrice, productImage){
       let productNameComing = productName
-      let productPriceComing = productPrice
+      let productPriceComing = newProductPrice
       let productImageComing = productImage
       
         onAuthStateChanged(auth, (user) => {
@@ -381,7 +381,7 @@
             // console.log(user)
             let userId = user.uid
             // console.log(productName, productImage, productPrice, userId)
-            addToCart(productName, productImage, productPrice, userId)
+            addToCart(productName, productImage, newProductPrice, userId)
           }else{
             window.location.href = 'account.html'
           }
@@ -389,12 +389,12 @@
   }
 
   // ADDING TO CART
-  async function addToCart(productName, productImage, productPrice, userId){
+  async function addToCart(productName, productImage, newProductPrice, userId){
     const cartRef = collection(db, "CARTS", userId, "carts");
 
     await addDoc(cartRef, {
       productName: productName,
-      productPrice: productPrice,
+      productPrice: newProductPrice,
       productImage: productImage,
     })
     .then(() => {

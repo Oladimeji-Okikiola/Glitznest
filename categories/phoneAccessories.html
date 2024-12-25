@@ -343,10 +343,10 @@
 
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const phoneName = element.data().phoneName;
-          const phonePrice = element.data().phonePrice;
+          const newphonePrice = element.data().newphonePrice;
           const phoneImage = element.data().phoneImage;
 
-          checkAuth(phoneName, phonePrice, phoneImage)
+          checkAuth(phoneName, newphonePrice, phoneImage)
 
         });
 
@@ -372,15 +372,15 @@ let shareNotifier = document.querySelector('.shareNotifier')
     }
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(phoneName, phonePrice, phoneImage){
+    function checkAuth(phoneName, newphonePrice, phoneImage){
       let productNameComing = phoneName
-      let productPriceComing = phonePrice
+      let newphonePrice = newphonePrice
       let productImageComing = phoneImage
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
-            addToCart(phoneName, phonePrice, phoneImage, userId)
+            addToCart(phoneName, newphonePrice, phoneImage, userId)
           }else{
             window.location.href = 'account.html'
           }
@@ -388,12 +388,12 @@ let shareNotifier = document.querySelector('.shareNotifier')
   }
 
   // ADDING TO CART
-  async function addToCart(phoneName, phonePrice, phoneImage, userId){
+  async function addToCart(phoneName, newphonePrice, phoneImage, userId){
     const cartRef = collection(db, "CARTS", userId, "carts");
 
     await addDoc(cartRef, {
       productName: phoneName,
-      productPrice: phonePrice,
+      productPrice: newphonePrice,
       productImage: phoneImage,
     })
     .then(() => {

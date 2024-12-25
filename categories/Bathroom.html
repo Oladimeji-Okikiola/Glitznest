@@ -350,10 +350,10 @@
 
         newDiv.querySelector('.buyBtn').addEventListener('click', () => {
           const bathroomName = element.data().bathroomName;
-          const bathroomPrice = element.data().bathroomPrice;
+          const newbathroomPrice = element.data().newbathroomPrice;
           const bathroomImage = element.data().bathroomImage;
 
-          checkAuth(bathroomName, bathroomPrice, bathroomImage)
+          checkAuth(bathroomName, newbathroomPrice, bathroomImage)
 
         });
 
@@ -392,12 +392,12 @@ let shareNotifier = document.querySelector('.shareNotifier')
 
 
     // CHECKING THE AUTHENTICATION 
-    function checkAuth(bathroomName, bathroomPrice, bathroomImage){
+    function checkAuth(bathroomName, newbathroomPrice, bathroomImage){
       
         onAuthStateChanged(auth, (user) => {
           if(user){
             let userId = user.uid
-            addToCart(bathroomName, bathroomImage, bathroomPrice, userId)
+            addToCart(bathroomName, bathroomImage, newbathroomPrice, userId)
           }else{
             window.location.href = 'account.html'
           }
@@ -405,13 +405,13 @@ let shareNotifier = document.querySelector('.shareNotifier')
   }
 
   // ADDING TO CART
-  async function addToCart(bathroomName, bathroomImage, bathroomPrice, userId){
+  async function addToCart(bathroomName, bathroomImage, newbathroomPrice, userId){
     const cartRef = collection(db, "CARTS", userId, "carts");
 
     await addDoc(cartRef, {
-      bathroomName: bathroomName,
-      bathroomPrice: bathroomPrice,
-      bathroomImage: bathroomImage,
+      productName: bathroomName,
+      productPrice: newbathroomPrice,
+      productImage: bathroomImage,
     })
     .then(() => {
       productNAmee.textContent = bathroomName
