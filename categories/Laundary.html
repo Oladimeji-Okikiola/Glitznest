@@ -331,7 +331,7 @@
         <div class="otherDet">
           <div class="buttonss">
             <button class="buyBtn">Add to Cart</button>
-            <button class="share"><i class="fa-solid fa-share"></button>
+            <button class="share">Share</button>
           </div>
           <div class="newOldPrice">
             <h3 class="pricing old">${formattedPrice}</h3>
@@ -361,9 +361,9 @@
   
     // CHECKING THE AUTHENTICATION 
     function checkAuth(laundaryName, newlaundaryPrice, laundaryImage){
-      let productNameComing = laundaryName
-      let newlaundaryPrice = newlaundaryPrice
-      let productImageComing = laundaryImage
+      // let productNameComing = laundaryName
+      // let newlaundaryPrice = newlaundaryPrice
+      // let productImageComing = laundaryImage
       
         onAuthStateChanged(auth, (user) => {
           if(user){
