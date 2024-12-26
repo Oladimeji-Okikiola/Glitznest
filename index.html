@@ -20,7 +20,12 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
+  <!-- swiper css -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+ <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
 </head>
@@ -49,7 +54,9 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="shop.html">Shop</a>
-                <a href="blog.html">Blog</a>
+                <a href="cart.html">Cart <i class="fa-solid fa-cart-plus"></i></a>
+                <a href="orders.html">Orders</a>
+                <a href="profile.html">Profile</a>
               </div>
             </div>
           </div>
@@ -72,9 +79,6 @@
           <h1 style="color: black;">
             Best Collections
           </h1>
-          <!-- <p style="color: rgb(14, 24, 212);">
-            At GlitzNest, Your Satisfaction is Our Concern.
-          </p> -->
           <div>
             <a href="shop.html" class="slider-link">
               Shop Now
@@ -95,9 +99,13 @@
           Latest Products
         </h2>
       </div>
-      <div class="row" id="generalContainer">
-        <!-- THE LATEST PRODUCTS FETCHED GOES IN HERE -->
+
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper"></div>
+
+        <div class="swiper-pagination"></div>
       </div>
+
       <div class="btn-box">
         <a href="shop.html">
           View All Products
@@ -108,8 +116,32 @@
 
   <!-- end shop section -->
 
-  <!-- about section -->
 
+  <!-- offer section -->
+  <section class="offer_section layout_padding" style="margin-top: -180px;">
+    <div class="container-fluid">
+      <div class="row" id="discountContainer">
+      <!-- space for discount products -->
+      </div>
+    </div>
+  </section>
+  <!-- end offer section -->
+
+  <!-- blog section -->
+  <section class="blog_section ">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Latest From Blog
+        </h2>
+      </div>
+      <div class="row" id="blogContainer">
+        <!-- the data fetched from the backed for blog goes in here -->
+      </div>
+    </div>
+  </section>
+
+  
   <section class="about_section  ">
     <div class="container">
       <div class="row">
@@ -137,163 +169,31 @@
     </div>
   </section>
 
-  <!-- end about section -->
-
-  <!-- offer section -->
-
-  <section class="offer_section layout_padding">
-    <div class="container-fluid">
-      <div class="row" id="discountContainer">
-      <!-- space for discount products -->
-      </div>
-    </div>
-  </section>
-
-  <!-- end offer section -->
-
-  <!-- blog section -->
-
-  <section class="blog_section ">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Latest From Blog
-        </h2>
-      </div>
-      <div class="row" id="blogContainer">
-        <!-- the data fetched from the backed for blog goes in here -->
-      </div>
-    </div>
-  </section>
-
-  <!-- end blog section -->
-
-  <!-- client section -->
-
-  <!-- <section class="client_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Testimonial
-        </h2>
-      </div>
-      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row">
-              <div class="col-md-11 col-lg-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="images/client.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <div class="name">
-                      <h6>
-                        Samantha Jonas
-                      </h6>
-                    </div>
-                    <p>
-                      It is a long established fact that a reader will be
-                      distracted by the readable cIt is a long established fact
-                      that a reader will be distracted by the readable c
-                    </p>
-                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-md-11 col-lg-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="images/client.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <div class="name">
-                      <h6>
-                        Samantha Jonas
-                      </h6>
-                    </div>
-                    <p>
-                      It is a long established fact that a reader will be
-                      distracted by the readable cIt is a long established fact
-                      that a reader will be distracted by the readable c
-                    </p>
-                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="row">
-              <div class="col-md-11 col-lg-10 mx-auto">
-                <div class="box">
-                  <div class="img-box">
-                    <img src="images/client.jpg" alt="" />
-                  </div>
-                  <div class="detail-box">
-                    <div class="name">
-                      <h6>
-                        Samantha Jonas
-                      </h6>
-                    </div>
-                    <p>
-                      It is a long established fact that a reader will be
-                      distracted by the readable cIt is a long established fact
-                      that a reader will be distracted by the readable c
-                    </p>
-                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel_btn-container">
-          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
-            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- end client section -->
-
-
  <!-- info section -->
  <section class="info_section layout_padding2">
   <div class="container">
+
+
+
+    <div class="sellPartner">
+        <h3>Partner with Us?</h3>
+        <p>
+          <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+        </p>
+    </div>
+
     <div class="row info_form_social_row">
-      <!-- <div class="col-md-8 col-lg-9">
-        <div class="info_form">
-          <form action="">
-            <input type="email" placeholder="Enter your email">
-            <button>
-              <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </button>
-          </form>
-        </div>
-      </div> -->
       <div class="col-md-4 col-lg-3">
 
         <div class="social_box">
-          <a href="">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
+          <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+            <i class="fa-brands fa-whatsapp"></i>
           </a>
-          <a href="">
-            <i class="fa fa-twitter" aria-hidden="true"></i>
+          <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
           </a>
-          <a href="">
-            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -324,7 +224,7 @@
       </div>
       <div class="col-md-6 col-lg-3">
         <h4>
-          Contact Us
+          <a href="contactUs.html">Contact Us</a>
         </h4>
         <div class="info_contact">
           <a href="">
@@ -353,7 +253,11 @@
 
 <!-- end info_section -->
 
+<!-- Send an email -->
 
+<div class="sendAMail">
+  <a href="contactUs.html"><i class="fa-solid fa-envelope" style="font-size: 30px; cursor: pointer;"></i></a>
+</div>
 
   <!-- footer section -->
   <footer class="footer_section">
@@ -373,10 +277,11 @@
   <script src="js/bootstrap.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script type="module">
-    
-// FUNCTION TO UPDATE THE LATEST PRODUCTS
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
@@ -411,43 +316,33 @@ async function readAllDocuments() {
 
 readAllDocuments()
 
+let swiperr = document.querySelector('.swiper-wrapper')
   function displayDataIn(querySnapshot){
     querySnapshot.forEach(element => {
       let newDiv = document.createElement('div')
-      newDiv.setAttribute('class', 'col-sm-6 col-md-4 col-lg-3')
+      newDiv.setAttribute('class', 'swiper-slide')
 
       newDiv.innerHTML = `
 
-        <div class="box">
-            <a href="">
-              <div class="img-box">
-                <img src="${element.data().latestImage}" alt="">
-              </div>
-              <div class="detail-box">
-                <h6>
-                ${element.data().latestName}
-                </h6>
-                <h6>
-                  Price
-                  <span>
-                    &#x20A6; ${element.data().latestPrice}
-                  </span>
-                </h6>
-              </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
-          </div>      
+      <img src="${element.data().latestImage}" alt="">
+            <div class="latestOthers">
+              <h4>${element.data().latestName}</h4>
+              <h4>&#x20A6; ${element.data().latestPrice}</h4>
+            </div>     
       `
-      generalContainer.appendChild(newDiv)
+      swiperr.appendChild(newDiv)
     });
   }
 
 
-
+// SWIPER
+  var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
 
   // FUNCTION TO DISPLAY BLOG
 const myBlog = collection(db, 'BLOG');
@@ -524,7 +419,7 @@ readAllDiscount()
               <h2>
                 Upto ${element.data().discountPrice}% Off
               </h2>
-              <a href="shop.html">
+              <a href="shop.html" class='offerBox'>
                 Shop Now
               </a>
             </div>

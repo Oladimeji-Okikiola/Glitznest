@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/favicon.png" type="image/gif" />
+  <meta name="keywords" content="jeweleries, home, Decoration, phone, accessories, chain, pendant, kitchen, bathroom, pot, kettle, utensils" />
+  <meta name="description" content="A store for your everyday needs" />
+  <meta name="author" content="ABTech" />
+  <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .registerUser{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    input{
+        width: 200px;
+        height: 30px;
+        border-radius: 30px;
+        padding: 5px;
+    }
+    button{
+        width: 150px;
+        height: 30px;
+        border-radius: 30px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        outline: 2px solid black;
+    }
+    #showHidePass{
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .registerUser p{
+        margin: -9px;
+        width: 50px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-radius: 20px;
+        border: 2px solid black;
+    }
+    .signINN{
+        margin-top: 10px;
+    }
+    .registerUser h3{
+      font-size: 20px;
+      text-align-last: center;
+      font-weight: bolder;
+    }
+    .dontHave{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .overAll{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .overAllReg{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;margin-top: 10px;
+    }
+    .doNot, .doot{
+      cursor: pointer;
+    }
+    #state{
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+    }
+    #localGvt{
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+    }
+
+    select {
+      padding: 5px;
+      overflow: hidden; 
+      appearance: none; 
+      -webkit-appearance: none; 
+      -moz-appearance: none; 
+        }
+
+        select::-webkit-scrollbar {
+            display: none; 
+        }
+        .allP{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          color: red;
+          border: none;
+          font-size: 14px;
+        }
+        li{
+          list-style-type: none;
+        }
+</style>
+
+  <title>GlitzNest</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- header section strats -->
+  <header class="header_section innerpage_header">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="index.html">
+          <span>
+            GlitzNest
+          </span>
+        </a>
+        <div class="" id="">
+
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+
+  <!-- notifier -->
+  <div class="popNotifier" style="display: none;">
+    <p class="overIn"> You Registered with the email <span class="productNAmee"></span> Redirecting...</p>
+  </div>
+
+
+  <div class="overAllReg">
+
+    <div class="registerUser register" >
+        <h3>Register if you don't have an account</h3>
+
+        <input type="text" id="username" placeholder="Full name" >
+        <h4 class="fullnameNoti allP" style="display: none;">Full name should contain First and Last name</h4>
+
+        <input type="email" id="email" placeholder="Email" >
+        <h4 class="emailNoti allP" style="display: none;">Please enter a correct email</h4>
+
+        <input type="text" id="phoneNumberIn" placeholder="Phone Number" >
+        <h4 class="phoneNoti allP" style="display: none;">Phone Number should contain only Numbers</h4>
+
+        <select id="state"></select>
+        <h4 class="stateNoti allP" style="display: none;">Please Select a State</h4>
+
+        <select id="localGvt"><option value="local Gvt"> Local Government</option></select>
+        <h4 class="localNoti allP" style="display: none;">Please Select a Local Government</h4>
+
+        <input type="text" id="addressIn" placeholder="Full Address" >
+        <h4 class="addressNoti allP" style="display: none;">Please enter a correct Address</h4>
+
+        <input type="password" id="password" placeholder="Enter your password" >
+        <div class="passNoti allP" style="display: none;">
+          <ul>
+            <li>An Upper Case Letter</li>
+            <li>A Special Character</li>
+            <li>Lower Case Letters</li>
+            <li>Must not be less than 9 values</li>
+          </ul>
+        </div>
+        <h4 class="passNoti allP" style="display: none;">Password must contain  at least an upper</h4>
+        <p id="showHidePass" style="border: none;">show password</p>
+        <button id="signUp">Register</button>
+  
+      </div>
+      <div class="dontHave">
+        <p>
+          Already has an account? <span class="doot">Login.. OR</span>
+        </p>
+      </div>
+      <div class="registerWithGoogle">
+        <button class="withGoogle" style="background-color: rgb(41, 76, 202); width: 200px;"><i class="fa-brands fa-google"></i> Sign in with Google</button>
+      </div>
+  </div>
+
+
+  <div class="overAll" style="display: none;">
+
+    <div class="registerUser signINN">
+        <h3>If you have an account, sign In</h3>
+        <input type="email" id="signEmail" placeholder="Enter your email" >
+        <input type="password" id="signPassword" placeholder="Enter your passowrd" >
+        <button id="signIn">sign In</button>
+    </div>
+  
+    <div class="dontHave">
+      <p>
+        Don't have an account? <span class="doNot">Register..</span>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- info section -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+
+      <div class="sellPartner">
+          <h3>Partner with Us?</h3>
+          <p>
+            <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+          </p>
+      </div>
+
+  
+      <div class="row info_form_social_row">
+        <div class="col-md-4 col-lg-3">
+  
+          <div class="social_box">
+            <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+              <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row info_main_row">
+
+        <div class="col-md-6 col-lg-3">
+          <div class="info_detail">
+            <h4>
+              About Us
+            </h4>
+            <p class="mb-0">
+              Glitznest is the home for varieties.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <h4>
+            <a href="contactUs.html">Contact Us</a>
+          </h4>
+          <div class="info_contact">
+            <a href="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Location
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call +234 8088363852
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope"></i>
+              <span>
+                edidioluwat@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- end info_section -->
+
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved
+        <a href="https://abtech-two.vercel.app">ABTech</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+
+
+
+  <!-- function to fetch the products -->
+  
+  <script type="module" src="account.js"></script>
+
+</body>
+
+</html>

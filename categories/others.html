@@ -23,6 +23,8 @@
   <link href="../css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="../css/responsive.css" rel="stylesheet" />
+   <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -47,9 +49,10 @@
             <div id="myNav" class="overlay">
               <div class="overlay-content">
                 <a href="../index.html">Home</a>
-                <a href="../about.html">About</a>
+                <a href="../profile.html">Profile</a>
                 <a href="../shop.html">Shop</a>
-                <a href="../blog.html">Blog</a>
+                <a href="../orders.html">Orders</a>
+                <a href="../cart.html">Cart  <i class="fa-solid fa-cart-plus"></i></a>
               </div>
             </div>
           </div>
@@ -59,9 +62,6 @@
     </div>
   </header>
   <!-- end header section -->
-
-
-  <!-- search section -->
 
   <!-- SEARCH BAR -->
 <div class="searchBox">
@@ -90,98 +90,103 @@
   <h3>Varieties</h3>
 </div>
 
+<div class="popNotifier" style="display: none;">
+  <p><span class="productNAmee"></span> Added to cart!</p>
+</div>
+
+<div class="shareNotifier" style="display: none;">
+  <p> Link Copied</p>
+</div>
+
   <!-- PRODUCTS BY SECTIONS -->
-  <!-- jeweleries -->
+  <!-- OTHERS -->
   <div class="mainCard" id="mainCard">
     <!-- the products goes in here -->
     <div class="loader"></div>
   </div>
 
-  <!-- info section -->
-  <!-- info section -->
-  <section class="info_section layout_padding2">
-    <div class="container">
-      <div class="row info_form_social_row">
-        <!-- <div class="col-md-8 col-lg-9">
-          <div class="info_form">
-            <form action="">
-              <input type="email" placeholder="Enter your email">
-              <button>
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </button>
-            </form>
-          </div>
-        </div> -->
-        <div class="col-md-4 col-lg-3">
+   <!-- info section -->
+ <section class="info_section layout_padding2">
+  <div class="container">
 
-          <div class="social_box">
-            <a href="">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="row info_main_row">
-        <div class="col-md-6 col-lg-3">
-          <div class="info_links">
-            <h4>
-              Menu
-            </h4>
-            <div class="info_links_menu">
-              <a href="../index.html">Home</a>
-              <a href="../about.html">About</a>
-              <a href="../shop.html">Shop</a>
-              <a href="../blog.html">Blog</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="info_detail">
-            <h4>
-              About Us
-            </h4>
-            <p class="mb-0">
-              Glitznest is the home for varieties.
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <h4>
-            Contact Us
-          </h4>
-          <div class="info_contact">
-            <a href="">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>
-                Location
-              </span>
-            </a>
-            <a href="">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>
-                Call +234 8088363852
-              </span>
-            </a>
-            <a href="">
-              <i class="fa fa-envelope"></i>
-              <span>
-                edidioluwat@gmail.com
-              </span>
-            </a>
-          </div>
+    <div class="sellPartner">
+        <h3>Partner with Us?</h3>
+        <p>
+          <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+        </p>
+    </div>
+
+
+    <div class="row info_form_social_row">
+      <div class="col-md-4 col-lg-3">
+
+        <div class="social_box">
+          <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>
-  </section>
+    <div class="row info_main_row">
+      <div class="col-md-6 col-lg-3">
+        <div class="info_links">
+          <h4>
+            Menu
+          </h4>
+          <div class="info_links_menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="shop.html">Shop</a>
+            <a href="blog.html">Blog</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="info_detail">
+          <h4>
+            About Us
+          </h4>
+          <p class="mb-0">
+            Glitznest is the home for varieties.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <h4>
+          <a href="contactUs.html">Contact Us</a>
+        </h4>
+        <div class="info_contact">
+          <a href="">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <span>
+              Location
+            </span>
+          </a>
+          <a href="">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span>
+              Call +234 8088363852
+            </span>
+          </a>
+          <a href="">
+            <i class="fa fa-envelope"></i>
+            <span>
+              edidioluwat@gmail.com
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- end info_section -->
-
 
   <!-- footer section -->
   <footer class="footer_section">
@@ -236,6 +241,7 @@
   });
 }
 
+
     const firebaseConfig = {
     apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
     authDomain: "saveandget-test1.firebaseapp.com",
@@ -250,7 +256,8 @@
     
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
-  import { getFirestore, doc, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+  import {getAuth, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+  import { getFirestore, doc, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
     let searchThrough = document.getElementById('searchInput')
     let productCard = document.getElementById('mainCard')
@@ -260,7 +267,9 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     let db = getFirestore();
-    // let displayTutorial = document.getElementById('mainDisplay');
+    const auth = getAuth()
+    let popNotifier = document.querySelector('.popNotifier')
+    let productNAmee = document.querySelector('.productNAmee')
 
     
     const myCollection = collection(db, 'OTHERS');
@@ -269,7 +278,6 @@
     // THE SEARCH WITH KEYUP
     searchThrough.addEventListener('keyup', e => {
         let searchedString = e.target.value.toLowerCase();
-        // console.log(searchedString);
         let returnValue = querySnapshot.docs.filter(newEntry => {
             return newEntry.data().othersName.toLowerCase().includes(searchedString);
         });
@@ -291,82 +299,116 @@
     productCard.innerHTML = ''; 
     querySnapshot.forEach((element) => {
 
+      let slug = element.data().slug
+      
       let formattedPrice = new Intl.NumberFormat('en-NG', {
           style : 'currency',
           currency : 'NGN'
         }).format(`${element.data().othersPrice}`)
 
+        
+        let newPrice = Intl.NumberFormat('en-NG', {
+          style : 'currency',
+          currency : 'NGN'
+        }).format(`${element.data().newothersPrice}`)
+
+
+
         let newDiv = document.createElement('div');
         newDiv.setAttribute('class', 'card');
         newDiv.innerHTML = `
 
-          <img src="${element.data().othersImage}" alt="${element.data().othersName}">
-          <h3>${element.data().othersName}</h3>
-          <h3>${formattedPrice}</h3>
-          <button class="buyBtn">Order</button>
+                      
+        <img src="${element.data().othersImage}" alt="${element.data().othersName}">
+        <h3>${element.data().othersName}</h3>
+
+        <div class="otherDet">
+          <div class="buttonss">
+            <button class="buyBtn">Add to Cart</button>
+            <button class="share">Share</button>
+          </div>
+          <div class="newOldPrice">
+            <h3 class="pricing old">${formattedPrice}</h3>
+            <h3 class="pricing">${newPrice}</h3>
+          </div>
+        </div>
         `;
 
-        // Add event listener to the button to redirect to WhatsApp with product details
-        newDiv.querySelector('.buyBtn').addEventListener('click', () => {
-            const othersName = element.data().othersName;
-            const othersPrice = element.data().othersPrice;
-          // check local storage for customer's info, if it exists, send, if it doesnt, collect their phone number and email.
-          const customerDetails = JSON.parse(localStorage.getItem('customerDetails'))
-          if(!customerDetails){
-            const fullName = prompt('Enter Full Name')
-            const phoneNumber = prompt('Enter Phone Number')
-            const email = prompt('Enter Email')
+                
+        newDiv.querySelector('.share').addEventListener('click', () => {
+          generateSlug(slug)
+        })
 
-            if(phoneNumber && email && fullName){
-              const newCustomerDetails = {phoneNumber, email, fullName}
-              localStorage.setItem('customerDetails', JSON.stringify(newCustomerDetails))
-              setTimeout(() => {
-            sendToTelegram(customerDetails, othersName, othersPrice)
-              },2000)
-            }else{
-              alert('Both Phone Number and Email are required for delivery')
-            }
-          }else{
-            sendToTelegram(customerDetails, othersName, othersPrice)
-          }
+        newDiv.querySelector('.buyBtn').addEventListener('click', () => {
+          const othersName = element.data().othersName;
+          const newothersPrice = element.data().newothersPrice;
+          const othersImage = element.data().othersImage;
+
+          checkAuth(othersName, newothersPrice, othersImage)
+
         });
 
         productCard.appendChild(newDiv);
     });
 
   }
-  // sending to telegram
-  function sendToTelegram(customerDetails, othersName, othersPrice){
-      const API_KEY = '8081336682:AAF37i91uNDEiC9WrEK_3yDUvTU5axAvtRU'
-      const chat_id = 5523097114
 
-      const message = `
-        New Order:
-        Product: ${othersName}
-        Price: ${othersPrice}
-        Customer Name: ${customerDetails.fullName}
-        Customer Phone: ${customerDetails.phoneNumber}
-        Customer Email: ${customerDetails.email}
-       `
-    ;
+  let shareNotifier = document.querySelector('.shareNotifier')
 
-fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-      chat_id: `${chat_id}`,
-      text: message,
-  }),
-})
-.then(response => response.json())
-.then(data =>  {
-      console.log('Message sent:', data)
-      if(data.ok){
-        alert(`Order of ${othersName} placed`)
-      }
+      // GENERATE SHARABLE LINKS
+      function generateSlug(slug){
+      const favValue = 'OTHERS'
+      const redirectUrl = `${window.location.origin}/single.html?slug=${slug}&road=${favValue}`
+        navigator.clipboard.writeText(redirectUrl)
+        .then(() => {
+          shareNotifier.style.display = 'flex'
+          setTimeout(() => {
+            shareNotifier.style.display = 'none'
+          }, 1500)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
+
+
+    // CHECKING THE AUTHENTICATION 
+    function checkAuth(othersName, othersPrice, othersImage){
+      let productNameComing = othersName
+      let newothersPrice = newothersPrice
+      let productImageComing = othersImage
+      
+        onAuthStateChanged(auth, (user) => {
+          if(user){
+            let userId = user.uid
+            addToCart(othersName, newothersPrice, othersImage, userId)
+          }else{
+            window.location.href = 'account.html'
+          }
+        })
+  }
+
+  // ADDING TO CART
+  async function addToCart(othersName, newothersPrice, othersImage, userId){
+    const cartRef = collection(db, "CARTS", userId, "carts");
+
+    await addDoc(cartRef, {
+      productName: othersName,
+      productPrice: newothersPrice,
+      productImage: othersImage,
     })
-.catch(error => console.error('Error sending message:', error));
-}
+    .then(() => {
+      productNAmee.textContent = othersName
+      popNotifier.style.display = 'flex'
+      setTimeout(() => {
+        popNotifier.style.display = 'none'
+      }, 1500)
+    })
+    .catch(err => {
+      console.error('the error is ', err);
+    })
+  }
 
   </script>
 

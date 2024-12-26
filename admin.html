@@ -12,16 +12,11 @@
             padding: 0;
             box-sizing: border-box;
         }
-        .directorate{
-            /* width: 20%; */
-            /* border-left: 3px solid black; */
-        }
         .productsShow{
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            /* width: 70%; */
         }
         .buttonDiv{
             display: flex;
@@ -54,6 +49,9 @@
             gap: 10px;
             padding: 5px;
         }
+        .categories{
+            margin-top: 50px;
+        }
 
         ul li a{
             text-decoration: none;
@@ -80,9 +78,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* justify-content: space-evenly;
-            align-items: center; */
-            /* justify-content: space-between; */
+
         }
         .navigate{
             position: fixed;
@@ -110,6 +106,9 @@
             border: none;
             color: white;
             height: 50px;
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
         #adminName{
             color: rgb(162, 141, 113);
@@ -120,6 +119,44 @@
             padding: 5px 7px;
             border-radius: 30px;
             border: 2px solid black;
+        }
+        #proStatus{
+            width: 150px;
+            height: 30px;
+            border-radius: 30px;
+        }
+        .productDetails img{
+            width: 150px;
+        }
+        .productDetails{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 7px;
+        }
+        #proAppend{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .statusLooker{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(47, 39, 39);
+            padding: 10px;
+            font-size: 20px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 50px;
+        }
+        .statusUpdate{
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -146,6 +183,7 @@
             <li><a href="#latest">Latest Products</a></li>
             <li><a href="#blog">Blogs</a></li>
             <li><a href="#discount">Discount</a></li>
+            <li><a href="#trackProduct">Track Product</a></li>
         </ul>
     </div>
 
@@ -165,8 +203,11 @@
                             <input type="text" id="productName" placeholder="Product Name..">
         
                             <!-- PRODUCTS PRICE -->
-                            <label for="productPrice">Product Price:</label>
+                            <label for="productPrice">Old Price:</label>
                             <input type="text" id="productPrice" placeholder="Product Price..">
+
+                            <label for="NewproductPrice">New Price:</label>
+                            <input type="text" id="NewproductPrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="productImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -196,6 +237,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="kitchenPrice">Product Price:</label>
                             <input type="text" id="kitchenPrice" placeholder="Product Price..">
+                            
+                            <label for="newkitchenPrice">New Price:</label>
+                            <input type="text" id="newkitchenPrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="kitchenImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -226,6 +270,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="laundaryPrice">Product Price:</label>
                             <input type="text" id="laundaryPrice" placeholder="Product Price..">
+                                                        
+                            <label for="newlaundaryPrice">New Price:</label>
+                            <input type="text" id="newlaundaryPrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="laundaryImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -256,6 +303,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="clothingPrice">Product Price:</label>
                             <input type="text" id="clothingPrice" placeholder="Product Price..">
+                                                                                    
+                            <label for="newclothingPrice">New Price:</label>
+                            <input type="text" id="newclothingPrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="clothingImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -286,6 +336,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="bathroomPrice">Product Price:</label>
                             <input type="text" id="bathroomPrice" placeholder="Product Price..">
+                                                                                                                
+                            <label for="newbathroomPrice">New Price:</label>
+                            <input type="text" id="newbathroomPrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="bathroomImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -316,6 +369,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="phonePrice">Product Price:</label>
                             <input type="text" id="phonePrice" placeholder="Product Price..">
+                                                                                                                                            
+                            <label for="newphonePrice">New Price:</label>
+                            <input type="text" id="newphonePrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="phoneImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -346,6 +402,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="homePrice">Product Price:</label>
                             <input type="text" id="homePrice" placeholder="Product Price..">
+                                                                                                                                                                        
+                            <label for="newhomePrice">New Price:</label>
+                            <input type="text" id="newhomePrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="homeImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -376,6 +435,9 @@
                             <!-- PRODUCTS PRICE -->
                             <label for="othersPrice">Product Price:</label>
                             <input type="text" id="othersPrice" placeholder="Product Contact..">
+                                                                                                                                                                                                    
+                            <label for="newothersPrice">New Price:</label>
+                            <input type="text" id="newothersPrice" placeholder="New Product Price..">
         
                                 <!--PRODUCT IMAGE -->
                                 <label for="othersImage"><i class="fa-regular fa-image" style="font-size: 40px; cursor: pointer;"></i></label>
@@ -483,9 +545,37 @@
                             <button id="discountDelete">Delete</button>
                         </div>
                 </section>
+
+                <hr>
+
+                <!-- TRACKING PRODUCT -->
+                <section id="trackProduct" class="directorate">
+                    <div class="sectionName">
+                        <h3>TRACK PRODUCTS</h3>
+                    </div>
+                    <input type="text" id="userId" placeholder="Enter User's Id">
+                    <input type="text" id="proId" placeholder="Enter Product's Id">
+
+                    <div id="proAppend">
+                    </div>
+
+
+                    <select id="proStatus">
+                        <option>Ordered</option>
+                        <option>Shipped</option>
+                        <option>Delivered</option>
+                    </select>
+                    <div class="buttonDiv">
+                        <button id="fetchPro">Fetch</button>
+                        <button id="updatePro">Update</button>
+                    </div>
+                </section>
     </div>
 </div>
 
+        <div class="statusLooker" style="display: none;">
+            <p>Status Changed to :<span class="statusUpdate"></span></p>
+        </div>
 
 
 

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <link rel="icon" href="images/favicon.png" type="image/gif" />
+    <meta
+      name="keywords"
+      content="jeweleries, home, Decoration, phone, accessories, chain, pendant, kitchen, bathroom, pot, kettle, utensils"
+    />
+    <meta name="description" content="A store for your everyday needs" />
+    <meta name="author" content="ABTech" />
+
+    <style>
+      .successStory {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: auto;
+        background-color: green;
+        color: white;
+        width: 100vw;
+        height: 100vw;
+      }
+      .successStory a {
+        text-decoration: none;
+        color: white;
+      }
+    </style>
+
+    <title>GlitzNest</title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+       <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+
+  <body>
+    <!-- header section strats -->
+    <header class="header_section innerpage_header">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span> GlitzNest </span>
+          </a>
+          <div class="" id="">
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1"> </span>
+                <span class="s-2"> </span>
+                <span class="s-3"> </span>
+              </button>
+              <div id="myNav" class="overlay">
+                <div class="overlay-content">
+                  <a href="index.html">Home</a>
+                  <a href="shop.html">Shop</a>
+                  <a href="orders.html">Orders</a>
+                  <a href="cart.html">Cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <div class="successStory">
+      <p>Order Successfully Placed</p>
+      <a href="shop.html">Happy shopping!!!</a>
+    </div>
+
+    <!-- info section -->
+    <section class="info_section layout_padding2">
+      <div class="container">
+    
+    
+    
+        <div class="sellPartner">
+            <h3>Partner with Us?</h3>
+            <p>
+              <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+            </p>
+        </div>
+    
+    
+    
+    
+    
+        <div class="row info_form_social_row">
+          <div class="col-md-4 col-lg-3">
+    
+            <div class="social_box">
+              <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row info_main_row">
+          <div class="col-md-6 col-lg-3">
+            <div class="info_links">
+              <h4>
+                Menu
+              </h4>
+              <div class="info_links_menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_detail">
+              <h4>
+                About Us
+              </h4>
+              <p class="mb-0">
+                Glitznest is the home for varieties.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h4>
+              <a href="contactUs.html">Contact Us</a>
+            </h4>
+            <div class="info_contact">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +234 8088363852
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope"></i>
+                <span>
+                  edidioluwat@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- end info_section -->
+
+    <!-- end info_section -->
+
+    <!-- footer section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved
+          <a href="https://abtech-two.vercel.app">ABTech</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+
+    <!-- function to fetch the products -->
+    <script type="module">
+
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
+        authDomain: "saveandget-test1.firebaseapp.com",
+        databaseURL: "https://saveandget-test1-default-rtdb.firebaseio.com",
+        projectId: "saveandget-test1",
+        storageBucket: "saveandget-test1.appspot.com",
+        messagingSenderId: "764820232194",
+        appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b",
+      };
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+      import {
+        getFirestore,
+        onSnapshot,
+        doc,
+        getDoc,
+        getDocs,
+        setDoc,
+        collection,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        deleteField,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+      import {
+        getAuth,
+        signOut,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      let db = getFirestore();
+      const auth = getAuth();
+
+        let currentUser = null;
+
+        // CHECK USER'S AUTHENTICATION
+        function stateChanged() {
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              currentUser = user.uid;
+              getCartFromLocalStorage(currentUser)
+            } else {
+              window.location.href = "account.html";
+            }
+          });
+        }
+        stateChanged();
+
+    //   RETRIEVE THE CART DATA FROM LOCAL STORAGE
+      function getCartFromLocalStorage(currentUser) {
+        const cartData = localStorage.getItem("paymentDetails");
+        if (cartData) {
+
+          const products = JSON.parse(cartData);
+
+          let deliveryAddress = products.deliveryAddress
+          let deliveryEmail = products.deliveryEmail
+          let paymentReference = products.paymentReference
+          let deliveryName = products.deliveryName
+          let deliveryPhone = products.deliveryPhone
+          let authorizedAmount = products.authorizedAmount
+
+            let allCartData = products.cartProducts
+
+            if (currentUser) {
+            sendToTelegram(currentUser, deliveryAddress, deliveryEmail, paymentReference, deliveryName, deliveryPhone, allCartData, authorizedAmount);
+        } else {
+            console.error("Error: currentUser is null or undefined.");
+        }
+
+
+          return products;
+        } else {
+          console.log("No cart data found in localStorage.");
+          return [];
+        }
+      }
+
+
+
+    //   SEND THE CART DETAILS TO THE ADMIN ON TELEGRAM
+
+    async function sendToTelegram(currentUser, deliveryAddress, deliveryEmail, paymentReference, deliveryName, deliveryPhone, allCartData, authorizedAmount) {
+    const API_KEY = '8015987269:AAEo89RY2jpi-XS3L2J-4g6YP2uvNWodcy8';
+    const chat_id = 7290720641;
+
+    // Format the array of products into a readable string
+    const formattedProducts = allCartData
+        .map((product, index) =>
+            `${index + 1}. Name: ${product.name}, Price: ${product.price}, Image: ${product.image}, ProductId: ${product.id}`
+        )
+        .join("\n");
+
+    const message = `
+      New Order:
+      Products:\n${formattedProducts}
+      Total Price: ${authorizedAmount}
+      Customer Id: ${currentUser}
+      Customer Name: ${deliveryName}
+      Customer Phone: ${deliveryPhone}
+      Customer Email: ${deliveryEmail}
+      Customer Address: ${deliveryAddress}
+      Payment Reference: ${paymentReference}
+    `;
+
+    try {
+        const response = await fetch(`https://api.telegram.org/bot${API_KEY}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: `${chat_id}`,
+                text: message,
+            }),
+        });
+
+        const data = await response.json();
+        console.log('Message sent:', data);
+        console.log('User:', currentUser);
+
+        if (data.ok) {
+            console.log('Message sent successfully');
+            // send all cart items to the order page
+            await sendToOrder(currentUser, allCartData)
+
+            // Delete all cart items from the Firebase subcollection
+            const cartRef = collection(db, "CARTS", currentUser, "carts");
+            for (const product of allCartData) {
+                try {
+                    const productRef = doc(cartRef, product.id);
+                    await deleteDoc(productRef);
+                    console.log(`Deleted cart item with ID: ${product.id}`);
+                } catch (error) {
+                    console.error(`Error deleting cart item with ID: ${product.id}`, error);
+                }
+            }
+            console.log('All cart items deleted from Firebase.');
+            localStorage.removeItem('paymentDetails');
+        }
+    } catch (error) {
+        console.error('Error sending message:', error);
+    }
+}
+
+// SEND TO ORDER
+async function sendToOrder(currentUser, allCartData) {
+    const orderRef = collection(db, "CARTS", currentUser, "orders");
+
+    for (const product of allCartData) {
+        try {
+            // Create a new document in the "orders" subcollection for each product
+            const docRef = doc(orderRef, product.id);  // You can use product.id as the document ID
+            await setDoc(docRef, product);
+            console.log(`Saved product with ID: ${product.id} to orders subcollection.`);
+        } catch (error) {
+            console.error(`Error saving product with ID: ${product.id} to orders subcollection`, error);
+        }
+    }
+}
+
+
+
+
+    </script>
+  </body>
+</html>

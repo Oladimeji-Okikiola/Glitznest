@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <link rel="icon" href="images/favicon.png" type="image/gif" />
+    <meta
+      name="keywords"
+      content="jeweleries, home, Decoration, phone, accessories, chain, pendant, kitchen, bathroom, pot, kettle, utensils"
+    />
+    <meta name="description" content="A store for your everyday needs" />
+    <meta name="author" content="ABTech" />
+     <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>GlitzNest</title>
+
+    <style>
+      .customerInternal{
+        /* display: flex; */
+        /* justify-content: center; */
+        display: grid;
+        grid-template-columns: 100fr;
+        align-items: center;
+        gap: 7px;
+        flex-direction: column;
+      }
+      .mainDetails{
+        font-size: 17px;
+      }
+      .editProfile{
+        background-color: blue;
+      }
+      .logout{
+        background-color: red;
+      }
+      .editProfile{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+      }
+      input{
+        width: 300px;
+      }
+      #State{
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+      color: black;
+    }
+    #localGvt{
+      width: 200px;
+      height: 30px;
+      border-radius: 30px;
+    }
+
+    select {
+      padding: 5px;
+      overflow: hidden; 
+      appearance: none; 
+      -webkit-appearance: none; 
+      -moz-appearance: none; 
+        }
+
+        select::-webkit-scrollbar {
+            display: none; 
+        }
+        label{
+          color: white;
+        }
+    </style>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- header section strats -->
+    <header class="header_section innerpage_header">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span> GlitzNest </span>
+          </a>
+          <div class="" id="">
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1"> </span>
+                <span class="s-2"> </span>
+                <span class="s-3"> </span>
+              </button>
+              <div id="myNav" class="overlay">
+                <div class="overlay-content">
+                  <a href="index.html">Home</a>
+                  <a href="shop.html">Shop</a>
+                  <a href="orders.html">Orders</a>
+                  <a href="cart.html">Cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+
+    <!-- PROFILE DETAILS -->
+
+    <div class="customerDetails"></div>
+    <div id="editProfileDiv" class="editProfileDiv" style="display: none;"></div>
+
+      <div class="editProfile" style="display: none;">
+        <input type="text" id="fullname" placeholder="Full Name">
+        <input type="text" id="addresss" placeholder="Address">
+        <label for="State">State</label>
+        <select id="State"></select>
+        <select id="localGvt"><option value="local Gvt"> Local Government</option></select>
+        <input type="text" id="phone" placeholder="Phone Number">
+        <button class="updateBtn">Update</button>
+      </div>
+
+    <!-- info section -->
+    <section class="info_section layout_padding2">
+      <div class="container">
+    
+    
+    
+        <div class="sellPartner">
+            <h3>Partner with Us?</h3>
+            <p>
+              <a href="https://wa.link/v297wg">Sell your products on our platform? We're just a text away.. Click on this text!</a>
+            </p>
+        </div>
+    
+    
+    
+    
+    
+        <div class="row info_form_social_row">
+          <div class="col-md-4 col-lg-3">
+    
+            <div class="social_box">
+              <a href="https://wa.link/xz4j93" style="background-color: green; color: white;">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="" style="background-color: rgb(2, 14, 175); color: white;">
+                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="" style="background-color: rgb(77, 0, 128); color: white;">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="row info_main_row">
+          <div class="col-md-6 col-lg-3">
+            <div class="info_links">
+              <h4>
+                Menu
+              </h4>
+              <div class="info_links_menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="shop.html">Shop</a>
+                <a href="blog.html">Blog</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_detail">
+              <h4>
+                About Us
+              </h4>
+              <p class="mb-0">
+                Glitznest is the home for varieties.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h4>
+              <a href="contactUs.html">Contact Us</a>
+            </h4>
+            <div class="info_contact">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call +234 8088363852
+                </span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope"></i>
+                <span>
+                  edidioluwat@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- end info_section -->
+
+    <!-- end info_section -->
+
+    <!-- footer section -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved
+          <a href="https://abtech-two.vercel.app">ABTech</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+    <!-- jQery -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    <!-- For Payment Gateway -->
+    <script src="https://js.paystack.co/v1/inline.js"></script> 
+    <!-- function to fetch the products -->
+
+    <script type="module" src="js/profile.js"></script>
+  </body>
+</html>
