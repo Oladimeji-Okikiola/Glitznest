@@ -1,46 +1,6 @@
 
 
 
-let overAll = document.querySelector('.overAll')
-let doNot = document.querySelector('.doNot')
-let register = document.querySelector('.register')
-let overAllReg = document.querySelector('.overAllReg')
-let doot = document.querySelector('.doot')
-
-doNot.addEventListener('click', () => {
-  overAll.style.display = 'none'
-  overAllReg.style.display = 'flex'
-})
-
-doot.addEventListener('click', () => {
-  overAllReg.style.display = 'none'
-  overAll.style.display = 'flex'
-})
-
-
-let passwordIn = document.getElementById('password')
-// let usernameIn = document.getElementById('username')
-// let emailIn = document.getElementById('email')
-// let stateIn = document.getElementById('stateIn')
-// let phoneNumberIn = document.getElementById('phoneNumberIn')
-// let addressIn = document.getElementById('addressIn')
-let showHidePass = document.getElementById('showHidePass')
-
-let popNotifier = document.querySelector('.popNotifier')
-let productNAmee = document.querySelector('.productNAmee')
-
-showHidePass.addEventListener('click', () => {
-    if(passwordIn.type = 'password'){
-        passwordIn.type = 'text'
-        showHidePass.textContent = 'hide password'
-    }else{
-        passwordIn.type === 'password'
-        showHidePass.textContent = 'show password'
-    }
-})
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";    
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyBpDrnuCX0GztgqmRxs6XXzWIsrXFofJu8",
@@ -49,22 +9,139 @@ const firebaseConfig = {
     projectId: "saveandget-test1",
     storageBucket: "saveandget-test1.appspot.com",
     messagingSenderId: "764820232194",
-    appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b"
-};
+    appId: "1:764820232194:web:6349afe0e91f2c0aa6af1b",
+  };
 
-const app = initializeApp(firebaseConfig);
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+  import {
+    getFirestore,
+    onSnapshot,
+    doc,
+    getDoc,
+    getDocs,
+    setDoc,
+    collection,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    deleteField,
+    query,
+    where,
+  } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+  import {
+    getAuth,
+    signOut,
+    onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import{getFirestore, doc, getDoc, getDocs, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, query, where} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-const db = getFirestore()
-const auth = getAuth()
-const provider = new GoogleAuthProvider()
-auth.useDeviceLanguage()
+  let editProfileDiv = document.getElementById("editProfileDiv");
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  let db = getFirestore();
+  const auth = getAuth();
+
+
+  let currentUser = null;
+  let customerDetails = document.querySelector('.customerDetails')
+  let editProfile = document.querySelector('.editProfile')
+
+  //   CHECK USER'S AUTHENTICATION
+  function stateChanged() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUser = user.uid;
+        displayCustomerDetails(currentUser)
+      } else {
+        window.location.href = "account.html";
+      }
+    });
+  }
+  stateChanged();
+
+
+
+  // DISPLAY CUSTOMER'S INFORMATION
+  async function displayCustomerDetails(currentUser){
+    var ref = doc(db, "CUSTOMERS", currentUser)
+    const docSnap = await getDoc(ref)
+
+    if(docSnap.exists()){
+      let email = docSnap.data().Email
+      let newDiv = document.createElement('div')
+      newDiv.setAttribute('class', 'customerInternal')
+      newDiv.innerHTML = `
+        <h3 class="mainDetails">Fullname: ${docSnap.data().Fullname}</h3>
+        <h3 class="mainDetails">State: ${docSnap.data().State}</h3>
+        <h3 class="mainDetails">Local Gvt: ${docSnap.data().localGovernment}</h3>
+        <h3 class="mainDetails">Email: ${docSnap.data().Email}</h3>
+        <h3 class="mainDetails">Address: ${docSnap.data().Address}</h3>
+        <h3 class="mainDetails">Phone Number: ${docSnap.data().Phone_Number}</h3>
+        <div class='otherButtons'>
+          <button class='editProfile'> Edit </button>
+          <button class='logout'> Logout </button>
+        </div>
+      `
+      newDiv.querySelector('.logout').addEventListener('click', () => {
+        logutUser()
+      })
+      newDiv.querySelector('.editProfile').addEventListener('click', () => {
+        customerDetails.style.display = 'none'
+        editProfile.style.display = 'flex'
+        readProfile()
+        // editProfileFunc(currentUser, email)
+      })
+      customerDetails.appendChild(newDiv)
+    }else{
+        alert('data does not exist')
+    }
+  }
 
 
 
 
-let States = [
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => {
+          // console.log(
+          //   "Service Worker registered with scope:",
+          //   registration.scope
+          // );
+        })
+        .catch((error) => {
+          console.log("Service Worker registration failed:", error);
+        });
+    });
+  }
+
+
+    let fullname = document.getElementById('fullname')
+    let addresss = document.getElementById('addresss')
+    let State = document.getElementById('State')
+    let localGvt = document.getElementById('localGvt')
+    let phone = document.getElementById('phone')
+
+  // READ THE PROFILE
+  async function readProfile(){
+    let profileRef = doc(db, "CUSTOMERS", currentUser)
+    const docSnap = await getDoc(profileRef)
+    if(docSnap.exists()){
+      fullname.value = docSnap.data().Fullname
+      addresss.value = docSnap.data().Address
+      State.value = docSnap.data().State
+      phone.value = docSnap.data().Phone_Number
+    }else{
+      alert("Sorry, You don't have a profile with us")
+    }
+  }
+
+
+
+
+  let States = [
     `Select State`,
     `Abia`,
     `Adamawa`,
@@ -946,7 +1023,7 @@ let FCT_Abuja = [
 ];
 
 
-let slct1 = document.getElementById("state");
+let slct1 = document.getElementById("State");
 let slct2 = document.getElementById("localGvt");
 
 States.forEach(function addSchool(item){
@@ -1082,236 +1159,53 @@ function addToSlct2(arr) {
 
 
 
-    let Fullname = document.getElementById('username')
-    let email = document.getElementById('email')
-    let password = document.getElementById('password')
-    let address = document.getElementById('addressIn')
-    let state = document.getElementById('stateIn')
-    let phoneNumber = document.getElementById('phoneNumberIn')
 
 
+  // UPDATING THE PROFILE
 
-    let fullnameNoti = document.querySelector('.fullnameNoti')
-    let emailNoti = document.querySelector('.emailNoti')
-    let phoneNoti = document.querySelector('.phoneNoti')
-    let stateNoti = document.querySelector('.stateNoti')
-    let localNoti = document.querySelector('.localNoti')
-    let addressNoti = document.querySelector('.addressNoti')
-    let passNoti = document.querySelector('.passNoti')
+  let updateBtn = document.querySelector('.updateBtn')
 
-// validate user input
-function validationUser(){
-  let nameregex = /^[a-zA-Z]+\s+[a-zA-Z]+$/
-  let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/
-  let uerregex = /^[a-zA-Z0-9]{5,}$/
-  let addressregex = /\s+/;
-  let phoneNumberregex = /^(070|080|090|081|091)\d{8}$/
-//   let phoneNumberregex = /^[0-9]+$/
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{9,}$/;
+  async function updateDocProfile(){
+    let fullnameIn = fullname.value
+    let addresssIn = addresss.value
+    let StateIn = State.value
+    let localGovt = localGvt.value
+    let phoneIn = phone.value
 
-    if(!nameregex.test(Fullname.value)){
-        fullnameNoti.style.display = 'flex'
-        Fullname.style.border = '2px solid red'
-        return false;
-    }
-    // Validate email format
-    if(!emailregex.test(email.value)){
-        emailNoti.style.display = 'flex'
-        email.style.border = '2px solid red'
-        return false;
-    }
-    if (!addressregex.test(address.value)) {
-        addressNoti.style.display = 'flex'
-        address.style.border = '2px solid red'
-        return false;
-    }
-    if(Fullname.value == '' || email.value == '' || address.value == '' || slct1.value == '' || phoneNumber.value == '' || slct2.value == '' || password.value == ''){
-        alert('Please fill every details')
-        return false
-    }
-    if (!phoneNumberregex.test(phoneNumber.value)) {
-        phoneNoti.style.display = 'flex'
-        phoneNumber.style.border = '2px solid red'
-        return false;
-    }
-    if (!passwordRegex.test(password.value)) {
-        passNoti.style.display = 'flex'
-        password.style.border = '2px solid red'
-        return false;
-    }
-    if(slct1.value == 'Select State'){
-        slct1.style.border = '2px solid red'
-        stateNoti.style.display = 'flex'
-        return
-    }
-    if(slct2.value == 'Select local Government'){
-        localNoti.style.display = 'flex'
-        slct2.style.border = '2px solid red'
-        return
-    }
-
-  return true
-}
-
-
-function createNewCustomer(){
-
-    let Fullname = document.getElementById('username').value
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
-    let address = document.getElementById('addressIn').value
-    let state = slct1.value
-    let localGovernment = slct2.value
-    let phoneNumber = document.getElementById('phoneNumberIn').value
-
-    if(!validationUser()){
-        return
-    }
-    slct2.style.border = '2px solid black'
-    slct1.style.border = '2px solid black'
-
-    stateNoti.style.display = 'none'
-    fullnameNoti.style.display = 'none'
-    emailNoti.style.display = 'none'
-    localNoti.style.display = 'none'
-    stateNoti.style.display = 'none'
-    passNoti.style.display = 'none'
-    phoneNoti.style.display = 'none'
-    addressNoti.style.display = 'none'
-
-    document.getElementById('username').style.border = '2px solid black'
-    document.getElementById('email').style.border = '2px solid black'
-    document.getElementById('password').style.border = '2px solid black'
-    document.getElementById('addressIn').style.border = '2px solid black'
-    document.getElementById('phoneNumberIn').style.border = '2px solid black'
-
-
-
-    createUserWithEmailAndPassword(auth, email, password)
-            .then((credentials) => {
-
-              productNAmee.textContent = email
-              popNotifier.style.display = 'flex'
-              setTimeout(() => {
-                popNotifier.style.display = 'none'
-              }, 1500)
-                let userId = credentials.user.uid;
-
-                var ref = doc(db, "CUSTOMERS", userId);
-
-                setDoc(ref, {
-                    Fullname: Fullname,
-                    Email: email,
-                    Address : address,
-                    State : state,
-                    Phone_Number : phoneNumber,
-                    localGovernment : localGovernment
-
-                })
-                    .then((response) => {
-                        console.log(response);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-
-                
-                setTimeout(() => {
-                    window.location.href =  'index.html'
-                }, 3000);
-
-            })
-            .catch((error) => {
-                alert(error.message);
-            });
-}
-
-
-function signInUser(){
-    let email = document.getElementById('signEmail').value
-    let password = document.getElementById('signPassword').value
-    let overIn = document.querySelector('.overIn')
-
-    signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        overIn.textContent = 'Welcome ' + ' ' + email
-        popNotifier.style.display = 'flex'
-        setTimeout(() => {
-          popNotifier.style.display = 'none'
-        }, 1500)
-        setTimeout(() => {
-                window.location.href =  'index.html'
-            }, 3000);
+    var ref = doc(db, "CUSTOMERS", currentUser)
+    await updateDoc(ref, {
+        Fullname: fullnameIn,
+        Address: addresssIn,
+        State: StateIn,
+        localGovernment : localGovt,
+        Phone_Number: phoneIn,
     })
-    .catch((error) => {
-            alert(error.message);
-        });
+    .then(() => {
+      alert('Updated Successfully')
+      setTimeout(() => {  
+        customerDetails.style.display = 'flex'
+        editProfile.style.display = 'none'
+      }, 1000);
+    })
+    .catch(error => {
+        alert(error.message)
+    })
+  } 
+
+  updateBtn.addEventListener('click', updateDocProfile)
+
+
+
+
+
+
+//   signOut
+async function logutUser(){
+  signOut(auth)
+    .then(() => {
+        window.location.href = 'account.html'
+    })
+    .catch(err => {
+        console.error(err);
+    })
 }
-
-let signUp = document.getElementById('signUp')
-signUp.addEventListener('click', createNewCustomer)
-
-let signIn = document.getElementById('signIn')
-signIn.addEventListener('click', signInUser)
-
-
-// GOOGLE SIGN IN
-
-let withGoogle = document.querySelector('.withGoogle')
-
-const googleRegister = async () => {
-
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-
-        let userId = user.uid
-        let email = user.email
-        let fullNamee = user.displayName
-
-
-
-        productNAmee.textContent = fullNamee
-        popNotifier.style.display = 'flex'
-        setTimeout(() => {
-          popNotifier.style.display = 'none'
-        }, 1500)
-
-
-          var ref = doc(db, "CUSTOMERS", userId);
-
-          setDoc(ref, {
-              Fullname: fullNamee,
-              Email: email,
-              Address : 'Update your Address',
-              State : 'Select a State',
-              Phone_Number : 'Your Phone Number',
-              localGovernment : 'Your Local Government'
-
-          })
-              .then((response) => {
-                  console.log(response);
-              })
-              .catch((error) => {
-                  console.error(error);
-              });
-
-          
-          setTimeout(() => {
-              window.location.href =  'index.html'
-          }, 3000);
-
-
-
-      }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-      });
-}
-
-
-withGoogle.addEventListener('click', googleRegister)
